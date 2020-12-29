@@ -12,7 +12,12 @@ public class Ville {
     /**
      * Default constructor
      */
-    public Ville() {
+    public Ville(String p_nomVille) {
+        this.nomVille = p_nomVille;
+        this.nbHabitants = 10;
+        this.batiments = new ArrayList<Batiment>();
+        //Ajouter des batiments de base ?
+        // nb Habitants min;
     }
 
     /**
@@ -40,8 +45,10 @@ public class Ville {
     /**
      * 
      */
-    public void ajouterBatiment() {
-        // TODO implement here
+    public void ajouterBatiment(Batiment nouveauBatiment) {
+        batiments.add(nouveauBatiment);
+        nbHabitants++;
+
     }
 
     /**
