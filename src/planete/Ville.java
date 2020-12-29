@@ -97,6 +97,7 @@ public class Ville {
                 Batiment batiment = batiments.get(i);
                 if (nomBatiment == batiment.getNomBatiment()){
                     isSame = true;
+                    System.out.println("Ce nom est déjà pris par un autre batiment dans cette ville");
                     break;
                 }else{
                     isSame = false;
