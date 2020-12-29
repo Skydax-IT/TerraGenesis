@@ -86,7 +86,7 @@ public class Ville {
 
     public String setNomBatiment(){
         boolean isSame = true;
-        String nomBatiment;
+        String nomBatiment = "";
 
         while(isSame){
             Scanner myObj = new Scanner(System.in);
