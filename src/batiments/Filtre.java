@@ -10,9 +10,9 @@ public class Filtre extends Batiment {
     /**
      * Default constructor
      */
-    public Filtre() {
-        super("Filtre", 1500, 30, 1, 50, 10,
-                25, 12, 30, 6, 100);
+    public Filtre(String p_nomBatiment) {
+        super(p_nomBatiment, 0,0,0,0,
+                0,0,0,0,0,0);
         //time en seconde
     }
 

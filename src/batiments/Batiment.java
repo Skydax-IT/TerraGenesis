@@ -88,6 +88,7 @@ public class Batiment {
 
         this.tempsBatiment -= 0.8 * this.niveauBatiment;
         this.argentGenere += 0.8 * this.niveauBatiment;
+        this.populationGenere += 1.2 * this.niveauBatiment;
 
         this.pressionGenere += this.niveauBatiment * 0.6;
         this.biomasseGenere += this.niveauBatiment * 0.6;

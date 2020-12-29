@@ -10,9 +10,9 @@ public class Habitation extends Batiment {
     /**
      * Default constructor
      */
-    public Habitation() {
-        super("Habitation", 1500, 30, 1, 50, 10,
-                25, 12, 30, 6, 100);
+    public Habitation(String p_nomBatiment) {
+        super(p_nomBatiment, 0,0,0,0,
+                0,0,0,0,0,0);
         //time en seconde
     }
 }

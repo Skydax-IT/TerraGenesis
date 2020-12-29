@@ -3,6 +3,7 @@ package planete;
 import technologies.Technologie;
 
 import java.util.*;
+import java.util.Scanner;
 
 /**
  * 
@@ -13,6 +14,19 @@ public class Planete {
      * Default constructor
      */
     public Planete() {
+        this.setNom();
+        this.temperature = 0;
+        this.pression = 20;
+        this.oxygene = 40;
+        this.eau = 5;
+        this.biomasse = 45;
+        this.population = 100;
+        this.victoire = false;
+        this.villes = new ArrayList<Ville>();
+        this.postes = new ArrayList<Poste>();
+        this.technologies = new ArrayList<Technologie>();
+
+
     }
 
     /**
@@ -126,7 +140,9 @@ public class Planete {
      * 
      */
     public void creerVille() {
-        // TODO implement here
+        Ville nouvelleVille = new Ville();
+        villes.add(nouvelleVille);
+        //actualisation des paramètres de la planete
     }
 
     /**
@@ -150,11 +166,10 @@ public class Planete {
         // TODO implement here
     }
 
-    /**
-     * 
-     */
-    public void demanderNom() {
-        // TODO implement here
+    public void setNom(){
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Donner un nom à votre planète"); //fenetre pop-up
+        this.nom = myObj.nextLine();
     }
 
     /**
