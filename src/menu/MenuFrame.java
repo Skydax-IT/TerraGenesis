@@ -1,6 +1,6 @@
 package menu;
 import javafx.animation.AnimationTimer;
-import javafx.application.Application;
+//import javafx.application.Application;
 import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -15,7 +15,7 @@ import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
-public class MenuFrame extends Application{
+public class MenuFrame /*extends Application*/{
 
     /**
      * Default constructor
@@ -43,7 +43,7 @@ public class MenuFrame extends Application{
 
     private final Sphere sphere = new Sphere(175);
 
-    @Override
+    //@Override
     public void start(Stage primaryStage) {
         Camera camera = new PerspectiveCamera(true);
         camera.setNearClip(1);
