@@ -83,6 +83,23 @@ public class Batiment {
      */
     protected int argentGenere;
 
+    @Override
+    public String toString() {
+        return "Batiment{" +
+                "nomBatiment='" + nomBatiment + '\'' +
+                ", prixBatiment=" + prixBatiment +
+                ", tempsBatiment=" + tempsBatiment +
+                ", niveauBatiment=" + niveauBatiment +
+                ", pressionGenere=" + pressionGenere +
+                ", biomasseGenere=" + biomasseGenere +
+                ", eauGenere=" + eauGenere +
+                ", temperatureGenere=" + temperatureGenere +
+                ", oxygeneGenere=" + oxygeneGenere +
+                ", populationGenere=" + populationGenere +
+                ", argentGenere=" + argentGenere +
+                '}';
+    }
+
     public void ameliorationBatiment(){
         this.niveauBatiment++;
 

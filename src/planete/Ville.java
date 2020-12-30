@@ -14,7 +14,7 @@ public class Ville {
      * Default constructor
      */
     public Ville() {
-        this.nomVille = "";
+        this.nomVille = "Paris";
         this.nbHabitants = 10;
         this.nbBatiments = 3;
         this.batiments = new ArrayList<Batiment>();
@@ -84,6 +84,38 @@ public class Ville {
      */
     protected int argentGenere;
 
+    public ArrayList<Batiment> getBatiments() {
+        return batiments;
+    }
+
+    public void setBatiments(ArrayList<Batiment> batiments) {
+        this.batiments = batiments;
+    }
+
+    public void afficherBatiments(){
+        for (Batiment batiment : this.batiments){
+            System.out.println(batiment);
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        return "Ville{" +
+                "nbBatiments=" + nbBatiments +
+                ", batiments=" + batiments +
+                ", nbHabitants=" + nbHabitants +
+                ", nomVille='" + nomVille + '\'' +
+                ", biomasseGenere=" + biomasseGenere +
+                ", pressionGenere=" + pressionGenere +
+                ", eauGenere=" + eauGenere +
+                ", temperatureGenere=" + temperatureGenere +
+                ", oxygeneGenere=" + oxygeneGenere +
+                ", populationGenere=" + populationGenere +
+                ", argentGenere=" + argentGenere +
+                '}';
+    }
+
     public String setNomBatiment(){
         boolean isSame = true;
         String nomBatiment = "";
@@ -93,15 +125,17 @@ public class Ville {
             System.out.println("Donner un nom à votre Batiment"); //fenetre pop-up
             nomBatiment = myObj.nextLine();
 
-            for(int i=0; i<batiments.size();i++) {
-                Batiment batiment = batiments.get(i);
-                if (nomBatiment == batiment.getNomBatiment()){
-                    isSame = true;
-                    System.out.println("Ce nom est déjà pris par un autre batiment dans cette ville");
-                    break;
-                }else{
-                    isSame = false;
+            if(!this.batiments.isEmpty()) {
+                for (Batiment batiment : batiments) {
+                    if (Objects.equals(nomBatiment, batiment.getNomBatiment())) {
+                        System.out.println("Ce nom est déjà pris par un autre batiment dans cette ville");
+                        break;
+                    }else{
+                        isSame = false;
+                    }
                 }
+            }else{
+                isSame = false;
             }
         }
 
@@ -114,50 +148,49 @@ public class Ville {
     public void ajouterBatiment(int typeBatiment) {
 
         switch (typeBatiment) {
-            case 1:
+            case 1 -> {
                 Citerne nouvelleCiterne = new Citerne(setNomBatiment());
                 batiments.add(nouvelleCiterne);
-                this.nbBatiments ++;
+                this.nbBatiments++;
                 this.actuStatVille(nouvelleCiterne);
-                break;
-            case 2:
+            }
+            case 2 -> {
                 Filtre nouveauFiltre = new Filtre(setNomBatiment());
                 batiments.add(nouveauFiltre);
-                this.nbBatiments ++;
+                this.nbBatiments++;
                 this.actuStatVille(nouveauFiltre);
-                break;
-            case 3:
+            }
+            case 3 -> {
                 Habitation nouvelleHabitation = new Habitation(setNomBatiment());
                 batiments.add(nouvelleHabitation);
-                this.nbBatiments ++;
+                this.nbBatiments++;
                 this.actuStatVille(nouvelleHabitation);
-                break;
-            case 4:
+            }
+            case 4 -> {
                 Jardin nouveauJardin = new Jardin(setNomBatiment());
                 batiments.add(nouveauJardin);
-                this.nbBatiments ++;
+                this.nbBatiments++;
                 this.actuStatVille(nouveauJardin);
-                break;
-            case 5:
+            }
+            case 5 -> {
                 Mine nouvelleMine = new Mine(setNomBatiment());
                 batiments.add(nouvelleMine);
-                this.nbBatiments ++;
+                this.nbBatiments++;
                 this.actuStatVille(nouvelleMine);
-                break;
-            case 6:
+            }
+            case 6 -> {
                 Transformateur nouveauTransformateur = new Transformateur(setNomBatiment());
                 batiments.add(nouveauTransformateur);
-                this.nbBatiments ++;
+                this.nbBatiments++;
                 this.actuStatVille(nouveauTransformateur);
-                break;
-            case 7:
+            }
+            case 7 -> {
                 Usine nouvelleUsine = new Usine(setNomBatiment());
                 batiments.add(nouvelleUsine);
-                this.nbBatiments ++;
+                this.nbBatiments++;
                 this.actuStatVille(nouvelleUsine);
-                break;
-            default:
-                System.out.println("Batiment inexistant!");
+            }
+            default -> System.out.println("Batiment inexistant!");
         }
     }
 
@@ -180,7 +213,7 @@ public class Ville {
 
         for(int i=0; i<batiments.size();i++){
             Batiment batiment = batiments.get(i);
-            if(batiment.getNomBatiment() == p_nom){
+            if(Objects.equals(batiment.getNomBatiment(), p_nom)){
                 try {
                     batiments.remove(i);
                 }
@@ -190,6 +223,4 @@ public class Ville {
             }
         }
     }
-
-
 }
