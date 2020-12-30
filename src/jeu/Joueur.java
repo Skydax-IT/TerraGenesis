@@ -1,5 +1,7 @@
 package jeu;
 
+import planete.Planete;
+
 import java.util.*;
 
 /**
@@ -10,7 +12,11 @@ public class Joueur {
     /**
      * Default constructor
      */
-    public Joueur() {
+    public Joueur(String nom) {
+        this.argent = 1000;
+        this.nom = nom;
+        this.niveauTechnologique = 1;
+        this.planete = new Planete();
     }
 
     /**
@@ -26,7 +32,12 @@ public class Joueur {
     /**
      * 
      */
-    private int niveauTechnologique[];
+    private int niveauTechnologique;
+
+    /**
+     *
+     */
+    private Planete planete;
 
 
     /**

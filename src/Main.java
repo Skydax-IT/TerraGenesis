@@ -1,23 +1,28 @@
+import batiments.Batiment;
+import batiments.Mine;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import menu.MenuFrame;
 import planete.Ville;
 
-public class Main extends Application {
+import java.util.ArrayList;
 
-  /*  public static void main(String[] args) {
+public class Main{ //extends Application {
+
+  public static void main(String[] args) {
         Ville a = new Ville("Paris");
-        a.ajouterBatiment(1);
-        a.ajouterBatiment(1);
-        a.ajouterBatiment(1);
+        Mine alpha = new Mine("Alpha");
+        Mine beta = new Mine("beta");
 
+        a.ajoutMine(alpha);
+        a.ajoutMine(beta);
         a.afficherBatiments();
-        a.supprimerBatiment("a");
+        a.supprimerBatiment(alpha);
         a.afficherBatiments();
-    }*/
+    }
 
-    public void start(Stage primaryStage){
+   /* public void start(Stage primaryStage){
         MenuFrame mF = new MenuFrame();
         mF.start(primaryStage);
-    }
+    }*/
 }

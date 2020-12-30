@@ -20,6 +20,7 @@ public class Planete {
         this.oxygene = 40;
         this.eau = 5;
         this.biomasse = 45;
+        this.argent = 2500;
         this.population = 100;
         this.victoire = false;
         this.villes = new ArrayList<Ville>();
@@ -47,6 +48,11 @@ public class Planete {
      * 
      */
     private int eau;
+
+    /**
+     *
+     */
+    private int argent;
 
     /**
      * 
@@ -142,8 +148,23 @@ public class Planete {
 
         Ville nouvelleVille = new Ville("Paris");
         villes.add(nouvelleVille);
-        //actualisation des paramètres de la planete
+        actuStatPlaneteNouvelleVille(nouvelleVille);
     }
+
+    /**
+     *
+     */
+    public void actuStatPlaneteNouvelleVille(Ville nouvelleVille) {
+
+        this.temperature += nouvelleVille.getTemperatureGenere();
+        this.pression += nouvelleVille.getPressionGenere();
+        this.oxygene += nouvelleVille.getOxygeneGenere();
+        this.eau += nouvelleVille.getEauGenere();
+        this.biomasse += nouvelleVille.getBiomasseGenere();
+        this.argent += nouvelleVille.getArgentGenere();
+        this.population += nouvelleVille.getPopulationGenere();
+    }
+
 
     /**
      * 
@@ -175,14 +196,115 @@ public class Planete {
     /**
      * 
      */
-    public boolean verifierVictoire() {
+    public void verifierVictoire() {
         if((this.temperature >= 7 && this.temperature <= 20) && (this.pression >= 95000 && this.pression <= 105000)
         && (this.oxygene >= 200000 && this.oxygene <= 220000) && (this.eau >= 595000 && this.eau <= 605000)
                 && (this.biomasse >= 595000 && this.temperature <= 605000) && (this.population >= 500)){
-            return true;
-        }else{
-            return false;
+            this.victoire = true;
         }
     }
 
+    public int getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
+    }
+
+    public int getPression() {
+        return pression;
+    }
+
+    public void setPression(int pression) {
+        this.pression = pression;
+    }
+
+    public int getOxygene() {
+        return oxygene;
+    }
+
+    public void setOxygene(int oxygene) {
+        this.oxygene = oxygene;
+    }
+
+    public int getEau() {
+        return eau;
+    }
+
+    public void setEau(int eau) {
+        this.eau = eau;
+    }
+
+    public int getArgent() {
+        return argent;
+    }
+
+    public void setArgent(int argent) {
+        this.argent = argent;
+    }
+
+    public int getBiomasse() {
+        return biomasse;
+    }
+
+    public void setBiomasse(int biomasse) {
+        this.biomasse = biomasse;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
+    public int[] getDate() {
+        return date;
+    }
+
+    public void setDate(int[] date) {
+        this.date = date;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public Boolean getVictoire() {
+        return victoire;
+    }
+
+    public void setVictoire(Boolean victoire) {
+        this.victoire = victoire;
+    }
+
+    public ArrayList<Ville> getVilles() {
+        return villes;
+    }
+
+    public void setVilles(ArrayList<Ville> villes) {
+        this.villes = villes;
+    }
+
+    public ArrayList<Poste> getPostes() {
+        return postes;
+    }
+
+    public void setPostes(ArrayList<Poste> postes) {
+        this.postes = postes;
+    }
+
+    public ArrayList<Technologie> getTechnologies() {
+        return technologies;
+    }
+
+    public void setTechnologies(ArrayList<Technologie> technologies) {
+        this.technologies = technologies;
+    }
 }

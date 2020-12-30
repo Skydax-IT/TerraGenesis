@@ -2,6 +2,7 @@ package planete;
 
 import batiments.*;
 
+import javax.xml.crypto.dsig.Transform;
 import java.util.*;
 
 
@@ -17,8 +18,8 @@ public class Ville {
     public Ville(String p_nomVille) {
         this.nomVille = p_nomVille;
         this.nbHabitants = 10;
-        this.nbBatiments = 3;
         this.batiments = new ArrayList<Batiment>();
+        this.nbBatiments = this.batiments.size();
         //Ajouter des batiments de base ?
 
         this.pressionGenere = 0;
@@ -142,85 +143,86 @@ public class Ville {
         return nomBatiment;
     }
 
-    /**
-     * 
-     */
-    public void ajouterBatiment(int typeBatiment) {
+    public void ajoutCiterne(Citerne citerne){
+        this.batiments.add(citerne);
+        this.nbBatiments++;
+        this.actuStatVilleBatiment(citerne);
+    }
 
-        switch (typeBatiment) {
-            case 1 -> {
-                Citerne nouvelleCiterne = new Citerne(setNomBatiment());
-                batiments.add(nouvelleCiterne);
-                this.nbBatiments++;
-                this.actuStatVille(nouvelleCiterne);
-            }
-            case 2 -> {
-                Filtre nouveauFiltre = new Filtre(setNomBatiment());
-                batiments.add(nouveauFiltre);
-                this.nbBatiments++;
-                this.actuStatVille(nouveauFiltre);
-            }
-            case 3 -> {
-                Habitation nouvelleHabitation = new Habitation(setNomBatiment());
-                batiments.add(nouvelleHabitation);
-                this.nbBatiments++;
-                this.actuStatVille(nouvelleHabitation);
-            }
-            case 4 -> {
-                Jardin nouveauJardin = new Jardin(setNomBatiment());
-                batiments.add(nouveauJardin);
-                this.nbBatiments++;
-                this.actuStatVille(nouveauJardin);
-            }
-            case 5 -> {
-                Mine nouvelleMine = new Mine(setNomBatiment());
-                batiments.add(nouvelleMine);
-                this.nbBatiments++;
-                this.actuStatVille(nouvelleMine);
-            }
-            case 6 -> {
-                Transformateur nouveauTransformateur = new Transformateur(setNomBatiment());
-                batiments.add(nouveauTransformateur);
-                this.nbBatiments++;
-                this.actuStatVille(nouveauTransformateur);
-            }
-            case 7 -> {
-                Usine nouvelleUsine = new Usine(setNomBatiment());
-                batiments.add(nouvelleUsine);
-                this.nbBatiments++;
-                this.actuStatVille(nouvelleUsine);
-            }
-            default -> System.out.println("Batiment inexistant!");
+    public void ajoutFiltre(Filtre filtre){
+        this.batiments.add(filtre);
+        this.nbBatiments++;
+        this.actuStatVilleBatiment(filtre);
+    }
+
+    public void ajoutHabitation(Habitation habitation){
+        this.batiments.add(habitation);
+        this.nbBatiments++;
+        this.actuStatVilleBatiment(habitation);
+    }
+
+    public void ajoutJardin(Jardin jardin){
+        this.batiments.add(jardin);
+        this.nbBatiments++;
+        this.actuStatVilleBatiment(jardin);
+    }
+
+    public void ajoutMine(Mine mine){
+        this.batiments.add(mine);
+        this.nbBatiments++;
+        this.actuStatVilleBatiment(mine);
+    }
+
+    public void ajoutTransformateur(Transformateur transformateur){
+        this.batiments.add(transformateur);
+        this.nbBatiments++;
+        this.actuStatVilleBatiment(transformateur);
+    }
+
+    public void ajoutUsine(Usine usine){
+        this.batiments.add(usine);
+        this.nbBatiments++;
+        this.actuStatVilleBatiment(usine);
+    }
+
+    public void actuStatVilleBatiment(Batiment batiment){
+
+        this.nbHabitants += batiment.getPopulationGenere();
+        this.pressionGenere += batiment.getPressionGenere();
+        this.biomasseGenere += batiment.getBiomasseGenere();
+        this.eauGenere += batiment.getEauGenere();
+        this.temperatureGenere += batiment.getTemperatureGenere();
+        this.oxygeneGenere += batiment.getOxygeneGenere();
+        this.populationGenere += batiment.getPopulationGenere();
+        this.argentGenere += batiment.getArgentGenere();
+    }
+
+    public void actuStatVille(){
+
+        this.nbHabitants = 0;
+        this.pressionGenere = 0;
+        this.biomasseGenere = 0;
+        this.eauGenere = 0;
+        this.temperatureGenere = 0;
+        this.oxygeneGenere = 0;
+        this.populationGenere = 0;
+        this.argentGenere = 0;
+
+        for(Batiment batiment: this.batiments){
+            actuStatVilleBatiment(batiment);
         }
     }
 
-    public void actuStatVille(Batiment nouveauBatiment){
-
-        this.nbHabitants += nouveauBatiment.getPopulationGenere();
-        this.pressionGenere += nouveauBatiment.getPressionGenere();
-        this.biomasseGenere += nouveauBatiment.getBiomasseGenere();
-        this.eauGenere += nouveauBatiment.getEauGenere();
-        this.temperatureGenere += nouveauBatiment.getTemperatureGenere();
-        this.oxygeneGenere += nouveauBatiment.getOxygeneGenere();
-        this.populationGenere += nouveauBatiment.getPopulationGenere();
-        this.argentGenere += nouveauBatiment.getArgentGenere();
-    }
-
     /**
      * 
      */
-    public void supprimerBatiment(String p_nom) {
-
-        for(int i=0; i<batiments.size();i++){
-            Batiment batiment = batiments.get(i);
-            if(Objects.equals(batiment.getNomBatiment(), p_nom)){
-                try {
-                    batiments.remove(i);
-                }
-                catch(IndexOutOfBoundsException exception){
-                    System.out.println("Suppression impossible");
-                }
-            }
+    public void supprimerBatiment(Batiment batSuppr) {
+        try {
+            System.out.println("Suppression");
+            this.batiments.remove(batSuppr);
+        }
+        catch(IndexOutOfBoundsException exception){
+            System.out.println("Suppression impossible");
         }
     }
 
