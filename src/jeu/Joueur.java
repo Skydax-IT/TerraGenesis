@@ -17,7 +17,13 @@ public class Joueur {
         this.nom = nom;
         this.niveauTechnologique = 1;
         this.planete = new Planete();
+        this.victoire = false;
     }
+
+    /**
+     *
+     */
+    private boolean victoire;
 
     /**
      * 

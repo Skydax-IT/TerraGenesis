@@ -22,12 +22,24 @@ public class Planete {
         this.biomasse = 45;
         this.argent = 2500;
         this.population = 100;
-        this.victoire = false;
         this.villes = new ArrayList<Ville>();
         this.postes = new ArrayList<Poste>();
         this.technologies = new ArrayList<Technologie>();
 
+        this.nbVilles = this.villes.size();
+        this.nbPostes = this.postes.size();
+
     }
+
+    /**
+     *
+     */
+    private int nbVilles;
+
+    /**
+     *
+     */
+    private int nbPostes;
 
     /**
      * 
@@ -73,11 +85,6 @@ public class Planete {
      * 
      */
     private String nom;
-
-    /**
-     * 
-     */
-    private Boolean victoire;
 
     /**
      * 
@@ -144,10 +151,10 @@ public class Planete {
     /**
      * 
      */
-    public void creerVille() {
+    public void ajouterVille(Ville nouvelleVille) {
 
-        Ville nouvelleVille = new Ville("Paris");
         villes.add(nouvelleVille);
+        this.nbVilles++;
         actuStatPlaneteNouvelleVille(nouvelleVille);
     }
 
@@ -165,19 +172,32 @@ public class Planete {
         this.population += nouvelleVille.getPopulationGenere();
     }
 
+    public void actuStatPlaneteNouveauPoste(Poste poste){
 
-    /**
-     * 
-     */
-    public void supprimerVille() {
-        // TODO implement here
+    }
+
+    public void actuStatPlanete(Poste poste){
+        //Tout actualiser
     }
 
     /**
      * 
      */
-    public void creerPoste() {
-        // TODO implement here
+    public void supprimerVille(Ville villeSuppr) {
+        try {
+            this.villes.remove(villeSuppr);
+            this.nbVilles --;
+        }
+        catch(IndexOutOfBoundsException exception){
+            System.out.println("Suppression impossible");
+        }
+    }
+
+    /**
+     * 
+     */
+    public void ajouterPoste(Poste poste) {
+
     }
 
     /**
@@ -196,11 +216,13 @@ public class Planete {
     /**
      * 
      */
-    public void verifierVictoire() {
+    public boolean verifierVictoire() {
         if((this.temperature >= 7 && this.temperature <= 20) && (this.pression >= 95000 && this.pression <= 105000)
         && (this.oxygene >= 200000 && this.oxygene <= 220000) && (this.eau >= 595000 && this.eau <= 605000)
                 && (this.biomasse >= 595000 && this.temperature <= 605000) && (this.population >= 500)){
-            this.victoire = true;
+            return true;
+        }else{
+            return false;
         }
     }
 
@@ -274,14 +296,6 @@ public class Planete {
 
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    public Boolean getVictoire() {
-        return victoire;
-    }
-
-    public void setVictoire(Boolean victoire) {
-        this.victoire = victoire;
     }
 
     public ArrayList<Ville> getVilles() {

@@ -1,6 +1,5 @@
 package planete;
 
-import batiments.Batiment;
 import batiments.Mine;
 
 import java.util.*;
@@ -24,7 +23,7 @@ public class Poste {
     /**
      * 
      */
-    private String nomPoste;
+    private final String nomPoste;
 
     /**
      * 
@@ -57,6 +56,7 @@ public class Poste {
     public void supprimerMine(Mine mineSuppr){//String nomMine) {
         try {
             this.mines.remove(mineSuppr);
+            this.nbMines --;
         }
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");

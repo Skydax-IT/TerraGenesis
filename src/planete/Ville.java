@@ -220,6 +220,7 @@ public class Ville {
         try {
             System.out.println("Suppression");
             this.batiments.remove(batSuppr);
+            this.nbBatiments --;
         }
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
