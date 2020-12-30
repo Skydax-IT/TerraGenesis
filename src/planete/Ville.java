@@ -9,10 +9,11 @@ import java.util.*;
  * 
  */
 public class Ville {
-
+    
     /**
      * Default constructor
      */
+
     public Ville(String p_nomVille) {
         this.nomVille = p_nomVille;
         this.nbHabitants = 10;
@@ -221,5 +222,85 @@ public class Ville {
                 }
             }
         }
+    }
+
+    public int getNbBatiments() {
+        return nbBatiments;
+    }
+
+    public void setNbBatiments(int nbBatiments) {
+        this.nbBatiments = nbBatiments;
+    }
+
+    public int getNbHabitants() {
+        return nbHabitants;
+    }
+
+    public void setNbHabitants(int nbHabitants) {
+        this.nbHabitants = nbHabitants;
+    }
+
+    public String getNomVille() {
+        return nomVille;
+    }
+
+    public void setNomVille(String nomVille) {
+        this.nomVille = nomVille;
+    }
+
+    public int getBiomasseGenere() {
+        return biomasseGenere;
+    }
+
+    public void setBiomasseGenere(int biomasseGenere) {
+        this.biomasseGenere = biomasseGenere;
+    }
+
+    public int getPressionGenere() {
+        return pressionGenere;
+    }
+
+    public void setPressionGenere(int pressionGenere) {
+        this.pressionGenere = pressionGenere;
+    }
+
+    public int getEauGenere() {
+        return eauGenere;
+    }
+
+    public void setEauGenere(int eauGenere) {
+        this.eauGenere = eauGenere;
+    }
+
+    public int getTemperatureGenere() {
+        return temperatureGenere;
+    }
+
+    public void setTemperatureGenere(int temperatureGenere) {
+        this.temperatureGenere = temperatureGenere;
+    }
+
+    public int getOxygeneGenere() {
+        return oxygeneGenere;
+    }
+
+    public void setOxygeneGenere(int oxygeneGenere) {
+        this.oxygeneGenere = oxygeneGenere;
+    }
+
+    public int getPopulationGenere() {
+        return populationGenere;
+    }
+
+    public void setPopulationGenere(int populationGenere) {
+        this.populationGenere = populationGenere;
+    }
+
+    public int getArgentGenere() {
+        return argentGenere;
+    }
+
+    public void setArgentGenere(int argentGenere) {
+        this.argentGenere = argentGenere;
     }
 }
