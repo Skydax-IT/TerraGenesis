@@ -9,7 +9,7 @@ import java.util.*;
  * 
  */
 public class Ville {
-    
+
     /**
      * Default constructor
      */

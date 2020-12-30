@@ -26,7 +26,6 @@ public class Planete {
         this.postes = new ArrayList<Poste>();
         this.technologies = new ArrayList<Technologie>();
 
-
     }
 
     /**
@@ -176,8 +175,14 @@ public class Planete {
     /**
      * 
      */
-    public void verifierVictoire() {
-        // TODO implement here
+    public boolean verifierVictoire() {
+        if((this.temperature >= 7 && this.temperature <= 20) && (this.pression >= 95000 && this.pression <= 105000)
+        && (this.oxygene >= 200000 && this.oxygene <= 220000) && (this.eau >= 595000 && this.eau <= 605000)
+                && (this.biomasse >= 595000 && this.temperature <= 605000) && (this.population >= 500)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
