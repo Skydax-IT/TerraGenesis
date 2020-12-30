@@ -140,7 +140,8 @@ public class Planete {
      * 
      */
     public void creerVille() {
-        Ville nouvelleVille = new Ville();
+
+        Ville nouvelleVille = new Ville("Paris");
         villes.add(nouvelleVille);
         //actualisation des paramètres de la planete
     }

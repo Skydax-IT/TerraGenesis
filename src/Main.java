@@ -6,7 +6,7 @@ import planete.Ville;
 public class Main{ //extends Application {
 
     public static void main(String[] args) {
-        Ville a = new Ville();
+        Ville a = new Ville("Paris");
         a.ajouterBatiment(1);
         a.ajouterBatiment(1);
         a.ajouterBatiment(1);

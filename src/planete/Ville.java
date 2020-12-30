@@ -13,8 +13,8 @@ public class Ville {
     /**
      * Default constructor
      */
-    public Ville() {
-        this.nomVille = "Paris";
+    public Ville(String p_nomVille) {
+        this.nomVille = p_nomVille;
         this.nbHabitants = 10;
         this.nbBatiments = 3;
         this.batiments = new ArrayList<Batiment>();
@@ -96,7 +96,6 @@ public class Ville {
         for (Batiment batiment : this.batiments){
             System.out.println(batiment);
         }
-
     }
 
     @Override
@@ -128,7 +127,8 @@ public class Ville {
             if(!this.batiments.isEmpty()) {
                 for (Batiment batiment : batiments) {
                     if (Objects.equals(nomBatiment, batiment.getNomBatiment())) {
-                        System.out.println("Ce nom est déjà pris par un autre batiment dans cette ville");
+                        isSame = true;
+                        System.out.println("Ce nom est déjà pris par un autre bâtiment au sein de cette ville");
                         break;
                     }else{
                         isSame = false;
@@ -138,7 +138,6 @@ public class Ville {
                 isSame = false;
             }
         }
-
         return nomBatiment;
     }
 
