@@ -3,9 +3,9 @@ import javafx.stage.Stage;
 import menu.MenuFrame;
 import planete.Ville;
 
-public class Main{ //extends Application {
+public class Main extends Application {
 
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
         Ville a = new Ville("Paris");
         a.ajouterBatiment(1);
         a.ajouterBatiment(1);
@@ -14,10 +14,10 @@ public class Main{ //extends Application {
         a.afficherBatiments();
         a.supprimerBatiment("a");
         a.afficherBatiments();
-    }
-/*
+    }*/
+
     public void start(Stage primaryStage){
         MenuFrame mF = new MenuFrame();
         mF.start(primaryStage);
-    }*/
+    }
 }
