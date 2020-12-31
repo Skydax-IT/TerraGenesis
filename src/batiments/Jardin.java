@@ -12,7 +12,7 @@ public class Jardin extends Batiment {
      */
     public Jardin(String p_nomBatiment) {
         super(p_nomBatiment, 0,0,0,0,
-                0,0,0,0,0,0);
+                0,0,0,0,0,0,"Jardin");
         //time en seconde
     }
 }

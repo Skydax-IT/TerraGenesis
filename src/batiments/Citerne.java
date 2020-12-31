@@ -12,7 +12,7 @@ public class Citerne extends Batiment {
      */
     public Citerne(String p_nomBatiment) {
         super(p_nomBatiment, 0,0,0,0,
-                0,0,0,0,0,0);
+                0,0,0,0,0,0,"Citerne");
         //time en seconde
     }
 

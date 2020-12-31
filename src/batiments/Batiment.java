@@ -12,7 +12,7 @@ public class Batiment {
      */
     public Batiment(String p_nomBatiment, int p_prixBatiment, int p_tempsBatiment, int p_niveauBatiment, int p_pressionGenere,
                     int p_biomasseGenere, int p_eauGenere, int p_temperatureGenere, int p_oxygeneGenere, int p_populationGenere,
-                    int p_argentGenere) {
+                    int p_argentGenere, String p_typeBatiment) {
 
         this.nomBatiment = p_nomBatiment;
         this.prixBatiment = p_prixBatiment;
@@ -26,6 +26,7 @@ public class Batiment {
         this.oxygeneGenere = p_oxygeneGenere;
         this.populationGenere = p_populationGenere;
         this.argentGenere = p_argentGenere;
+        this.typeBatiment = p_typeBatiment;
     }
 
     /**
@@ -83,10 +84,17 @@ public class Batiment {
      */
     protected int argentGenere;
 
+    /**
+     *
+     */
+    protected String typeBatiment;
+
+
     @Override
     public String toString() {
-        return "Batiment{" +
+        return "\nBatiment{" +
                 "nomBatiment='" + nomBatiment + '\'' +
+                ", typeBatiment='" + typeBatiment + '\'' +
                 ", prixBatiment=" + prixBatiment +
                 ", tempsBatiment=" + tempsBatiment +
                 ", niveauBatiment=" + niveauBatiment +
@@ -97,7 +105,7 @@ public class Batiment {
                 ", oxygeneGenere=" + oxygeneGenere +
                 ", populationGenere=" + populationGenere +
                 ", argentGenere=" + argentGenere +
-                '}';
+                "}\n";
     }
 
     public void ameliorationBatiment(){

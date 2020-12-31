@@ -102,9 +102,8 @@ public class Ville {
 
     @Override
     public String toString() {
-        return "Ville{" +
+        return "\nVille{" +
                 "nbBatiments=" + nbBatiments +
-                ", batiments=" + batiments +
                 ", nbHabitants=" + nbHabitants +
                 ", nomVille='" + nomVille + '\'' +
                 ", biomasseGenere=" + biomasseGenere +
@@ -114,7 +113,8 @@ public class Ville {
                 ", oxygeneGenere=" + oxygeneGenere +
                 ", populationGenere=" + populationGenere +
                 ", argentGenere=" + argentGenere +
-                '}';
+                ", batiments=" + batiments +
+                "}\n";
     }
 
     public String setNomBatiment(){
@@ -145,37 +145,37 @@ public class Ville {
 
     public void ajoutCiterne(Citerne citerne){
         this.batiments.add(citerne);
-        this.actuStatVille();
+        this.actuStatVilleBatiment(citerne);
     }
 
     public void ajoutFiltre(Filtre filtre){
         this.batiments.add(filtre);
-        this.actuStatVille();
+        this.actuStatVilleBatiment(filtre);
     }
 
     public void ajoutHabitation(Habitation habitation){
         this.batiments.add(habitation);
-        this.actuStatVille();
+        this.actuStatVilleBatiment(habitation);
     }
 
     public void ajoutJardin(Jardin jardin){
         this.batiments.add(jardin);
-        this.actuStatVille();
+        this.actuStatVilleBatiment(jardin);
     }
 
     public void ajoutMine(Mine mine){
         this.batiments.add(mine);
-        this.actuStatVille();
+        this.actuStatVilleBatiment(mine);
     }
 
     public void ajoutTransformateur(Transformateur transformateur){
         this.batiments.add(transformateur);
-        this.actuStatVille();
+        this.actuStatVilleBatiment(transformateur);
     }
 
     public void ajoutUsine(Usine usine){
         this.batiments.add(usine);
-        this.actuStatVille();
+        this.actuStatVilleBatiment(usine);
     }
 
     public void actuStatVilleBatiment(Batiment batiment){

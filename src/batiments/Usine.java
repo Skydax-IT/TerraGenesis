@@ -12,7 +12,7 @@ public class Usine extends Batiment {
      */
     public Usine(String p_nomBatiment) {
         super(p_nomBatiment, 0,0,0,0,
-                0,0,0,0,0,0);
+                0,0,0,0,0,0,"Usine");
         //time en seconde
     }
 }

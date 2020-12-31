@@ -13,8 +13,8 @@ public class Planete {
     /**
      * Default constructor
      */
-    public Planete() {
-        this.setNom();
+    public Planete(String nomPlanete) {
+        this.nom = nomPlanete;
         this.temperature = 0;
         this.pression = 20;
         this.oxygene = 40;
@@ -104,49 +104,7 @@ public class Planete {
     /**
      * 
      */
-    public void gererTemperature() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void gererEau() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void gererOxygene() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void gererBiomasse() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void gererPopulation() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void gererPression() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void ajouterVille(Ville nouvelleVille) {
+    public void ajoutVille(Ville nouvelleVille) {
 
         villes.add(nouvelleVille);
         actuStatPlaneteNouvelleVille(nouvelleVille);
@@ -198,7 +156,7 @@ public class Planete {
     /**
      * 
      */
-    public void ajouterPoste(Poste poste) {
+    public void ajoutPoste(Poste poste) {
         this.postes.add(poste);
         this.actuStatPlaneteNouveauPoste(poste);
     }
@@ -214,12 +172,6 @@ public class Planete {
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
         }
-    }
-
-    public void setNom(){
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Donner un nom à votre planète"); //fenetre pop-up
-        this.nom = myObj.nextLine();
     }
 
     /**

@@ -12,7 +12,7 @@ public class Filtre extends Batiment {
      */
     public Filtre(String p_nomBatiment) {
         super(p_nomBatiment, 0,0,0,0,
-                0,0,0,0,0,0);
+                0,0,0,0,0,0, "Filtre");
         //time en seconde
     }
 
