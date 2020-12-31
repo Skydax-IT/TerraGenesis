@@ -101,11 +101,6 @@ public class Planete {
      */
     private ArrayList<Technologie> technologies;
 
-
-
-
-
-
     /**
      * 
      */
@@ -154,7 +149,6 @@ public class Planete {
     public void ajouterVille(Ville nouvelleVille) {
 
         villes.add(nouvelleVille);
-        this.nbVilles++;
         actuStatPlaneteNouvelleVille(nouvelleVille);
     }
 
@@ -170,14 +164,22 @@ public class Planete {
         this.biomasse += nouvelleVille.getBiomasseGenere();
         this.argent += nouvelleVille.getArgentGenere();
         this.population += nouvelleVille.getPopulationGenere();
+        this.nbVilles ++;
     }
 
     public void actuStatPlaneteNouveauPoste(Poste poste){
-
+        this.nbPostes ++;
+        this.argent += poste.getArgentGenere();
     }
 
-    public void actuStatPlanete(Poste poste){
-        //Tout actualiser
+    public void actuStatPlanete(){
+        for(Ville ville:this.villes){
+            this.actuStatPlaneteNouvelleVille(ville);
+        }
+
+        for(Poste poste: this.postes){
+            this.actuStatPlaneteNouveauPoste(poste);
+        }
     }
 
     /**
@@ -186,7 +188,7 @@ public class Planete {
     public void supprimerVille(Ville villeSuppr) {
         try {
             this.villes.remove(villeSuppr);
-            this.nbVilles --;
+            this.actuStatPlanete();
         }
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
@@ -197,14 +199,21 @@ public class Planete {
      * 
      */
     public void ajouterPoste(Poste poste) {
-
+        this.postes.add(poste);
+        this.actuStatPlaneteNouveauPoste(poste);
     }
 
     /**
      * 
      */
-    public void supprimerPoste() {
-        // TODO implement here
+    public void supprimerPoste(Poste posteSuppr) {
+        try {
+            this.postes.remove(posteSuppr);
+            this.actuStatPlanete();
+        }
+        catch(IndexOutOfBoundsException exception){
+            System.out.println("Suppression impossible");
+        }
     }
 
     public void setNom(){

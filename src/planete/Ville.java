@@ -145,48 +145,40 @@ public class Ville {
 
     public void ajoutCiterne(Citerne citerne){
         this.batiments.add(citerne);
-        this.nbBatiments++;
-        this.actuStatVilleBatiment(citerne);
+        this.actuStatVille();
     }
 
     public void ajoutFiltre(Filtre filtre){
         this.batiments.add(filtre);
-        this.nbBatiments++;
-        this.actuStatVilleBatiment(filtre);
+        this.actuStatVille();
     }
 
     public void ajoutHabitation(Habitation habitation){
         this.batiments.add(habitation);
-        this.nbBatiments++;
-        this.actuStatVilleBatiment(habitation);
+        this.actuStatVille();
     }
 
     public void ajoutJardin(Jardin jardin){
         this.batiments.add(jardin);
-        this.nbBatiments++;
-        this.actuStatVilleBatiment(jardin);
+        this.actuStatVille();
     }
 
     public void ajoutMine(Mine mine){
         this.batiments.add(mine);
-        this.nbBatiments++;
-        this.actuStatVilleBatiment(mine);
+        this.actuStatVille();
     }
 
     public void ajoutTransformateur(Transformateur transformateur){
         this.batiments.add(transformateur);
-        this.nbBatiments++;
-        this.actuStatVilleBatiment(transformateur);
+        this.actuStatVille();
     }
 
     public void ajoutUsine(Usine usine){
         this.batiments.add(usine);
-        this.nbBatiments++;
-        this.actuStatVilleBatiment(usine);
+        this.actuStatVille();
     }
 
     public void actuStatVilleBatiment(Batiment batiment){
-
         this.nbHabitants += batiment.getPopulationGenere();
         this.pressionGenere += batiment.getPressionGenere();
         this.biomasseGenere += batiment.getBiomasseGenere();
@@ -195,6 +187,7 @@ public class Ville {
         this.oxygeneGenere += batiment.getOxygeneGenere();
         this.populationGenere += batiment.getPopulationGenere();
         this.argentGenere += batiment.getArgentGenere();
+        this.nbBatiments ++;
     }
 
     public void actuStatVille(){
@@ -207,6 +200,7 @@ public class Ville {
         this.oxygeneGenere = 0;
         this.populationGenere = 0;
         this.argentGenere = 0;
+        this.nbBatiments = 0;
 
         for(Batiment batiment: this.batiments){
             actuStatVilleBatiment(batiment);
@@ -218,9 +212,8 @@ public class Ville {
      */
     public void supprimerBatiment(Batiment batSuppr) {
         try {
-            System.out.println("Suppression");
             this.batiments.remove(batSuppr);
-            this.nbBatiments --;
+            this.actuStatVille();
         }
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
