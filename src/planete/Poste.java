@@ -16,7 +16,7 @@ public class Poste {
         this.nomPoste = nomPoste;
         this.mines = new ArrayList<>();
         this.nbMines = this.mines.size();
-        this.argentGenere = getStatPoste();
+        this.argentGenere = 0;
 
     }
 
@@ -47,7 +47,7 @@ public class Poste {
      */
     public void ajouterMine(Mine mine) {
         this.mines.add(mine);
-        this.nbMines ++;
+        this.actuStatPoste();
     }
 
     /**
@@ -56,19 +56,49 @@ public class Poste {
     public void supprimerMine(Mine mineSuppr){//String nomMine) {
         try {
             this.mines.remove(mineSuppr);
-            this.nbMines --;
+            this.actuStatPoste();
         }
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
         }
     }
 
-    public int getStatPoste(){
-        int argentGenereParLesMines = 0;
+    public String getNomPoste() {
+        return nomPoste;
+    }
+
+    public ArrayList<Mine> getMines() {
+        return mines;
+    }
+
+    public void setMines(ArrayList<Mine> mines) {
+        this.mines = mines;
+    }
+
+    public int getNbMines() {
+        return nbMines;
+    }
+
+    public void setNbMines(int nbMines) {
+        this.nbMines = nbMines;
+    }
+
+    public int getArgentGenere() {
+        return argentGenere;
+    }
+
+    public void setArgentGenere(int argentGenere) {
+        this.argentGenere = argentGenere;
+    }
+
+    public void actuStatPoste(){
+        this.argentGenere = 0;
+        this.nbMines = 0;
+
         for(Mine mine: this.mines){
-            argentGenereParLesMines += mine.getArgentGenere();
+            this.argentGenere += mine.getArgentGenere();
+            this.nbMines ++;
         }
-        return argentGenereParLesMines;
     }
 
 }
