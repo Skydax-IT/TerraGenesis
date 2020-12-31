@@ -18,7 +18,12 @@ public class Poste {
         this.nbMines = this.mines.size();
         this.argentGenere = 0;
 
+        nbDePoste++;
+        prixConstruction *= nbDePoste;
     }
+
+    public static int prixConstruction = 100000;
+    public static int nbDePoste = 0;
 
     /**
      * 

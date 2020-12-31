@@ -11,8 +11,13 @@ public class Habitation extends Batiment {
      * Default constructor
      */
     public Habitation(String p_nomBatiment) {
-        super(p_nomBatiment, 0,0,0,0,
+        super(p_nomBatiment,0,0,0,
                 0,0,0,0,0,0, "Habitation");
-        //time en seconde
+        nbDeHabitation++;
+        prixConstruction *= nbDeHabitation;
     }
+
+    public static int prixConstruction = 10000;
+    public static int nbDeHabitation = 0;
+
 }

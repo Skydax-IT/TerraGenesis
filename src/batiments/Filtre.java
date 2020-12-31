@@ -11,9 +11,13 @@ public class Filtre extends Batiment {
      * Default constructor
      */
     public Filtre(String p_nomBatiment) {
-        super(p_nomBatiment, 0,0,0,0,
+        super(p_nomBatiment,0,0,0,
                 0,0,0,0,0,0, "Filtre");
-        //time en seconde
+        nbDeFiltre++;
+        prixConstruction *= nbDeFiltre;
     }
+
+    public static int prixConstruction = 10000;
+    public static int nbDeFiltre = 0;
 
 }

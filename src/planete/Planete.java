@@ -105,7 +105,6 @@ public class Planete {
      * 
      */
     public void ajoutVille(Ville nouvelleVille) {
-
         villes.add(nouvelleVille);
         actuStatPlaneteNouvelleVille(nouvelleVille);
     }

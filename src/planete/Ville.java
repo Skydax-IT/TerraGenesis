@@ -29,8 +29,13 @@ public class Ville {
         this.oxygeneGenere = 0;
         this.populationGenere = 0;
         this.argentGenere = 0;
+
+        nbDeVille++;
+        prixConstruction *= nbDeVille;
     }
 
+    public static int prixConstruction = 500000;
+    public static int nbDeVille = 0;
     /**
      * 
      */
@@ -85,6 +90,11 @@ public class Ville {
      *
      */
     protected int argentGenere;
+
+    /**
+     *
+     */
+    protected static int nbVillesConstruites;
 
     public ArrayList<Batiment> getBatiments() {
         return batiments;

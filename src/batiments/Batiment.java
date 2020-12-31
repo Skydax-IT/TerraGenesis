@@ -10,12 +10,11 @@ public class Batiment {
     /**
      * Default constructor
      */
-    public Batiment(String p_nomBatiment, int p_prixBatiment, int p_tempsBatiment, int p_niveauBatiment, int p_pressionGenere,
+    public Batiment(String p_nomBatiment, int p_tempsBatiment, int p_niveauBatiment, int p_pressionGenere,
                     int p_biomasseGenere, int p_eauGenere, int p_temperatureGenere, int p_oxygeneGenere, int p_populationGenere,
                     int p_argentGenere, String p_typeBatiment) {
 
         this.nomBatiment = p_nomBatiment;
-        this.prixBatiment = p_prixBatiment;
         this.tempsBatiment = p_tempsBatiment;
         this.niveauBatiment = p_niveauBatiment;
 
@@ -34,10 +33,6 @@ public class Batiment {
      */
     protected String nomBatiment;
 
-    /**
-     * 
-     */
-    protected int prixBatiment;
 
     /**
      * 
@@ -90,12 +85,12 @@ public class Batiment {
     protected String typeBatiment;
 
 
+
     @Override
     public String toString() {
         return "\nBatiment{" +
                 "nomBatiment='" + nomBatiment + '\'' +
                 ", typeBatiment='" + typeBatiment + '\'' +
-                ", prixBatiment=" + prixBatiment +
                 ", tempsBatiment=" + tempsBatiment +
                 ", niveauBatiment=" + niveauBatiment +
                 ", pressionGenere=" + pressionGenere +
@@ -130,14 +125,6 @@ public class Batiment {
 
     public void setNomBatiment(String nomBatiment) {
         this.nomBatiment = nomBatiment;
-    }
-
-    public int getPrixBatiment() {
-        return prixBatiment;
-    }
-
-    public void setPrixBatiment(int prixBatiment) {
-        this.prixBatiment = prixBatiment;
     }
 
     public int getTempsBatiment() {
@@ -210,5 +197,13 @@ public class Batiment {
 
     public void setArgentGenere(int argentGenere) {
         this.argentGenere = argentGenere;
+    }
+
+    public String getTypeBatiment() {
+        return typeBatiment;
+    }
+
+    public void setTypeBatiment(String typeBatiment) {
+        this.typeBatiment = typeBatiment;
     }
 }
