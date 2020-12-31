@@ -10,8 +10,11 @@ import planete.Ville;
 public class Main{ //extends Application {
 
     public static void main(String[] args) {
-        Joueur player1 = new Joueur();
-        player1.constuireVille();
+
+        Mine a = new Mine();
+        Mine b = new Mine();
+        System.out.println(a);
+        System.out.println(b);
 
     }
 

@@ -10,11 +10,12 @@ public class Jardin extends Batiment {
     /**
      * Default constructor
      */
-    public Jardin(String p_nomBatiment) {
-        super(p_nomBatiment,0,0,0,
+    public Jardin() {
+        super("Jardin",0,0,0,
                 0,0,0,0,0,0,"Jardin");
         nbDeJardin++;
         prixConstruction *= nbDeJardin;
+        this.setNomBatiment(nbDeJardin);
     }
 
     public static int prixConstruction = 10000;

@@ -10,11 +10,12 @@ public class Usine extends Batiment {
     /**
      * Default constructor
      */
-    public Usine(String p_nomBatiment) {
-        super(p_nomBatiment,0,0,0,
+    public Usine() {
+        super("Usine",0,0,0,
                 0,0,0,0,0,0,"Usine");
         nbDeUsine++;
         prixConstruction *= nbDeUsine;
+        this.setNomBatiment(nbDeUsine);
     }
 
     public static int prixConstruction = 10000;

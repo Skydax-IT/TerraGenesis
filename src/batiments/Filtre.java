@@ -10,11 +10,12 @@ public class Filtre extends Batiment {
     /**
      * Default constructor
      */
-    public Filtre(String p_nomBatiment) {
-        super(p_nomBatiment,0,0,0,
+    public Filtre() {
+        super("Filtre",0,0,0,
                 0,0,0,0,0,0, "Filtre");
         nbDeFiltre++;
         prixConstruction *= nbDeFiltre;
+        this.setNomBatiment(nbDeFiltre);
     }
 
     public static int prixConstruction = 10000;

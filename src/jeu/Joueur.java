@@ -99,13 +99,13 @@ public class Joueur {
 
     public void construireBatiment(Ville ville, String typeBatiment, String nom){
 
-        if(typeBatiment.equals("Citerne") && this.argent >= Citerne.prixConstruction) ville.ajoutCiterne(new Citerne(nom));
-        else if(typeBatiment.equals("Filtre") && this.argent >= Filtre.prixConstruction) ville.ajoutFiltre(new Filtre(nom));
-        else if(typeBatiment.equals("Habitation") && this.argent >= Habitation.prixConstruction) ville.ajoutHabitation(new Habitation(nom));
-        else if(typeBatiment.equals("Jardin") && this.argent >= Jardin.prixConstruction) ville.ajoutJardin(new Jardin(nom));
-        else if(typeBatiment.equals("Mine") && this.argent >= Mine.prixConstruction) ville.ajoutMine(new Mine(nom));
-        else if(typeBatiment.equals("Transformateur") && this.argent >= Transformateur.prixConstruction) ville.ajoutTransformateur(new Transformateur(nom));
-        else if(typeBatiment.equals("Usine") && this.argent >= Usine.prixConstruction) ville.ajoutUsine(new Usine(nom));
+        if(typeBatiment.equals("Citerne") && this.argent >= Citerne.prixConstruction) ville.ajoutCiterne(new Citerne());
+        else if(typeBatiment.equals("Filtre") && this.argent >= Filtre.prixConstruction) ville.ajoutFiltre(new Filtre());
+        else if(typeBatiment.equals("Habitation") && this.argent >= Habitation.prixConstruction) ville.ajoutHabitation(new Habitation());
+        else if(typeBatiment.equals("Jardin") && this.argent >= Jardin.prixConstruction) ville.ajoutJardin(new Jardin());
+        else if(typeBatiment.equals("Mine") && this.argent >= Mine.prixConstruction) ville.ajoutMine(new Mine());
+        else if(typeBatiment.equals("Transformateur") && this.argent >= Transformateur.prixConstruction) ville.ajoutTransformateur(new Transformateur());
+        else if(typeBatiment.equals("Usine") && this.argent >= Usine.prixConstruction) ville.ajoutUsine(new Usine());
     }
 
     public void supprimerBatiment(Ville ville, Batiment batiment){
@@ -118,5 +118,45 @@ public class Joueur {
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         System.out.println(phrase); //fenetre pop-up
         return myObj.nextLine();
+    }
+
+    public boolean isVictoire() {
+        return victoire;
+    }
+
+    public void setVictoire(boolean victoire) {
+        this.victoire = victoire;
+    }
+
+    public int getArgent() {
+        return argent;
+    }
+
+    public void setArgent(int argent) {
+        this.argent = argent;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public int getNiveauTechnologique() {
+        return niveauTechnologique;
+    }
+
+    public void setNiveauTechnologique(int niveauTechnologique) {
+        this.niveauTechnologique = niveauTechnologique;
+    }
+
+    public Planete getPlanete() {
+        return planete;
+    }
+
+    public void setPlanete(Planete planete) {
+        this.planete = planete;
     }
 }

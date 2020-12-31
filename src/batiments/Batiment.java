@@ -85,7 +85,6 @@ public class Batiment {
     protected String typeBatiment;
 
 
-
     @Override
     public String toString() {
         return "\nBatiment{" +
@@ -123,8 +122,8 @@ public class Batiment {
         return nomBatiment;
     }
 
-    public void setNomBatiment(String nomBatiment) {
-        this.nomBatiment = nomBatiment;
+    public void setNomBatiment(int numeroDeSerie) {
+        this.nomBatiment += numeroDeSerie;
     }
 
     public int getTempsBatiment() {

@@ -10,11 +10,12 @@ public class Citerne extends Batiment {
     /**
      * Default constructor
      */
-    public Citerne(String p_nomBatiment) {
-        super(p_nomBatiment,0,0,0,
+    public Citerne() {
+        super("Citerne",0,0,0,
                 0,0,0,0,0,0,"Citerne");
         nbDeCiterne++;
         prixConstruction *= nbDeCiterne;
+        this.setNomBatiment(nbDeCiterne);
     }
 
     public static int prixConstruction = 10000;

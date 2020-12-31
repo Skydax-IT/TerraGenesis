@@ -10,11 +10,12 @@ public class Mine extends Batiment {
     /**
      * Default constructor
      */
-    public Mine(String p_nomBatiment) {
-        super(p_nomBatiment,0,0,0,
+    public Mine() {
+        super("Mine",0,0,0,
                 0,0,0,0,0,1600, "Mine");
         nbDeMine++;
         prixConstruction *= nbDeMine;
+        this.setNomBatiment(nbDeMine);
     }
 
     public static int prixConstruction = 10000;
