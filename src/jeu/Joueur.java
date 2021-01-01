@@ -18,14 +18,18 @@ public class Joueur {
     public Joueur() {
         this.argent = 650000;
         this.niveauTechnologique = 1;
-        this.victoire = false;
+
+        this.objectifTemperature = 287000;
+        this.objectifPression = 100000;
+        this.objectifOxygene = 210000;
+        this.objectifEau = 600000;
+        this.objectifBiomasse = 600000;
+        this.objectifPopulation = 171;
+
         this.initialiserJoueur();
+
     }
 
-    /**
-     *
-     */
-    private boolean victoire;
 
     /**
      * 
@@ -46,6 +50,37 @@ public class Joueur {
      *
      */
     private Planete planete;
+
+    /**
+     *
+     */
+    private int objectifTemperature;
+
+    /**
+     *
+     */
+    private int objectifPression;
+
+    /**
+     *
+     */
+    private int objectifOxygene;
+
+    /**
+     *
+     */
+    private int objectifEau;
+
+    /**
+     *
+     */
+    private int objectifBiomasse;
+
+    /**
+     *
+     */
+    private int objectifPopulation;
+
 
 
     /**
@@ -97,7 +132,7 @@ public class Joueur {
         this.planete.supprimerPoste(poste);
     }
 
-    public void construireBatiment(Ville ville, String typeBatiment, String nom){
+    public void construireBatiment(Ville ville, String typeBatiment){
 
         if(typeBatiment.equals("Citerne") && this.argent >= Citerne.prixConstruction) ville.ajoutCiterne(new Citerne());
         else if(typeBatiment.equals("Filtre") && this.argent >= Filtre.prixConstruction) ville.ajoutFiltre(new Filtre());
@@ -106,6 +141,12 @@ public class Joueur {
         else if(typeBatiment.equals("Mine") && this.argent >= Mine.prixConstruction) ville.ajoutMine(new Mine());
         else if(typeBatiment.equals("Transformateur") && this.argent >= Transformateur.prixConstruction) ville.ajoutTransformateur(new Transformateur());
         else if(typeBatiment.equals("Usine") && this.argent >= Usine.prixConstruction) ville.ajoutUsine(new Usine());
+    }
+
+    public void heureDeConstruire(Date when){
+        if(this.planete.getDate().equals(when)){
+
+        }
     }
 
     public void supprimerBatiment(Ville ville, Batiment batiment){
@@ -120,13 +161,31 @@ public class Joueur {
         return myObj.nextLine();
     }
 
-    public boolean isVictoire() {
-        return victoire;
+    /**
+     *
+     */
+    public boolean verifierVictoire() {
+        if((this.planete.getTemperature() >= this.objectifTemperature) && (this.planete.getPression() >= this.objectifPression)
+                && (this.planete.getOxygene() >= this.objectifOxygene ) && (this.planete.getEau() >= this.objectifEau)
+                && (this.planete.getBiomasse() >= this.objectifBiomasse ) && (this.planete.getPopulation() >= this.objectifPopulation)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    public void setVictoire(boolean victoire) {
-        this.victoire = victoire;
+    public void afficherResumePlanete(){
+        String resume = "Résumé: " + this.planete.getNom() +
+                "\nTempérature: " + this.planete.getTemperature() + '/' + this.objectifTemperature + "\n" +
+                "Pression: " + this.planete.getPression() + '/' + this.objectifPression + "\n" +
+                "Oxygène: " + this.planete.getOxygene() + '/' + this.objectifOxygene + "\n" +
+                "Eau: " + this.planete.getEau() + '/' + this.objectifEau + "\n" +
+                "Biomasse: " + this.planete.getBiomasse() + '/' + this.objectifBiomasse + "\n" +
+                "Population: " + this.planete.getPopulation() + '/' + this.objectifPopulation + "\n"
+                ;
+        System.out.println(resume);
     }
+
 
     public int getArgent() {
         return argent;

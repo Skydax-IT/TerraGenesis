@@ -7,15 +7,18 @@ import jeu.Joueur;
 import menu.MenuFrame;
 import planete.Ville;
 
+import java.util.Date;
+
+
 public class Main{ //extends Application {
 
     public static void main(String[] args) {
+        Joueur j1 = new Joueur();
+        j1.afficherResumePlanete();
 
-        Mine a = new Mine();
-        Mine b = new Mine();
-        System.out.println(a);
-        System.out.println(b);
-
+        /*Date date = new Date();
+        Date d1 = new Date(2020,06,20,25,06);
+        System.out.println(date.getDay());*/
     }
 
    /* public void start(Stage primaryStage){

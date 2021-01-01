@@ -3,7 +3,7 @@ package planete;
 import technologies.Technologie;
 
 import java.util.*;
-import java.util.Scanner;
+
 
 /**
  * 
@@ -15,19 +15,21 @@ public class Planete {
      */
     public Planete(String nomPlanete) {
         this.nom = nomPlanete;
-        this.temperature = 0;
-        this.pression = 20;
-        this.oxygene = 40;
-        this.eau = 5;
-        this.biomasse = 45;
-        this.argent = 2500;
-        this.population = 100;
+        this.temperature = 200000; //mK
+        this.pression = 600; //Pa
+        this.oxygene = 1700; //ppm
+        this.eau = 17; //cm
+        this.biomasse = 0; //nécessite 10k pression//Mt
+        this.argent = 0;
+        this.population = 0;
         this.villes = new ArrayList<Ville>();
         this.postes = new ArrayList<Poste>();
         this.technologies = new ArrayList<Technologie>();
 
         this.nbVilles = this.villes.size();
         this.nbPostes = this.postes.size();
+
+        this.date = new Date();
 
     }
 
@@ -79,7 +81,7 @@ public class Planete {
     /**
      * 
      */
-    private int date[];
+    private Date date;
 
     /**
      * 
@@ -100,6 +102,7 @@ public class Planete {
      * 
      */
     private ArrayList<Technologie> technologies;
+
 
     /**
      * 
@@ -173,18 +176,6 @@ public class Planete {
         }
     }
 
-    /**
-     * 
-     */
-    public boolean verifierVictoire() {
-        if((this.temperature >= 7 && this.temperature <= 20) && (this.pression >= 95000 && this.pression <= 105000)
-        && (this.oxygene >= 200000 && this.oxygene <= 220000) && (this.eau >= 595000 && this.eau <= 605000)
-                && (this.biomasse >= 595000 && this.temperature <= 605000) && (this.population >= 500)){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     public void afficherVilles(){
         for(Ville ville:this.villes){
@@ -248,11 +239,11 @@ public class Planete {
         this.population = population;
     }
 
-    public int[] getDate() {
-        return date;
+    public Date getDate() {
+        return this.date;
     }
 
-    public void setDate(int[] date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
