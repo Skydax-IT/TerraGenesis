@@ -134,13 +134,34 @@ public class Joueur {
 
     public void construireBatiment(Ville ville, String typeBatiment){
 
-        if(typeBatiment.equals("Citerne") && this.argent >= Citerne.prixConstruction) ville.ajoutCiterne(new Citerne());
-        else if(typeBatiment.equals("Filtre") && this.argent >= Filtre.prixConstruction) ville.ajoutFiltre(new Filtre());
-        else if(typeBatiment.equals("Habitation") && this.argent >= Habitation.prixConstruction) ville.ajoutHabitation(new Habitation());
-        else if(typeBatiment.equals("Jardin") && this.argent >= Jardin.prixConstruction) ville.ajoutJardin(new Jardin());
-        else if(typeBatiment.equals("Mine") && this.argent >= Mine.prixConstruction) ville.ajoutMine(new Mine());
-        else if(typeBatiment.equals("Transformateur") && this.argent >= Transformateur.prixConstruction) ville.ajoutTransformateur(new Transformateur());
-        else if(typeBatiment.equals("Usine") && this.argent >= Usine.prixConstruction) ville.ajoutUsine(new Usine());
+        if(typeBatiment.equals("Citerne") && this.argent >= Citerne.prixConstruction) {
+            ville.ajoutCiterne(new Citerne());
+            this.achatJoeur(Citerne.prixConstruction);
+        }
+        else if(typeBatiment.equals("Filtre") && this.argent >= Filtre.prixConstruction){
+            ville.ajoutFiltre(new Filtre());
+            this.achatJoeur(Filtre.prixConstruction);
+        }
+        else if(typeBatiment.equals("Habitation") && this.argent >= Habitation.prixConstruction){
+            ville.ajoutHabitation(new Habitation());
+            this.achatJoeur(Habitation.prixConstruction);
+        }
+        else if(typeBatiment.equals("Jardin") && this.argent >= Jardin.prixConstruction){
+            ville.ajoutJardin(new Jardin());
+            this.achatJoeur(Jardin.prixConstruction);
+        }
+        else if(typeBatiment.equals("Mine") && this.argent >= Mine.prixConstruction){
+            ville.ajoutMine(new Mine());
+            this.achatJoeur(Mine.prixConstruction);
+        }
+        else if(typeBatiment.equals("Transformateur") && this.argent >= Transformateur.prixConstruction){
+            ville.ajoutTransformateur(new Transformateur());
+            this.achatJoeur(Transformateur.prixConstruction);
+        }
+        else if(typeBatiment.equals("Usine") && this.argent >= Usine.prixConstruction){
+            ville.ajoutUsine(new Usine());
+            this.achatJoeur(Usine.prixConstruction);
+        }
     }
 
     public void heureDeConstruire(Date when){
