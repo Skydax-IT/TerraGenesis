@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * 
  */
-public class Ville {
+public class Ville extends Thread{
 
     /**
      * Default constructor
@@ -29,6 +29,7 @@ public class Ville {
         this.oxygeneGenere = 0;
         this.populationGenere = 0;
         this.argentGenere = 0;
+        this.tempsConstruction = 20000;
 
         nbDeVille++;
         prixConstruction *= nbDeVille;
@@ -94,7 +95,26 @@ public class Ville {
     /**
      *
      */
-    protected static int nbVillesConstruites;
+    private int tempsConstruction;
+
+    public int getTempsConstruction() {
+        return tempsConstruction;
+    }
+
+    public void setTempsConstruction(int tempsConstruction) {
+        this.tempsConstruction = tempsConstruction;
+    }
+
+    @Override
+    public void run() {
+        try {
+            System.out.println("Construction de " + this.nomVille + " durant " + this.tempsConstruction/1000 + " secondes");
+            Thread.sleep(this.tempsConstruction);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("La ville " + this.nomVille + " vient d'être construite");
+    }
 
     public ArrayList<Batiment> getBatiments() {
         return batiments;

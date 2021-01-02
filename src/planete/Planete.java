@@ -176,12 +176,12 @@ public class Planete {
         }
     }
 
-
     public void afficherVilles(){
         for(Ville ville:this.villes){
             System.out.println(ville);
         }
     }
+
 
     public int getTemperature() {
         return temperature;

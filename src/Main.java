@@ -14,7 +14,8 @@ public class Main{ //extends Application {
 
     public static void main(String[] args) {
         Joueur j1 = new Joueur();
-        j1.afficherResumePlanete();
+        j1.constuireVille();
+        j1.constuireVille();
 
         /*Date date = new Date();
         Date d1 = new Date(2020,06,20,25,06);

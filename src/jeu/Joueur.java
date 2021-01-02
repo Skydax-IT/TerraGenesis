@@ -16,7 +16,7 @@ public class Joueur {
      * Default constructor
      */
     public Joueur() {
-        this.argent = 650000;
+        this.argent = 2000000;
         this.niveauTechnologique = 1;
 
         this.objectifTemperature = 287000;
@@ -25,8 +25,8 @@ public class Joueur {
         this.objectifEau = 600000;
         this.objectifBiomasse = 600000;
         this.objectifPopulation = 171;
-
-        this.initialiserJoueur();
+        this.planete = new Planete("AA");
+        //this.initialiserJoueur();
 
     }
 
@@ -101,12 +101,13 @@ public class Joueur {
         this.argent -= prix;
     }
 
-
     public void constuireVille(){
         if(this.argent >= Ville.prixConstruction) {
             String nomVille = this.askForString("Quel nom voulez-vous donner à votre ville ? ");
             this.achatJoeur(Ville.prixConstruction); // A mettre avant sinon prix change quand classe ville est créée
-            this.planete.ajoutVille(new Ville(nomVille));
+            Ville ville = new Ville(nomVille);
+            ville.start();
+            this.planete.ajoutVille(ville);
 
         }else{
             System.out.println("Impossible de construire une ville! Il vous manque " + (Ville.prixConstruction - this.argent));
@@ -164,11 +165,6 @@ public class Joueur {
         }
     }
 
-    public void heureDeConstruire(Date when){
-        if(this.planete.getDate().equals(when)){
-
-        }
-    }
 
     public void supprimerBatiment(Ville ville, Batiment batiment){
         ville.supprimerBatiment(batiment);
