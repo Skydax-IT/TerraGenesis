@@ -33,6 +33,8 @@ public class Ville extends Thread{
 
         nbDeVille++;
         prixConstruction *= nbDeVille;
+
+        this.start();
     }
 
     public static int prixConstruction = 500000;

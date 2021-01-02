@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * 
  */
-public class Poste {
+public class Poste extends Thread{
 
     /**
      * Default constructor
@@ -17,9 +17,12 @@ public class Poste {
         this.mines = new ArrayList<>();
         this.nbMines = this.mines.size();
         this.argentGenere = 0;
+        this.tempsConstruction = 15000;
 
         nbDePoste++;
         prixConstruction *= nbDePoste;
+
+        this.start();
     }
 
     public static int prixConstruction = 100000;
@@ -45,7 +48,23 @@ public class Poste {
      */
     private int argentGenere;
 
+    /**
+     *
+     */
+    private int tempsConstruction;
 
+
+
+    @Override
+    public void run() {
+        try {
+            System.out.println("Construction de " + this.nomPoste + " durant " + this.tempsConstruction/1000 + " secondes");
+            Thread.sleep(this.tempsConstruction);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Le poste " + this.nomPoste + " vient d'être construit!");
+    }
 
     /**
      * 

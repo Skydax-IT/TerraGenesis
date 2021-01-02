@@ -5,17 +5,17 @@ import java.util.*;
 /**
  * 
  */
-public class Batiment {
+public class Batiment extends Thread {
 
     /**
      * Default constructor
      */
-    public Batiment(String p_nomBatiment, int p_tempsBatiment, int p_niveauBatiment, int p_pressionGenere,
+    public Batiment(String p_nomBatiment, int p_tempsConstruction, int p_niveauBatiment, int p_pressionGenere,
                     int p_biomasseGenere, int p_eauGenere, int p_temperatureGenere, int p_oxygeneGenere, int p_populationGenere,
                     int p_argentGenere, String p_typeBatiment) {
 
         this.nomBatiment = p_nomBatiment;
-        this.tempsBatiment = p_tempsBatiment;
+        this.tempsConstruction = p_tempsConstruction;
         this.niveauBatiment = p_niveauBatiment;
 
         this.pressionGenere = p_pressionGenere;
@@ -26,6 +26,8 @@ public class Batiment {
         this.populationGenere = p_populationGenere;
         this.argentGenere = p_argentGenere;
         this.typeBatiment = p_typeBatiment;
+
+        this.start();
     }
 
     /**
@@ -37,7 +39,7 @@ public class Batiment {
     /**
      * 
      */
-    protected int tempsBatiment;
+    protected int tempsConstruction;
 
     /**
      * 
@@ -84,13 +86,23 @@ public class Batiment {
      */
     protected String typeBatiment;
 
+    @Override
+    public void run() {
+        try {
+            System.out.println("Construction de " + this.nomBatiment+ " durant " + this.tempsConstruction/1000 + " secondes");
+            Thread.sleep(this.tempsConstruction);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Le Bâtiment" + this.nomBatiment+ " vient d'être construite");
+    }
 
     @Override
     public String toString() {
         return "\nBatiment{" +
                 "nomBatiment='" + nomBatiment + '\'' +
                 ", typeBatiment='" + typeBatiment + '\'' +
-                ", tempsBatiment=" + tempsBatiment +
+                ", tempsBatiment=" + tempsConstruction +
                 ", niveauBatiment=" + niveauBatiment +
                 ", pressionGenere=" + pressionGenere +
                 ", biomasseGenere=" + biomasseGenere +
@@ -105,7 +117,7 @@ public class Batiment {
     public void ameliorationBatiment(){
         this.niveauBatiment++;
 
-        this.tempsBatiment -= 0.8 * this.niveauBatiment;
+        this.tempsConstruction -= 0.8 * this.niveauBatiment;
         this.argentGenere += 0.8 * this.niveauBatiment;
         this.populationGenere += 1.2 * this.niveauBatiment;
 
@@ -127,11 +139,11 @@ public class Batiment {
     }
 
     public int getTempsBatiment() {
-        return tempsBatiment;
+        return tempsConstruction;
     }
 
     public void setTempsBatiment(int tempsBatiment) {
-        this.tempsBatiment = tempsBatiment;
+        this.tempsConstruction = tempsBatiment;
     }
 
     public int getNiveauBatiment() {

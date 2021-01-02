@@ -105,9 +105,7 @@ public class Joueur {
         if(this.argent >= Ville.prixConstruction) {
             String nomVille = this.askForString("Quel nom voulez-vous donner à votre ville ? ");
             this.achatJoeur(Ville.prixConstruction); // A mettre avant sinon prix change quand classe ville est créée
-            Ville ville = new Ville(nomVille);
-            ville.start();
-            this.planete.ajoutVille(ville);
+            this.planete.ajoutVille(new Ville(nomVille));
 
         }else{
             System.out.println("Impossible de construire une ville! Il vous manque " + (Ville.prixConstruction - this.argent));
