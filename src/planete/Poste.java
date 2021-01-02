@@ -17,12 +17,11 @@ public class Poste extends Thread{
         this.mines = new ArrayList<>();
         this.nbMines = this.mines.size();
         this.argentGenere = 0;
-        this.tempsConstruction = 15000;
+        this.tempsConstruction = 8000;
 
         nbDePoste++;
         prixConstruction *= nbDePoste;
 
-        this.start();
     }
 
     public static int prixConstruction = 100000;
@@ -53,7 +52,16 @@ public class Poste extends Thread{
      */
     private int tempsConstruction;
 
-
+    @Override
+    public String toString() {
+        return "Poste{" +
+                "nomPoste='" + nomPoste + '\'' +
+                ", mines=" + mines +
+                ", nbMines=" + nbMines +
+                ", argentGenere=" + argentGenere +
+                ", tempsConstruction=" + tempsConstruction +
+                '}';
+    }
 
     @Override
     public void run() {
@@ -125,4 +133,27 @@ public class Poste extends Thread{
         }
     }
 
+    public static int getPrixConstruction() {
+        return prixConstruction;
+    }
+
+    public static void setPrixConstruction(int prixConstruction) {
+        Poste.prixConstruction = prixConstruction;
+    }
+
+    public static int getNbDePoste() {
+        return nbDePoste;
+    }
+
+    public static void setNbDePoste(int nbDePoste) {
+        Poste.nbDePoste = nbDePoste;
+    }
+
+    public int getTempsConstruction() {
+        return tempsConstruction;
+    }
+
+    public void setTempsConstruction(int tempsConstruction) {
+        this.tempsConstruction = tempsConstruction;
+    }
 }

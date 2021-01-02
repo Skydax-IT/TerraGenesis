@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 
  */
-public class Batiment extends Thread {
+public class Batiment {
 
     /**
      * Default constructor
@@ -27,7 +27,6 @@ public class Batiment extends Thread {
         this.argentGenere = p_argentGenere;
         this.typeBatiment = p_typeBatiment;
 
-        this.start();
     }
 
     /**
@@ -87,17 +86,6 @@ public class Batiment extends Thread {
     protected String typeBatiment;
 
     @Override
-    public void run() {
-        try {
-            System.out.println("Construction de " + this.nomBatiment+ " durant " + this.tempsConstruction/1000 + " secondes");
-            Thread.sleep(this.tempsConstruction);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Le Bâtiment" + this.nomBatiment+ " vient d'être construite");
-    }
-
-    @Override
     public String toString() {
         return "\nBatiment{" +
                 "nomBatiment='" + nomBatiment + '\'' +
@@ -138,12 +126,12 @@ public class Batiment extends Thread {
         this.nomBatiment += numeroDeSerie;
     }
 
-    public int getTempsBatiment() {
+    public int getTempsConstruction() {
         return tempsConstruction;
     }
 
-    public void setTempsBatiment(int tempsBatiment) {
-        this.tempsConstruction = tempsBatiment;
+    public void setTempsConstruction(int tempsConstruction) {
+        this.tempsConstruction = tempsConstruction;
     }
 
     public int getNiveauBatiment() {

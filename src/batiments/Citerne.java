@@ -12,7 +12,7 @@ public class Citerne extends Batiment {
      */
     public Citerne() {
         super("Citerne",0,0,0,
-                0,0,0,0,0,0,"Citerne");
+                0,45,0,0,0,0,"Citerne");
         nbDeCiterne++;
         prixConstruction *= nbDeCiterne;
         this.setNomBatiment(nbDeCiterne);

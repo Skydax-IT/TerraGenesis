@@ -10,7 +10,7 @@ import java.util.*;
 /**
  * 
  */
-public class Joueur {
+public class Joueur{
 
     /**
      * Default constructor
@@ -54,34 +54,32 @@ public class Joueur {
     /**
      *
      */
-    private int objectifTemperature;
+    private final int objectifTemperature;
 
     /**
      *
      */
-    private int objectifPression;
+    private final int objectifPression;
 
     /**
      *
      */
-    private int objectifOxygene;
+    private final int objectifOxygene;
 
     /**
      *
      */
-    private int objectifEau;
+    private final int objectifEau;
 
     /**
      *
      */
-    private int objectifBiomasse;
+    private final int objectifBiomasse;
 
     /**
      *
      */
-    private int objectifPopulation;
-
-
+    private final int objectifPopulation;
 
     /**
      * 
@@ -105,14 +103,14 @@ public class Joueur {
         if(this.argent >= Ville.prixConstruction) {
             String nomVille = this.askForString("Quel nom voulez-vous donner à votre ville ? ");
             this.achatJoeur(Ville.prixConstruction); // A mettre avant sinon prix change quand classe ville est créée
-            this.planete.ajoutVille(new Ville(nomVille));
-
+            new Construction(this.planete, new Ville(nomVille));
         }else{
             System.out.println("Impossible de construire une ville! Il vous manque " + (Ville.prixConstruction - this.argent));
         }
     }
 
     public void supprimerVille(Ville ville){
+        System.out.println("Ville " + ville.getNomVille() + " Supprimée");
         this.planete.supprimerVille(ville);
     }
 
@@ -120,7 +118,7 @@ public class Joueur {
         if(this.argent >= Poste.prixConstruction){
             String nomPoste = this.askForString("Quel nom voulez-vous donner à votre poste ? ");
             this.achatJoeur(Poste.prixConstruction);
-            this.planete.ajoutPoste(new Poste(nomPoste));
+            new Construction(this.planete, new Poste(nomPoste));
         }else{
             System.out.println("Impossible de construire un poste! Il vous manque " + (Poste.prixConstruction - this.argent));
         }
@@ -128,38 +126,42 @@ public class Joueur {
     }
 
     public void supprimerPoste(Poste poste){
+        System.out.println("Poste " + poste.getNomPoste() + " Supprimé");
         this.planete.supprimerPoste(poste);
     }
 
-    public void construireBatiment(Ville ville, String typeBatiment){
+    public void construireBatiment(Ville ville, Batiment batiment){
 
-        if(typeBatiment.equals("Citerne") && this.argent >= Citerne.prixConstruction) {
-            ville.ajoutCiterne(new Citerne());
+        if(batiment.getTypeBatiment().equals("Citerne") && this.argent >= Citerne.prixConstruction) {
             this.achatJoeur(Citerne.prixConstruction);
+            new Construction(this.planete,ville,batiment);
         }
-        else if(typeBatiment.equals("Filtre") && this.argent >= Filtre.prixConstruction){
-            ville.ajoutFiltre(new Filtre());
+        else if(batiment.getTypeBatiment().equals("Filtre") && this.argent >= Filtre.prixConstruction){
             this.achatJoeur(Filtre.prixConstruction);
+            new Construction(this.planete,ville,batiment);
         }
-        else if(typeBatiment.equals("Habitation") && this.argent >= Habitation.prixConstruction){
-            ville.ajoutHabitation(new Habitation());
+        else if(batiment.getTypeBatiment().equals("Habitation") && this.argent >= Habitation.prixConstruction){
             this.achatJoeur(Habitation.prixConstruction);
+            new Construction(this.planete,ville,batiment);
         }
-        else if(typeBatiment.equals("Jardin") && this.argent >= Jardin.prixConstruction){
-            ville.ajoutJardin(new Jardin());
+        else if(batiment.getTypeBatiment().equals("Jardin") && this.argent >= Jardin.prixConstruction){
             this.achatJoeur(Jardin.prixConstruction);
+            new Construction(this.planete,ville,batiment);
         }
-        else if(typeBatiment.equals("Mine") && this.argent >= Mine.prixConstruction){
-            ville.ajoutMine(new Mine());
+        else if(batiment.getTypeBatiment().equals("Mine") && this.argent >= Mine.prixConstruction){
             this.achatJoeur(Mine.prixConstruction);
+            new Construction(this.planete,ville,batiment);
         }
-        else if(typeBatiment.equals("Transformateur") && this.argent >= Transformateur.prixConstruction){
-            ville.ajoutTransformateur(new Transformateur());
+        else if(batiment.getTypeBatiment().equals("Transformateur") && this.argent >= Transformateur.prixConstruction){
             this.achatJoeur(Transformateur.prixConstruction);
+            new Construction(this.planete,ville,batiment);
         }
-        else if(typeBatiment.equals("Usine") && this.argent >= Usine.prixConstruction){
-            ville.ajoutUsine(new Usine());
+        else if(batiment.getTypeBatiment().equals("Usine") && this.argent >= Usine.prixConstruction){
             this.achatJoeur(Usine.prixConstruction);
+            new Construction(this.planete,ville,batiment);
+        }
+        else{
+            System.out.println("Construction de bâtiment impossible!");
         }
     }
 
@@ -200,6 +202,7 @@ public class Joueur {
                 ;
         System.out.println(resume);
     }
+
 
 
     public int getArgent() {

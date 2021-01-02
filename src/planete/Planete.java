@@ -1,5 +1,6 @@
 package planete;
 
+import batiments.Batiment;
 import technologies.Technologie;
 
 import java.util.*;
@@ -133,6 +134,17 @@ public class Planete {
     }
 
     public void actuStatPlanete(){
+
+        this.temperature =0;
+        this.pression =0;
+        this.oxygene =0;
+        this.eau =0;
+        this.biomasse =0;
+        this.argent =0;
+        this.population =0;
+        this.nbVilles =0;
+        this.nbPostes = 0;
+
         for(Ville ville:this.villes){
             this.actuStatPlaneteNouvelleVille(ville);
         }
@@ -174,6 +186,16 @@ public class Planete {
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
         }
+    }
+
+    public void ajoutBatimentVille(Ville ville, Batiment batiment){
+        ville.ajoutBatiment(batiment);
+        this.actuStatPlaneteNouvelleVille(ville);
+    }
+
+    public void supprimerBatimentVille(Ville ville, Batiment batiment){
+        ville.supprimerBatiment(batiment);
+        this.actuStatPlanete();
     }
 
     public void afficherVilles(){
@@ -277,5 +299,25 @@ public class Planete {
 
     public void setTechnologies(ArrayList<Technologie> technologies) {
         this.technologies = technologies;
+    }
+
+    @Override
+    public String toString() {
+        return "Planete{" +
+                ", nom='" + nom + '\'' +
+                ", temperature=" + temperature +
+                ", pression=" + pression +
+                ", oxygene=" + oxygene +
+                ", eau=" + eau +
+                ", argent=" + argent +
+                ", biomasse=" + biomasse +
+                ", population=" + population +
+                ", date=" + date +
+                "nbVilles=" + nbVilles +
+                ", nbPostes=" + nbPostes +
+                ", villes=" + villes +
+                ", postes=" + postes +
+                ", technologies=" + technologies +
+                '}';
     }
 }

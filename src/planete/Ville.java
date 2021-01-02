@@ -2,14 +2,13 @@ package planete;
 
 import batiments.*;
 
-import javax.xml.crypto.dsig.Transform;
 import java.util.*;
 
 
 /**
  * 
  */
-public class Ville extends Thread{
+public class Ville{
 
     /**
      * Default constructor
@@ -29,12 +28,11 @@ public class Ville extends Thread{
         this.oxygeneGenere = 0;
         this.populationGenere = 0;
         this.argentGenere = 0;
-        this.tempsConstruction = 20000;
+        this.tempsConstruction = 5000;
 
         nbDeVille++;
         prixConstruction *= nbDeVille;
 
-        this.start();
     }
 
     public static int prixConstruction = 500000;
@@ -107,17 +105,6 @@ public class Ville extends Thread{
         this.tempsConstruction = tempsConstruction;
     }
 
-    @Override
-    public void run() {
-        try {
-            System.out.println("Construction de " + this.nomVille + " durant " + this.tempsConstruction/1000 + " secondes");
-            Thread.sleep(this.tempsConstruction);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("La ville " + this.nomVille + " vient d'être construite");
-    }
-
     public ArrayList<Batiment> getBatiments() {
         return batiments;
     }
@@ -149,65 +136,10 @@ public class Ville extends Thread{
                 "}\n";
     }
 
-    public String setNomBatiment(){
-        boolean isSame = true;
-        String nomBatiment = "";
+    public void ajoutBatiment(Batiment batiment){
 
-        while(isSame){
-            Scanner myObj = new Scanner(System.in);
-            System.out.println("Donner un nom à votre Batiment"); //fenetre pop-up
-            nomBatiment = myObj.nextLine();
-
-            if(!this.batiments.isEmpty()) {
-                for (Batiment batiment : batiments) {
-                    if (Objects.equals(nomBatiment, batiment.getNomBatiment())) {
-                        isSame = true;
-                        System.out.println("Ce nom est déjà pris par un autre bâtiment au sein de cette ville");
-                        break;
-                    }else{
-                        isSame = false;
-                    }
-                }
-            }else{
-                isSame = false;
-            }
-        }
-        return nomBatiment;
-    }
-
-    public void ajoutCiterne(Citerne citerne){
-        this.batiments.add(citerne);
-        this.actuStatVilleBatiment(citerne);
-    }
-
-    public void ajoutFiltre(Filtre filtre){
-        this.batiments.add(filtre);
-        this.actuStatVilleBatiment(filtre);
-    }
-
-    public void ajoutHabitation(Habitation habitation){
-        this.batiments.add(habitation);
-        this.actuStatVilleBatiment(habitation);
-    }
-
-    public void ajoutJardin(Jardin jardin){
-        this.batiments.add(jardin);
-        this.actuStatVilleBatiment(jardin);
-    }
-
-    public void ajoutMine(Mine mine){
-        this.batiments.add(mine);
-        this.actuStatVilleBatiment(mine);
-    }
-
-    public void ajoutTransformateur(Transformateur transformateur){
-        this.batiments.add(transformateur);
-        this.actuStatVilleBatiment(transformateur);
-    }
-
-    public void ajoutUsine(Usine usine){
-        this.batiments.add(usine);
-        this.actuStatVilleBatiment(usine);
+        this.batiments.add(batiment);
+        this.actuStatVilleBatiment(batiment);
     }
 
     public void actuStatVilleBatiment(Batiment batiment){
@@ -250,6 +182,11 @@ public class Ville extends Thread{
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
         }
+    }
+
+    public void ameliorerBatiment(Batiment batiment){
+        batiment.ameliorationBatiment();
+        this.actuStatVilleBatiment(batiment);
     }
 
     public int getNbBatiments() {
