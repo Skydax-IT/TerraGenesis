@@ -204,6 +204,7 @@ public class Planete {
     }
 
     public void ajoutBatimentVille(Ville ville, Batiment batiment){
+        this.actuStatPlaneteNouvelleVille(ville,false);
         ville.ajoutBatiment(batiment);
         this.actuStatPlaneteNouvelleVille(ville,true);
     }
