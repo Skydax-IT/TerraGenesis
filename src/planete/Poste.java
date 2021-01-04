@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * 
  */
-public class Poste extends Thread{
+public class Poste{
 
     /**
      * Default constructor
@@ -63,15 +63,14 @@ public class Poste extends Thread{
                 '}';
     }
 
-    @Override
-    public void run() {
-        try {
-            System.out.println("Construction de " + this.nomPoste + " durant " + this.tempsConstruction/1000 + " secondes");
-            Thread.sleep(this.tempsConstruction);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    public void actuStatPoste(Mine mine, boolean add){
+        if(add){
+            this.argentGenere += mine.getArgentGenere();
+            this.nbMines ++;
+        }else{
+            this.argentGenere -= mine.getArgentGenere();
+            this.nbMines --;
         }
-        System.out.println("Le poste " + this.nomPoste + " vient d'être construit!");
     }
 
     /**
@@ -79,7 +78,7 @@ public class Poste extends Thread{
      */
     public void ajouterMine(Mine mine) {
         this.mines.add(mine);
-        this.actuStatPoste();
+        this.actuStatPoste(mine,true);
     }
 
     /**
@@ -88,7 +87,7 @@ public class Poste extends Thread{
     public void supprimerMine(Mine mineSuppr){//String nomMine) {
         try {
             this.mines.remove(mineSuppr);
-            this.actuStatPoste();
+            this.actuStatPoste(mineSuppr,false);
         }
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
@@ -121,16 +120,6 @@ public class Poste extends Thread{
 
     public void setArgentGenere(int argentGenere) {
         this.argentGenere = argentGenere;
-    }
-
-    public void actuStatPoste(){
-        this.argentGenere = 0;
-        this.nbMines = 0;
-
-        for(Mine mine: this.mines){
-            this.argentGenere += mine.getArgentGenere();
-            this.nbMines ++;
-        }
     }
 
     public static int getPrixConstruction() {

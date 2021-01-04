@@ -16,18 +16,16 @@ public class Main{ //extends Application {
 
 
         Joueur j1 = new Joueur();
-        j1.construirePoste();
+        /*j1.construirePoste();
         j1.constuireVille();
         j1.askForString("AAAAA");
         System.out.println(j1.getPlanete().getVilles());
         j1.construireBatiment(j1.getPlanete().getVilles().get(0),new Mine());
         j1.askForString("AAAAA");
-        System.out.println(j1.getPlanete().getVilles());
+        System.out.println(j1.getPlanete().getVilles());*/
 
         System.out.println(j1.getPlanete());
-        /*Date date = new Date();
-        Date d1 = new Date(2020,06,20,25,06);
-        System.out.println(date.getDay());*/
+
     }
 
    /* public void start(Stage primaryStage){

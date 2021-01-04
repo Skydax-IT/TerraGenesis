@@ -139,19 +139,32 @@ public class Ville{
     public void ajoutBatiment(Batiment batiment){
 
         this.batiments.add(batiment);
-        this.actuStatVilleBatiment(batiment);
+        this.actuStatVilleBatiment(batiment,true);
     }
 
-    public void actuStatVilleBatiment(Batiment batiment){
-        this.nbHabitants += batiment.getPopulationGenere();
-        this.pressionGenere += batiment.getPressionGenere();
-        this.biomasseGenere += batiment.getBiomasseGenere();
-        this.eauGenere += batiment.getEauGenere();
-        this.temperatureGenere += batiment.getTemperatureGenere();
-        this.oxygeneGenere += batiment.getOxygeneGenere();
-        this.populationGenere += batiment.getPopulationGenere();
-        this.argentGenere += batiment.getArgentGenere();
-        this.nbBatiments ++;
+    public void actuStatVilleBatiment(Batiment batiment, boolean add){
+        if(add){
+            this.nbHabitants += batiment.getPopulationGenere();
+            this.pressionGenere += batiment.getPressionGenere();
+            this.biomasseGenere += batiment.getBiomasseGenere();
+            this.eauGenere += batiment.getEauGenere();
+            this.temperatureGenere += batiment.getTemperatureGenere();
+            this.oxygeneGenere += batiment.getOxygeneGenere();
+            this.populationGenere += batiment.getPopulationGenere();
+            this.argentGenere += batiment.getArgentGenere();
+            this.nbBatiments ++;
+        }else{
+            this.nbHabitants -= batiment.getPopulationGenere();
+            this.pressionGenere -= batiment.getPressionGenere();
+            this.biomasseGenere -= batiment.getBiomasseGenere();
+            this.eauGenere -= batiment.getEauGenere();
+            this.temperatureGenere -= batiment.getTemperatureGenere();
+            this.oxygeneGenere -= batiment.getOxygeneGenere();
+            this.populationGenere -= batiment.getPopulationGenere();
+            this.argentGenere -= batiment.getArgentGenere();
+            this.nbBatiments --;
+        }
+
     }
 
     public void actuStatVille(){
@@ -167,7 +180,7 @@ public class Ville{
         this.nbBatiments = 0;
 
         for(Batiment batiment: this.batiments){
-            actuStatVilleBatiment(batiment);
+            actuStatVilleBatiment(batiment,true);
         }
     }
 
@@ -176,8 +189,8 @@ public class Ville{
      */
     public void supprimerBatiment(Batiment batSuppr) {
         try {
+            this.actuStatVilleBatiment(batSuppr,false);
             this.batiments.remove(batSuppr);
-            this.actuStatVille();
         }
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
@@ -186,7 +199,7 @@ public class Ville{
 
     public void ameliorerBatiment(Batiment batiment){
         batiment.ameliorationBatiment();
-        this.actuStatVilleBatiment(batiment);
+        this.actuStatVilleBatiment(batiment,true);
     }
 
     public int getNbBatiments() {

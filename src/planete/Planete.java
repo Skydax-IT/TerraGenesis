@@ -106,31 +106,38 @@ public class Planete {
 
 
     /**
-     * 
-     */
-    public void ajoutVille(Ville nouvelleVille) {
-        villes.add(nouvelleVille);
-        actuStatPlaneteNouvelleVille(nouvelleVille);
-    }
-
-    /**
      *
      */
-    public void actuStatPlaneteNouvelleVille(Ville nouvelleVille) {
-
-        this.temperature += nouvelleVille.getTemperatureGenere();
-        this.pression += nouvelleVille.getPressionGenere();
-        this.oxygene += nouvelleVille.getOxygeneGenere();
-        this.eau += nouvelleVille.getEauGenere();
-        this.biomasse += nouvelleVille.getBiomasseGenere();
-        this.argent += nouvelleVille.getArgentGenere();
-        this.population += nouvelleVille.getPopulationGenere();
-        this.nbVilles ++;
+    public void actuStatPlaneteNouvelleVille(Ville nouvelleVille, boolean add) {
+        if(add){
+            this.temperature += nouvelleVille.getTemperatureGenere();
+            this.pression += nouvelleVille.getPressionGenere();
+            this.oxygene += nouvelleVille.getOxygeneGenere();
+            this.eau += nouvelleVille.getEauGenere();
+            this.biomasse += nouvelleVille.getBiomasseGenere();
+            this.argent += nouvelleVille.getArgentGenere();
+            this.population += nouvelleVille.getPopulationGenere();
+            this.nbVilles ++;
+        }else{
+            this.temperature -= nouvelleVille.getTemperatureGenere();
+            this.pression -= nouvelleVille.getPressionGenere();
+            this.oxygene -= nouvelleVille.getOxygeneGenere();
+            this.eau -= nouvelleVille.getEauGenere();
+            this.biomasse -= nouvelleVille.getBiomasseGenere();
+            this.argent -= nouvelleVille.getArgentGenere();
+            this.population -= nouvelleVille.getPopulationGenere();
+            this.nbVilles --;
+        }
     }
 
-    public void actuStatPlaneteNouveauPoste(Poste poste){
-        this.nbPostes ++;
-        this.argent += poste.getArgentGenere();
+    public void actuStatPlaneteNouveauPoste(Poste poste, boolean add){
+        if(add){
+            this.nbPostes ++;
+            this.argent += poste.getArgentGenere();
+        }else{
+            this.nbPostes --;
+            this.argent -= poste.getArgentGenere();
+        }
     }
 
     public void actuStatPlanete(){
@@ -146,12 +153,20 @@ public class Planete {
         this.nbPostes = 0;
 
         for(Ville ville:this.villes){
-            this.actuStatPlaneteNouvelleVille(ville);
+            this.actuStatPlaneteNouvelleVille(ville,true);
         }
 
         for(Poste poste: this.postes){
-            this.actuStatPlaneteNouveauPoste(poste);
+            this.actuStatPlaneteNouveauPoste(poste,true);
         }
+    }
+
+    /**
+     *
+     */
+    public void ajoutVille(Ville nouvelleVille) {
+        villes.add(nouvelleVille);
+        actuStatPlaneteNouvelleVille(nouvelleVille,true);
     }
 
     /**
@@ -160,7 +175,7 @@ public class Planete {
     public void supprimerVille(Ville villeSuppr) {
         try {
             this.villes.remove(villeSuppr);
-            this.actuStatPlanete();
+            this.actuStatPlaneteNouvelleVille(villeSuppr,false);
         }
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
@@ -172,7 +187,7 @@ public class Planete {
      */
     public void ajoutPoste(Poste poste) {
         this.postes.add(poste);
-        this.actuStatPlaneteNouveauPoste(poste);
+        this.actuStatPlaneteNouveauPoste(poste,true);
     }
 
     /**
@@ -181,7 +196,7 @@ public class Planete {
     public void supprimerPoste(Poste posteSuppr) {
         try {
             this.postes.remove(posteSuppr);
-            this.actuStatPlanete();
+            this.actuStatPlaneteNouveauPoste(posteSuppr,false);
         }
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
@@ -190,12 +205,13 @@ public class Planete {
 
     public void ajoutBatimentVille(Ville ville, Batiment batiment){
         ville.ajoutBatiment(batiment);
-        this.actuStatPlaneteNouvelleVille(ville);
+        this.actuStatPlaneteNouvelleVille(ville,true);
     }
 
     public void supprimerBatimentVille(Ville ville, Batiment batiment){
+        this.actuStatPlaneteNouvelleVille(ville,false);
         ville.supprimerBatiment(batiment);
-        this.actuStatPlanete();
+        this.actuStatPlaneteNouvelleVille(ville,true);
     }
 
     public void afficherVilles(){
