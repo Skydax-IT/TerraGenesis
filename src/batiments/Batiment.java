@@ -12,7 +12,7 @@ public class Batiment {
      */
     public Batiment(String p_nomBatiment, int p_tempsConstruction, int p_niveauBatiment, int p_pressionGenere,
                     int p_biomasseGenere, int p_eauGenere, int p_temperatureGenere, int p_oxygeneGenere, int p_populationGenere,
-                    int p_argentGenere, String p_typeBatiment) {
+                    int p_argentGenere, String p_typeBatiment, int p_prixBatiment) {
 
         this.nomBatiment = p_nomBatiment;
         this.tempsConstruction = p_tempsConstruction;
@@ -26,6 +26,7 @@ public class Batiment {
         this.populationGenere = p_populationGenere;
         this.argentGenere = p_argentGenere;
         this.typeBatiment = p_typeBatiment;
+        this.prixBatiment = p_prixBatiment;
 
     }
 
@@ -85,6 +86,11 @@ public class Batiment {
      */
     protected String typeBatiment;
 
+    /**
+     *
+     */
+    private int prixBatiment;
+
     @Override
     public String toString() {
         return "\nBatiment{" +
@@ -102,28 +108,9 @@ public class Batiment {
                 "}\n";
     }
 
-    public void ameliorationBatiment(){
-        this.niveauBatiment++;
-
-        this.tempsConstruction -= 0.8 * this.niveauBatiment;
-        this.argentGenere += 0.8 * this.niveauBatiment;
-        this.populationGenere += 1.2 * this.niveauBatiment;
-
-        this.pressionGenere += this.niveauBatiment * 0.6;
-        this.biomasseGenere += this.niveauBatiment * 0.6;
-        this.eauGenere += this.niveauBatiment * 0.6;
-        this.temperatureGenere += this.niveauBatiment * 0.6;
-        this.oxygeneGenere += this.niveauBatiment * 0.6;
-        this.populationGenere += this.niveauBatiment * 0.6;
-        this.argentGenere += this.niveauBatiment * 0.6;
-    }
 
     public String getNomBatiment() {
         return nomBatiment;
-    }
-
-    public void setNomBatiment(int numeroDeSerie) {
-        this.nomBatiment += numeroDeSerie;
     }
 
     public int getTempsConstruction() {
@@ -204,5 +191,17 @@ public class Batiment {
 
     public void setTypeBatiment(String typeBatiment) {
         this.typeBatiment = typeBatiment;
+    }
+
+    public void setNomBatiment(String nomBatiment) {
+        this.nomBatiment = nomBatiment;
+    }
+
+    public int getPrixBatiment() {
+        return prixBatiment;
+    }
+
+    public void setPrixBatiment(int prixBatiment) {
+        this.prixBatiment = prixBatiment;
     }
 }

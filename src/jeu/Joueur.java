@@ -1,9 +1,11 @@
 package jeu;
 
 import batiments.*;
+import javafx.geometry.Pos;
 import planete.Planete;
 import planete.Poste;
 import planete.Ville;
+import technologies.Technologie;
 
 import java.util.*;
 
@@ -17,7 +19,6 @@ public class Joueur{
      */
     public Joueur() {
         this.argent = 2000000;
-        this.niveauTechnologique = 1;
 
         this.objectifTemperature = 287000;
         this.objectifPression = 100000;
@@ -26,6 +27,8 @@ public class Joueur{
         this.objectifBiomasse = 600000;
         this.objectifPopulation = 171;
         this.planete = new Planete("AA");
+
+
         //this.initialiserJoueur();
 
     }
@@ -41,10 +44,6 @@ public class Joueur{
      */
     private String nom;
 
-    /**
-     * 
-     */
-    private int niveauTechnologique;
 
     /**
      *
@@ -81,6 +80,14 @@ public class Joueur{
      */
     private final int objectifPopulation;
 
+    private ArrayList<Technologie> technologieTemperature;
+    private ArrayList<Technologie> technologieBiomasse;
+    private ArrayList<Technologie> technologieEau;
+    private ArrayList<Technologie> technologieOxygene;
+    private ArrayList<Technologie> technologiePopulation;
+    private ArrayList<Technologie> technologiePression;
+    private ArrayList<Technologie> technologieMine;
+
     /**
      * 
      */
@@ -90,6 +97,85 @@ public class Joueur{
                 "Il est maintenant temps d'établir votre première colonie\n");
         String nomPlanete = askForString("Quel nom voulez-vous donner à votre planète ?");
         this.planete = new Planete(nomPlanete);
+    }
+
+    public void initialiseTechnologie(){
+        this.technologieTemperature = new ArrayList<Technologie>(){
+            {
+                add(new Technologie(new Batiment("Usine de refroidissement",30,1,0,0,0,-4,0,0,0,"Température",1000),1000000,250, true));
+                add(new Technologie(new Batiment("Plateforme aérostat",30,1,0,0,0,-40,0,0,2850,"Température",1000),2000000,500,false));
+                add(new Technologie(new Batiment("Toile solaire",30,1,0,-30,0,-100,0,0,-4750,"Température",1000),6000000,750,false));
+                add(new Technologie(new Batiment("Pôle de réchauffement",30,1,0,0,0,4,0,0,0,"Température",1000),1000000,250,true));
+                add(new Technologie(new Batiment("Puits de forage",30,1,10,0,0,60,0,0,0,"Température",1000),2000000,500,false));
+                add(new Technologie(new Batiment("Miroir Orbital",30,1,0,-30,-10,120,0,0,0,"Température",1000),6000000,750,false));
+            }
+        };
+
+        this.technologiePression = new ArrayList<Technologie>(){
+            {
+                add(new Technologie(new Batiment("Usine de séquestration",30,1,-4,0,0,0,0,0,0,"Pression",1000),1000000,250, true));
+                add(new Technologie(new Batiment("Laboratoire de biodivision",30,1,-40,15,0,0,0,0,0,"Pression",1000),2000000,500, false));
+                add(new Technologie(new Batiment("Transformateur d'hydrogène",30,1,-100,0,20,10,0,0,10,"Pression",1000),6000000,750, false));
+                add(new Technologie(new Batiment("Poussière thermique",30,1,4,0,0,0,0,0,0,"Pression",1000),1000000,250, true));
+                add(new Technologie(new Batiment("Ensemble atmogen",30,1,60,0,0,0,10,0,0,"Pression",1000),2000000,500, false));
+                add(new Technologie(new Batiment("Exploitation de poches",30,1,100,0,0,0,20,0,1900,"Pression",1000),6000000,750, false));
+            }
+        };
+
+        this.technologieOxygene = new ArrayList<Technologie>(){
+            {
+                add(new Technologie(new Batiment("Filtre O2",30,0,0,0,0,0,-4,0,0,"Oxygene",1000),1000000,250, true));
+                add(new Technologie(new Batiment("Fixateur de carbone",30,0,10,0,0,0,-40,0,0,"Oxygene",1000),2000000,500, false));
+                add(new Technologie(new Batiment("Générateur hydro",30,0,0,0,20,0,-80,0,0,"Oxygene",1000),6000000,750, false));
+                add(new Technologie(new Batiment("Usine d'oxygène",30,0,0,0,0,0,4,0,0,"Oxygene",1000),1000000,250, true));
+                add(new Technologie(new Batiment("Cyanocuves",30,0,-10,0,0,0,60,0,0,"Oxygene",1000),2000000,500, false));
+                add(new Technologie(new Batiment("Ferme de kelps",30,0,-10,30,0,0,120,0,0,"Oxygene",1000),6000000,750, false));
+
+            }
+        };
+
+        this.technologieEau = new ArrayList<Technologie>(){
+            {
+                add(new Technologie(new Batiment("Géociterne",30,0,0,0,-4,0,0,0,0,"Eau",1000),1000000,250, true));
+                add(new Technologie(new Batiment("Usine d'électrolyse",30,0,0,0,-40,0,10,0,0,"Eau",1000),2000000,500, false));
+                add(new Technologie(new Batiment("Lance-glace",30,0,-10,0,-120,0,0,0,2850,"Eau",1000),6000000,750, false));
+                add(new Technologie(new Batiment("Semeur de nuages",30,0,0,0,4,0,0,0,0,"Eau",1000),1000000,250, true));
+                add(new Technologie(new Batiment("Réseau aquifère",30,0,10,0,40,0,0,0,0,"Eau",1000),2000000,500, false));
+                add(new Technologie(new Batiment("Redirection de comètes",30,0,0,-15,120,0,0,0,7600,"Eau",1000),6000000,750, false));
+
+            }
+        };
+
+        this.technologieBiomasse = new ArrayList<Technologie>(){
+            {
+                add(new Technologie(new Batiment("Colonie d'algues",30,0,0,12,-4,0,0,0,0,"Biomasse",1000),1000000,250, true));
+                add(new Technologie(new Batiment("Forêt de kelps",30,0,0,120,0,0,30,0,0,"Biomasse",1000),2000000,500, false));
+                add(new Technologie(new Batiment("Récif de corail",30,0,0,0,179,0,0,21,3800,"Biomasse",1000),6000000,750, false));
+                add(new Technologie(new Batiment("Ferme tellurique",30,0,0,6,0,0,0,0,0,"Biomasse",1000),1000000,250, true));
+                add(new Technologie(new Batiment("Ferme d'herbacés",30,0,0,60,-10,0,0,0,0,"Biomasse",1000),2000000,500, false));
+                add(new Technologie(new Batiment("Peuplement forestier",30,0,0,150,-20,0,20,0,0,"Biomasse",1000),6000000,750, false));
+            }
+        };
+
+        this.technologiePopulation = new ArrayList<Technologie>(){
+            {
+                add(new Technologie(new Batiment("Unité d'habitation",30,0,0,0,0,0,0,85,0,"Population",1000),1000000,250, true));
+                add(new Technologie(new Batiment("Complexe d'habitation",30,0,0,0,0,0,10,2125,0,"Population",1000),2000000,500, false));
+                add(new Technologie(new Batiment("Dome d'habitation",30,0,0,15,20,0,0,42500,0,"Population",1000),6000000,750, false));
+                add(new Technologie(new Batiment("Crèche pour enfants",30,0,0,0,0,0,0,11,0,"Population",1000),1000000,250, true));
+                add(new Technologie(new Batiment("Réseau de transport",30,0,0,-15,0,0,0,84,0,"Population",1000),2000000,500, false));
+                add(new Technologie(new Batiment("Port spatial",30,0,0,0,0,0,10,126,9500,"Population",1000),6000000,750, false));            }
+        };
+
+        this.technologieMine = new ArrayList<Technologie>(){
+            {
+                add(new Technologie(new Mine("Carbone",30,0,0,0,0,0,0,0,100000,"Ressources minières",1000),1000000,250, true));
+                add(new Technologie(new Mine("Fer",30,0,0,0,0,0,0,0,250000,"Ressources minières",1000),2000000,500, false));
+                add(new Technologie(new Mine("Argent",30,0,0,0,0,0,0,0,1000000,"Ressources minières",1000),6000000,750, false));
+                add(new Technologie(new Mine("Palladium",30,0,0,0,0,0,0,0,2500000,"Ressources minières",1000),10000000,1000, false));
+                add(new Technologie(new Mine("Rhodium",30,0,0,0,0,0,0,0,7500000,"Ressources minières",1000),12500000,1250, false));
+            }
+        };
     }
 
     /**
@@ -130,47 +216,60 @@ public class Joueur{
         this.planete.supprimerPoste(poste);
     }
 
-    public void construireBatiment(Ville ville, Batiment batiment){
+    public void construireBatiment(Ville ville, Batiment batiment){ // Verif niveau technologique
 
-        if(batiment.getTypeBatiment().equals("Citerne") && this.argent >= Citerne.prixConstruction) {
-            this.achatJoeur(Citerne.prixConstruction);
+        if(this.argent >= batiment.getPrixBatiment()) {
+            this.achatJoeur(batiment.getPrixBatiment());
             new Construction(this.planete,ville,batiment);
-        }
-        else if(batiment.getTypeBatiment().equals("Filtre") && this.argent >= Filtre.prixConstruction){
-            this.achatJoeur(Filtre.prixConstruction);
-            new Construction(this.planete,ville,batiment);
-        }
-        else if(batiment.getTypeBatiment().equals("Habitation") && this.argent >= Habitation.prixConstruction){
-            this.achatJoeur(Habitation.prixConstruction);
-            new Construction(this.planete,ville,batiment);
-        }
-        else if(batiment.getTypeBatiment().equals("Jardin") && this.argent >= Jardin.prixConstruction){
-            this.achatJoeur(Jardin.prixConstruction);
-            new Construction(this.planete,ville,batiment);
-        }
-        else if(batiment.getTypeBatiment().equals("Mine") && this.argent >= Mine.prixConstruction){
-            this.achatJoeur(Mine.prixConstruction);
-            new Construction(this.planete,ville,batiment);
-        }
-        else if(batiment.getTypeBatiment().equals("Transformateur") && this.argent >= Transformateur.prixConstruction){
-            this.achatJoeur(Transformateur.prixConstruction);
-            new Construction(this.planete,ville,batiment);
-        }
-        else if(batiment.getTypeBatiment().equals("Usine") && this.argent >= Usine.prixConstruction){
-            this.achatJoeur(Usine.prixConstruction);
-            new Construction(this.planete,ville,batiment);
-        }
-        else{
-            System.out.println("Construction de bâtiment impossible!");
+        }else{
+            System.out.println("Construction de "+ batiment.getNomBatiment() + " impossible!");
         }
     }
-
 
     public void supprimerBatiment(Ville ville, Batiment batiment){
         ville.supprimerBatiment(batiment);
     }
 
-    //AméliorationTechnologique
+    public void construireMinePoste(Poste poste, Mine mine){//Verif niveau technologique
+        if(this.argent >= mine.getPrixBatiment()){
+            this.achatJoeur(mine.getPrixBatiment());
+            new Construction(poste,mine);
+        }
+        else{
+            System.out.println("Construction de "+ mine.getNomBatiment() + " impossible!");
+        }
+    }
+
+    public void supprimerMinePoste(Poste poste, Mine mine){
+        this.planete.supprimerMinePoste(poste,mine);
+    }
+
+    public int estRecherchable(ArrayList<Technologie> technologies){ // Pb avec les technologies négative et positive
+        int indexRecherche = 0;
+        for(Technologie technologie : technologies){
+            if(technologie.isDebloquer() == true){ // Marche pour le mines!
+                indexRecherche += 1;
+            }
+        }
+        return indexRecherche;
+    }
+
+    public int estRecherchablePosNeg(ArrayList<Technologie> technologies, Technologie technologie){
+        if(technologies.indexOf(technologie) < 3){
+            "".toString();
+        }
+        return 1;
+    }
+
+
+    public void ameliorerTechnologie(Technologie technologie){
+        if(technologie.isDebloquer() == false && technologie.getPrixTechnologie() >= this.argent)
+            if(this.technologieTemperature.contains(technologie) && estRecherchable(this.technologieTemperature) == this.technologieTemperature.indexOf(technologie)){
+                //Condition à revoir pour bat neg et pos
+                this.achatJoeur(technologie.getPrixTechnologie());
+                new Construction(this.technologieTemperature,technologie);
+            }
+    }
 
     public String askForString(String phrase){
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
@@ -219,14 +318,6 @@ public class Joueur{
 
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    public int getNiveauTechnologique() {
-        return niveauTechnologique;
-    }
-
-    public void setNiveauTechnologique(int niveauTechnologique) {
-        this.niveauTechnologique = niveauTechnologique;
     }
 
     public Planete getPlanete() {

@@ -197,11 +197,6 @@ public class Ville{
         }
     }
 
-    public void ameliorerBatiment(Batiment batiment){
-        batiment.ameliorationBatiment();
-        this.actuStatVilleBatiment(batiment,true);
-    }
-
     public int getNbBatiments() {
         return nbBatiments;
     }

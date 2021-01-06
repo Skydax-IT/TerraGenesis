@@ -1,6 +1,7 @@
 package planete;
 
 import batiments.Batiment;
+import batiments.Mine;
 import technologies.Technologie;
 
 import java.util.*;
@@ -201,6 +202,17 @@ public class Planete {
         catch(IndexOutOfBoundsException exception){
             System.out.println("Suppression impossible");
         }
+    }
+
+    public void ajoutMinePoste(Poste poste, Mine mine){
+        this.actuStatPlaneteNouveauPoste(poste,false);
+        poste.ajouterMine(mine);
+        this.actuStatPlaneteNouveauPoste(poste,true);
+    }
+
+    public void supprimerMinePoste(Poste poste, Mine mine){
+        this.actuStatPlaneteNouveauPoste(poste,false);
+        poste.supprimerMine(mine);
     }
 
     public void ajoutBatimentVille(Ville ville, Batiment batiment){

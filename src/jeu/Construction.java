@@ -1,9 +1,13 @@
 package jeu;
 
 import batiments.Batiment;
+import batiments.Mine;
 import planete.Planete;
 import planete.Poste;
 import planete.Ville;
+import technologies.Technologie;
+
+import java.util.ArrayList;
 
 public class Construction extends Thread{
 
@@ -32,11 +36,30 @@ public class Construction extends Thread{
         this.start();
     }
 
+    public Construction(Poste p_poste, Mine p_mine){
+        this.poste = p_poste;
+        this.mine = p_mine;
+        this.typeConstruction = "Mine";
+
+        this.start();
+    }
+
+    public Construction(ArrayList<Technologie> p_technologies, Technologie p_technologie){
+        this.technologies = p_technologies;
+        this.technologie = p_technologie;
+        this.typeConstruction = "Technologie";
+
+        this.start();
+    }
+
 
     private Ville ville;
     private Planete planete;
     private Poste poste;
     private Batiment batiment;
+    private Mine mine;
+    private ArrayList<Technologie> technologies;
+    private Technologie technologie;
 
     private String typeConstruction;
 
@@ -60,6 +83,18 @@ public class Construction extends Thread{
                 Thread.sleep(this.batiment.getTempsConstruction());
                 this.planete.ajoutBatimentVille(this.ville,this.batiment);
                 System.out.println("Le bâtiment " + this.batiment.getNomBatiment()+ " vient d'être construit à " + this.ville.getNomVille() +  '!');
+            }
+            else if(this.typeConstruction.equals("Mine")){
+                System.out.println("Construction de " + this.mine.getNomBatiment() + " dans " + this.poste.getNomPoste() + " durant " + this.mine.getTempsConstruction()/1000 + " secondes");
+                Thread.sleep(this.batiment.getTempsConstruction());
+                this.planete.ajoutMinePoste(this.poste,this.mine);
+                System.out.println("La mine " + this.mine.getNomBatiment()+ " vient d'être construite à " + this.poste.getNomPoste() +  '!');
+            }
+            else if(this.typeConstruction.equals("Technologie")){
+                System.out.println("Recherche de " + this.technologie.getBatiment().getNomBatiment() + " dans " + " durant " + this.technologie.getTempsTechnologie()/1000 + " secondes");
+                Thread.sleep(this.technologie.getTempsTechnologie());
+                this.technologies.get(this.technologies.indexOf(this.technologie)).setDebloquer(true);
+                System.out.println("La recherche de " + this.technologie.getBatiment().getNomBatiment() + " est terminée!");
             }
 
         } catch (InterruptedException e) {
