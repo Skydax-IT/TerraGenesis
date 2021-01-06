@@ -40,6 +40,15 @@ public class Technologie {
      */
     private boolean debloquer;
 
+    @Override
+    public String toString() {
+        return "Technologie{" +
+                "batiment=" + batiment +
+                ", prixTechnologie=" + prixTechnologie +
+                ", tempsTechnologie=" + tempsTechnologie +
+                ", debloquer=" + debloquer +
+                '}';
+    }
 
     public Batiment getBatiment() {
         return this.batiment;

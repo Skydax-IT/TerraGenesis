@@ -1,4 +1,6 @@
+import batiments.Batiment;
 import jeu.Joueur;
+import technologies.Technologie;
 
 
 public class Main{ //extends Application {
@@ -7,6 +9,10 @@ public class Main{ //extends Application {
 
 
         Joueur j1 = new Joueur();
+        System.out.println(j1.getTechnologieTemperature());
+        j1.ameliorerTechnologie(j1.getTechnologieTemperature().get(1));
+        j1.askForString("AAAA");
+        System.out.println(j1.getTechnologieTemperature());
         /*j1.construirePoste();
         j1.constuireVille();
         j1.askForString("AAAAA");
@@ -15,7 +21,6 @@ public class Main{ //extends Application {
         j1.askForString("AAAAA");
         System.out.println(j1.getPlanete().getVilles());*/
 
-        System.out.println(j1.getPlanete());
 
     }
 

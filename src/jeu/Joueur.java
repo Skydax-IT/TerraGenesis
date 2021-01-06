@@ -18,7 +18,7 @@ public class Joueur{
      * Default constructor
      */
     public Joueur() {
-        this.argent = 2000000;
+        this.argent = 250000000;
 
         this.objectifTemperature = 287000;
         this.objectifPression = 100000;
@@ -28,6 +28,7 @@ public class Joueur{
         this.objectifPopulation = 171;
         this.planete = new Planete("AA");
 
+        this.initialiseTechnologie();
 
         //this.initialiserJoueur();
 
@@ -105,7 +106,7 @@ public class Joueur{
                 add(new Technologie(new Batiment("Usine de refroidissement",30,1,0,0,0,-4,0,0,0,"Température",1000),1000000,250, true));
                 add(new Technologie(new Batiment("Plateforme aérostat",30,1,0,0,0,-40,0,0,2850,"Température",1000),2000000,500,false));
                 add(new Technologie(new Batiment("Toile solaire",30,1,0,-30,0,-100,0,0,-4750,"Température",1000),6000000,750,false));
-                add(new Technologie(new Batiment("Pôle de réchauffement",30,1,0,0,0,4,0,0,0,"Température",1000),1000000,250,true));
+                add(new Technologie(new Batiment("Pôle de réchauffement",30,1,0,0,0,4,0,0,0,"Température",1000),1000000,250,false)); // a mettre sur true
                 add(new Technologie(new Batiment("Puits de forage",30,1,10,0,0,60,0,0,0,"Température",1000),2000000,500,false));
                 add(new Technologie(new Batiment("Miroir Orbital",30,1,0,-30,-10,120,0,0,0,"Température",1000),6000000,750,false));
             }
@@ -248,10 +249,10 @@ public class Joueur{
         int indexRecherche = 0;
         for(Technologie technologie : technologies){
             if(technologie.isDebloquer() == true){ // Marche pour le mines!
-                indexRecherche += 1;
+                indexRecherche = technologies.indexOf(technologie);
             }
         }
-        return indexRecherche;
+        return indexRecherche + 1;
     }
 
     public int estRecherchablePosNeg(ArrayList<Technologie> technologies, Technologie technologie){
@@ -261,14 +262,14 @@ public class Joueur{
         return 1;
     }
 
-
     public void ameliorerTechnologie(Technologie technologie){
-        if(technologie.isDebloquer() == false && technologie.getPrixTechnologie() >= this.argent)
-            if(this.technologieTemperature.contains(technologie) && estRecherchable(this.technologieTemperature) == this.technologieTemperature.indexOf(technologie)){
+        if(technologie.isDebloquer() == false && this.argent >= technologie.getPrixTechnologie()) {
+            if(this.technologieTemperature.contains(technologie) && estRecherchable(this.technologieTemperature) == this.technologieTemperature.indexOf(technologie)) {
                 //Condition à revoir pour bat neg et pos
                 this.achatJoeur(technologie.getPrixTechnologie());
-                new Construction(this.technologieTemperature,technologie);
+                new Construction(this.technologieTemperature, technologie);
             }
+        }else System.out.println("Cette Technologie ne peut être améliorée! ");
     }
 
     public String askForString(String phrase){
@@ -326,5 +327,13 @@ public class Joueur{
 
     public void setPlanete(Planete planete) {
         this.planete = planete;
+    }
+
+    public ArrayList<Technologie> getTechnologieTemperature() {
+        return technologieTemperature;
+    }
+
+    public void setTechnologieTemperature(ArrayList<Technologie> technologieTemperature) {
+        this.technologieTemperature = technologieTemperature;
     }
 }
