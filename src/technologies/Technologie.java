@@ -53,12 +53,10 @@ public class Technologie {
 
     @Override
     public String toString() {
-        return "Technologie{" +
-                "batiment=" + batiment +
-                ", prixTechnologie=" + prixTechnologie +
-                ", tempsTechnologie=" + tempsTechnologie +
-                ", debloquer=" + debloquer +
-                '}';
+        return  batiment +
+                " - Prix : " + prixTechnologie +
+                " - Temps de construction : " + tempsTechnologie
+                ;
     }
 
     public Batiment getBatiment() {

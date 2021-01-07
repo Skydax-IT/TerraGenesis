@@ -105,13 +105,13 @@ public class Joueur{
         ArrayList<Technologie> a = new ArrayList<>();
         ArrayList<Technologie> b = new ArrayList<>();
 
-        a.add(new Technologie(new Batiment("Usine de refroidissement",30,1,0,0,0,-4,0,0,0,"Température",1000),1000000,250, true));
-        a.add(new Technologie(new Batiment("Plateforme aérostat",30,1,0,0,0,-40,0,0,2850,"Température",1000),2000000,500,false));
-        a.add(new Technologie(new Batiment("Toile solaire",30,1,0,-30,0,-100,0,0,-4750,"Température",1000),6000000,750,false));
+        a.add(new Technologie(new Batiment("Usine de refroidissement",30,0,0,0,-4,0,0,0,"Température",1000),1000000,250, true));
+        a.add(new Technologie(new Batiment("Plateforme aérostat",30,0,0,0,-40,0,0,2850,"Température",1000),2000000,500,false));
+        a.add(new Technologie(new Batiment("Toile solaire",30,0,-30,0,-100,0,0,-4750,"Température",1000),6000000,750,false));
 
-        b.add(new Technologie(new Batiment("Pôle de réchauffement",30,1,0,0,0,4,0,0,0,"Température",1000),1000000,250,true));
-        b.add(new Technologie(new Batiment("Puits de forage",30,1,10,0,0,60,0,0,0,"Température",1000),2000000,500,false));
-        b.add(new Technologie(new Batiment("Miroir Orbital",30,1,0,-30,-10,120,0,0,0,"Température",1000),6000000,750,false));
+        b.add(new Technologie(new Batiment("Pôle de réchauffement",30,0,0,0,4,0,0,0,"Température",1000),1000000,250,true));
+        b.add(new Technologie(new Batiment("Puits de forage",30,10,0,0,60,0,0,0,"Température",1000),2000000,500,false));
+        b.add(new Technologie(new Batiment("Miroir Orbital",30,0,-30,-10,120,0,0,0,"Température",1000),6000000,750,false));
 
 
         this.technologieTemperature = new ArrayList<ArrayList<Technologie>>(){
@@ -125,13 +125,13 @@ public class Joueur{
         ArrayList<Technologie> c = new ArrayList<>();
         ArrayList<Technologie> d = new ArrayList<>();
 
-        c.add(new Technologie(new Batiment("Usine de séquestration",30,1,-4,0,0,0,0,0,0,"Pression",1000),1000000,250, true));
-        c.add(new Technologie(new Batiment("Laboratoire de biodivision",30,1,-40,15,0,0,0,0,0,"Pression",1000),2000000,500, false));
-        c.add(new Technologie(new Batiment("Transformateur d'hydrogène",30,1,-100,0,20,10,0,0,10,"Pression",1000),6000000,750, false));
+        c.add(new Technologie(new Batiment("Usine de séquestration",30,-4,0,0,0,0,0,0,"Pression",1000),1000000,250, true));
+        c.add(new Technologie(new Batiment("Laboratoire de biodivision",30,-40,15,0,0,0,0,0,"Pression",1000),2000000,500, false));
+        c.add(new Technologie(new Batiment("Transformateur d'hydrogène",30,-100,0,20,10,0,0,10,"Pression",1000),6000000,750, false));
 
-        d.add(new Technologie(new Batiment("Poussière thermique",30,1,4,0,0,0,0,0,0,"Pression",1000),1000000,250, true));
-        d.add(new Technologie(new Batiment("Ensemble atmogen",30,1,60,0,0,0,10,0,0,"Pression",1000),2000000,500, false));
-        d.add(new Technologie(new Batiment("Exploitation de poches",30,1,100,0,0,0,20,0,1900,"Pression",1000),6000000,750, false));
+        d.add(new Technologie(new Batiment("Poussière thermique",30,4,0,0,0,0,0,0,"Pression",1000),1000000,250, true));
+        d.add(new Technologie(new Batiment("Ensemble atmogen",30,60,0,0,0,10,0,0,"Pression",1000),2000000,500, false));
+        d.add(new Technologie(new Batiment("Exploitation de poches",30,100,0,0,0,20,0,1900,"Pression",1000),6000000,750, false));
 
         this.technologiePression = new ArrayList<ArrayList<Technologie>>(){
             {
@@ -143,13 +143,13 @@ public class Joueur{
         ArrayList<Technologie> e = new ArrayList<>();
         ArrayList<Technologie> f = new ArrayList<>();
 
-        e.add(new Technologie(new Batiment("Filtre O2",30,0,0,0,0,0,-4,0,0,"Oxygene",1000),1000000,250, true));
-        e.add(new Technologie(new Batiment("Fixateur de carbone",30,0,10,0,0,0,-40,0,0,"Oxygene",1000),2000000,500, false));
-        e.add(new Technologie(new Batiment("Générateur hydro",30,0,0,0,20,0,-80,0,0,"Oxygene",1000),6000000,750, false));
+        e.add(new Technologie(new Batiment("Filtre O2",30,0,0,0,0,-4,0,0,"Oxygene",1000),1000000,250, true));
+        e.add(new Technologie(new Batiment("Fixateur de carbone",30,10,0,0,0,-40,0,0,"Oxygene",1000),2000000,500, false));
+        e.add(new Technologie(new Batiment("Générateur hydro",30,0,0,20,0,-80,0,0,"Oxygene",1000),6000000,750, false));
 
-        f.add(new Technologie(new Batiment("Usine d'oxygène",30,0,0,0,0,0,4,0,0,"Oxygene",1000),1000000,250, true));
-        f.add(new Technologie(new Batiment("Cyanocuves",30,0,-10,0,0,0,60,0,0,"Oxygene",1000),2000000,500, false));
-        f.add(new Technologie(new Batiment("Ferme de kelps",30,0,-10,30,0,0,120,0,0,"Oxygene",1000),6000000,750, false));
+        f.add(new Technologie(new Batiment("Usine d'oxygène",30,0,0,0,0,4,0,0,"Oxygene",1000),1000000,250, true));
+        f.add(new Technologie(new Batiment("Cyanocuves",30,-10,0,0,0,60,0,0,"Oxygene",1000),2000000,500, false));
+        f.add(new Technologie(new Batiment("Ferme de kelps",30,-10,30,0,0,120,0,0,"Oxygene",1000),6000000,750, false));
 
         this.technologieOxygene = new ArrayList<ArrayList<Technologie>>(){
             {
@@ -161,13 +161,13 @@ public class Joueur{
         ArrayList<Technologie> g = new ArrayList<>();
         ArrayList<Technologie> h = new ArrayList<>();
 
-        g.add(new Technologie(new Batiment("Géociterne",30,0,0,0,-4,0,0,0,0,"Eau",1000),1000000,250, true));
-        g.add(new Technologie(new Batiment("Usine d'électrolyse",30,0,0,0,-40,0,10,0,0,"Eau",1000),2000000,500, false));
-        g.add(new Technologie(new Batiment("Lance-glace",30,0,-10,0,-120,0,0,0,2850,"Eau",1000),6000000,750, false));
+        g.add(new Technologie(new Batiment("Géociterne",30,0,0,-4,0,0,0,0,"Eau",1000),1000000,250, true));
+        g.add(new Technologie(new Batiment("Usine d'électrolyse",30,0,0,-40,0,10,0,0,"Eau",1000),2000000,500, false));
+        g.add(new Technologie(new Batiment("Lance-glace",30,-10,0,-120,0,0,0,2850,"Eau",1000),6000000,750, false));
 
-        h.add(new Technologie(new Batiment("Semeur de nuages",30,0,0,0,4,0,0,0,0,"Eau",1000),1000000,250, true));
-        h.add(new Technologie(new Batiment("Réseau aquifère",30,0,10,0,40,0,0,0,0,"Eau",1000),2000000,500, false));
-        h.add(new Technologie(new Batiment("Redirection de comètes",30,0,0,-15,120,0,0,0,7600,"Eau",1000),6000000,750, false));
+        h.add(new Technologie(new Batiment("Semeur de nuages",30,0,0,4,0,0,0,0,"Eau",1000),1000000,250, true));
+        h.add(new Technologie(new Batiment("Réseau aquifère",30,10,0,40,0,0,0,0,"Eau",1000),2000000,500, false));
+        h.add(new Technologie(new Batiment("Redirection de comètes",30,0,-15,120,0,0,0,7600,"Eau",1000),6000000,750, false));
 
 
         this.technologieEau = new ArrayList<ArrayList<Technologie>>(){
@@ -180,13 +180,13 @@ public class Joueur{
         ArrayList<Technologie> i = new ArrayList<>();
         ArrayList<Technologie> j = new ArrayList<>();
 
-        i.add(new Technologie(new Batiment("Colonie d'algues",30,0,0,12,-4,0,0,0,0,"Biomasse",1000),1000000,250, true));
-        i.add(new Technologie(new Batiment("Forêt de kelps",30,0,0,120,0,0,30,0,0,"Biomasse",1000),2000000,500, false));
-        i.add(new Technologie(new Batiment("Récif de corail",30,0,0,0,179,0,0,21,3800,"Biomasse",1000),6000000,750, false));
+        i.add(new Technologie(new Batiment("Colonie d'algues",30,0,12,-4,0,0,0,0,"Biomasse",1000),1000000,250, true));
+        i.add(new Technologie(new Batiment("Forêt de kelps",30,0,120,0,0,30,0,0,"Biomasse",1000),2000000,500, false));
+        i.add(new Technologie(new Batiment("Récif de corail",30,0,0,179,0,0,21,3800,"Biomasse",1000),6000000,750, false));
 
-        j.add(new Technologie(new Batiment("Ferme tellurique",30,0,0,6,0,0,0,0,0,"Biomasse",1000),1000000,250, true));
-        j.add(new Technologie(new Batiment("Ferme d'herbacés",30,0,0,60,-10,0,0,0,0,"Biomasse",1000),2000000,500, false));
-        j.add(new Technologie(new Batiment("Peuplement forestier",30,0,0,150,-20,0,20,0,0,"Biomasse",1000),6000000,750, false));
+        j.add(new Technologie(new Batiment("Ferme tellurique",30,0,6,0,0,0,0,0,"Biomasse",1000),1000000,250, true));
+        j.add(new Technologie(new Batiment("Ferme d'herbacés",30,0,60,-10,0,0,0,0,"Biomasse",1000),2000000,500, false));
+        j.add(new Technologie(new Batiment("Peuplement forestier",30,0,150,-20,0,20,0,0,"Biomasse",1000),6000000,750, false));
 
 
         this.technologieBiomasse = new ArrayList<ArrayList<Technologie>>(){
@@ -199,13 +199,13 @@ public class Joueur{
         ArrayList<Technologie> k = new ArrayList<>();
         ArrayList<Technologie> l = new ArrayList<>();
 
-        k.add(new Technologie(new Batiment("Unité d'habitation",30,0,0,0,0,0,0,85,0,"Population",1000),1000000,250, true));
-        k.add(new Technologie(new Batiment("Complexe d'habitation",30,0,0,0,0,0,10,2125,0,"Population",1000),2000000,500, false));
-        k.add(new Technologie(new Batiment("Dome d'habitation",30,0,0,15,20,0,0,42500,0,"Population",1000),6000000,750, false));
+        k.add(new Technologie(new Batiment("Unité d'habitation",30,0,0,0,0,0,85,0,"Population",1000),1000000,250, true));
+        k.add(new Technologie(new Batiment("Complexe d'habitation",30,0,0,0,0,10,2125,0,"Population",1000),2000000,500, false));
+        k.add(new Technologie(new Batiment("Dome d'habitation",30,0,15,20,0,0,42500,0,"Population",1000),6000000,750, false));
 
-        l.add(new Technologie(new Batiment("Crèche pour enfants",30,0,0,0,0,0,0,11,0,"Population",1000),1000000,250, true));
-        l.add(new Technologie(new Batiment("Réseau de transport",30,0,0,-15,0,0,0,84,0,"Population",1000),2000000,500, false));
-        l.add(new Technologie(new Batiment("Port spatial",30,0,0,0,0,0,10,126,9500,"Population",1000),6000000,750, false));
+        l.add(new Technologie(new Batiment("Crèche pour enfants",30,0,0,0,0,0,11,0,"Population",1000),1000000,250, true));
+        l.add(new Technologie(new Batiment("Réseau de transport",30,0,-15,0,0,0,84,0,"Population",1000),2000000,500, false));
+        l.add(new Technologie(new Batiment("Port spatial",30,0,0,0,0,10,126,9500,"Population",1000),6000000,750, false));
 
 
         this.technologiePopulation = new ArrayList<ArrayList<Technologie>>(){
@@ -217,11 +217,11 @@ public class Joueur{
 
         this.technologieMine = new ArrayList<Technologie>(){
             {
-                add(new Technologie(new Mine("Carbone",30,0,0,0,0,0,0,0,100000,"Ressources minières",1000),1000000,250, true));
-                add(new Technologie(new Mine("Fer",30,0,0,0,0,0,0,0,250000,"Ressources minières",1000),2000000,500, false));
-                add(new Technologie(new Mine("Argent",30,0,0,0,0,0,0,0,1000000,"Ressources minières",1000),6000000,750, false));
-                add(new Technologie(new Mine("Palladium",30,0,0,0,0,0,0,0,2500000,"Ressources minières",1000),10000000,1000, false));
-                add(new Technologie(new Mine("Rhodium",30,0,0,0,0,0,0,0,7500000,"Ressources minières",1000),12500000,1250, false));
+                add(new Technologie(new Mine("Carbone",30,0,0,0,0,0,0,100000,"Ressources minières",1000),1000000,250, true));
+                add(new Technologie(new Mine("Fer",30,0,0,0,0,0,0,250000,"Ressources minières",1000),2000000,500, false));
+                add(new Technologie(new Mine("Argent",30,0,0,0,0,0,0,1000000,"Ressources minières",1000),6000000,750, false));
+                add(new Technologie(new Mine("Palladium",30,0,0,0,0,0,0,2500000,"Ressources minières",1000),10000000,1000, false));
+                add(new Technologie(new Mine("Rhodium",30,0,0,0,0,0,0,7500000,"Ressources minières",1000),12500000,1250, false));
             }
         };
     }
@@ -229,7 +229,7 @@ public class Joueur{
     /**
      * 
      */
-    public void achatJoeur(int prix) {
+    public void achatJoueur(int prix) {
         this.argent -= prix;
     }
 
@@ -245,7 +245,7 @@ public class Joueur{
     public void constuireVille(){
         if(this.argent >= Ville.prixConstruction) {
             String nomVille = this.askForString("Quel nom voulez-vous donner à votre ville ? ");
-            this.achatJoeur(Ville.prixConstruction); // A mettre avant sinon prix change quand classe ville est créée
+            this.achatJoueur(Ville.prixConstruction); // A mettre avant sinon prix change quand classe ville est créée
             new Construction(this.planete, new Ville(nomVille));
         }else{
             System.out.println("Impossible de construire une ville! Il vous manque " + (Ville.prixConstruction - this.argent));
@@ -260,7 +260,7 @@ public class Joueur{
     public void construirePoste(){
         if(this.argent >= Poste.prixConstruction){
             String nomPoste = this.askForString("Quel nom voulez-vous donner à votre poste ? ");
-            this.achatJoeur(Poste.prixConstruction);
+            this.achatJoueur(Poste.prixConstruction);
             new Construction(this.planete, new Poste(nomPoste));
         }else{
             System.out.println("Impossible de construire un poste! Il vous manque " + (Poste.prixConstruction - this.argent));
@@ -276,7 +276,7 @@ public class Joueur{
         for(Technologie technologie: list.get(index)){
             if(Objects.equals(technologie.getBatiment(), batiment)){
                  if(technologie.isDebloquer()){
-                     this.achatJoeur(batiment.getPrixBatiment());
+                     this.achatJoueur(batiment.getPrixBatiment());
                      new Construction(this.planete,ville,batiment);
                  }else{
                      System.out.println("Vous devez d'abord débloquer la technologie " + batiment.getNomBatiment());
@@ -326,7 +326,7 @@ public class Joueur{
         }
         
         if(this.argent >= mine.getPrixBatiment() && this.technologieMine.get(index).isDebloquer()){
-            this.achatJoeur(mine.getPrixBatiment());
+            this.achatJoueur(mine.getPrixBatiment());
             new Construction(this.planete,poste,mine);
         }
         else{
@@ -339,7 +339,7 @@ public class Joueur{
     }
 
     public int estRecherchable(ArrayList<Technologie> technologies){ // Pb avec les technologies négative et positive
-        int indexRecherche = 0;
+        int indexRecherche = -2;
         for(Technologie technologie : technologies){
             if(technologie.isDebloquer() == true){ // Marche pour le mines! //Prend en compte que le dernier true -> checker les true et false de temp
                 indexRecherche = technologies.indexOf(technologie);
@@ -355,42 +355,42 @@ public class Joueur{
 
             int indexTech = this.rechercher(this.technologieTemperature,technologie);//TempTechno
             if(estRecherchable(this.technologieTemperature.get(indexTech)) == this.technologieTemperature.get(indexTech).indexOf(technologie)){
-                    this.achatJoeur(technologie.getPrixTechnologie());
+                    this.achatJoueur(technologie.getPrixTechnologie());
                     new Construction(this.technologieTemperature.get(indexTech), technologie);
             }else System.out.println("Recherche impossible! ");
 
             indexTech = this.rechercher(this.technologieBiomasse,technologie);//BiomasseTechno
             if(estRecherchable(this.technologieBiomasse.get(indexTech)) == this.technologieBiomasse.get(indexTech).indexOf(technologie)){
-                this.achatJoeur(technologie.getPrixTechnologie());
+                this.achatJoueur(technologie.getPrixTechnologie());
                 new Construction(this.technologieBiomasse.get(indexTech), technologie);
             }else System.out.println("Recherche impossible! ");
 
             indexTech = this.rechercher(this.technologieEau,technologie);//EauTechno
             if(estRecherchable(this.technologieEau.get(indexTech)) == this.technologieEau.get(indexTech).indexOf(technologie)){
-                this.achatJoeur(technologie.getPrixTechnologie());
+                this.achatJoueur(technologie.getPrixTechnologie());
                 new Construction(this.technologieEau.get(indexTech), technologie);
             }else System.out.println("Recherche impossible! ");
 
             indexTech = this.rechercher(this.technologieOxygene,technologie);//OxygeneTechno
             if(estRecherchable(this.technologieOxygene.get(indexTech)) == this.technologieOxygene.get(indexTech).indexOf(technologie)){
-                this.achatJoeur(technologie.getPrixTechnologie());
+                this.achatJoueur(technologie.getPrixTechnologie());
                 new Construction(this.technologieOxygene.get(indexTech), technologie);
             }else System.out.println("Recherche impossible! ");
 
             indexTech = this.rechercher(this.technologiePopulation,technologie);//PopuTechno
             if(estRecherchable(this.technologiePopulation.get(indexTech)) == this.technologiePopulation.get(indexTech).indexOf(technologie)){
-                this.achatJoeur(technologie.getPrixTechnologie());
+                this.achatJoueur(technologie.getPrixTechnologie());
                 new Construction(this.technologiePopulation.get(indexTech), technologie);
             }else System.out.println("Recherche impossible! ");
 
             indexTech = this.rechercher(this.technologiePression,technologie);//PressionTechno
             if(estRecherchable(this.technologiePression.get(indexTech)) == this.technologiePression.get(indexTech).indexOf(technologie)){
-                this.achatJoeur(technologie.getPrixTechnologie());
+                this.achatJoueur(technologie.getPrixTechnologie());
                 new Construction(this.technologiePression.get(indexTech), technologie);
             }else System.out.println("Recherche impossible! ");
 
             if(this.technologieMine.contains(technologie) && estRecherchable(this.technologieMine) == this.technologieMine.indexOf(technologie)){
-                this.achatJoeur(technologie.getPrixTechnologie());
+                this.achatJoueur(technologie.getPrixTechnologie());
                 new Construction(this.technologieMine, technologie);
             }else System.out.println("Recherche impossible! ");
 
@@ -508,5 +508,29 @@ public class Joueur{
 
     public void setTechnologieMine(ArrayList<Technologie> technologieMine) {
         this.technologieMine = technologieMine;
+    }
+
+    public int getObjectifTemperature() {
+        return objectifTemperature;
+    }
+
+    public int getObjectifPression() {
+        return objectifPression;
+    }
+
+    public int getObjectifOxygene() {
+        return objectifOxygene;
+    }
+
+    public int getObjectifEau() {
+        return objectifEau;
+    }
+
+    public int getObjectifBiomasse() {
+        return objectifBiomasse;
+    }
+
+    public int getObjectifPopulation() {
+        return objectifPopulation;
     }
 }

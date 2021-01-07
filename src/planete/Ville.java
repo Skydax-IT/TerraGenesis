@@ -28,7 +28,7 @@ public class Ville{
         this.oxygeneGenere = 0;
         this.populationGenere = 0;
         this.argentGenere = 0;
-        this.tempsConstruction = 5000;
+        this.tempsConstruction = 1000;
 
         nbDeVille++;
         prixConstruction *= nbDeVille;
@@ -121,19 +121,7 @@ public class Ville{
 
     @Override
     public String toString() {
-        return "\nVille{" +
-                "nbBatiments=" + nbBatiments +
-                ", nbHabitants=" + nbHabitants +
-                ", nomVille='" + nomVille + '\'' +
-                ", biomasseGenere=" + biomasseGenere +
-                ", pressionGenere=" + pressionGenere +
-                ", eauGenere=" + eauGenere +
-                ", temperatureGenere=" + temperatureGenere +
-                ", oxygeneGenere=" + oxygeneGenere +
-                ", populationGenere=" + populationGenere +
-                ", argentGenere=" + argentGenere +
-                ", batiments=" + batiments +
-                "}\n";
+        return this.nomVille;
     }
 
     public void ajoutBatiment(Batiment batiment){

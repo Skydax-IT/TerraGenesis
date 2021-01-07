@@ -10,13 +10,12 @@ public class Batiment {
     /**
      * Default constructor
      */
-    public Batiment(String p_nomBatiment, int p_tempsConstruction, int p_niveauBatiment, int p_pressionGenere,
+    public Batiment(String p_nomBatiment, int p_tempsConstruction, int p_pressionGenere,
                     int p_biomasseGenere, int p_eauGenere, int p_temperatureGenere, int p_oxygeneGenere, int p_populationGenere,
                     int p_argentGenere, String p_typeBatiment, int p_prixBatiment) {
 
         this.nomBatiment = p_nomBatiment;
         this.tempsConstruction = p_tempsConstruction;
-        this.niveauBatiment = p_niveauBatiment;
 
         this.pressionGenere = p_pressionGenere;
         this.biomasseGenere = p_biomasseGenere;
@@ -40,11 +39,6 @@ public class Batiment {
      * 
      */
     protected int tempsConstruction;
-
-    /**
-     * 
-     */
-    protected int niveauBatiment;
 
     /**
      * 
@@ -93,19 +87,29 @@ public class Batiment {
 
     @Override
     public String toString() {
-        return "\nBatiment{" +
-                "nomBatiment='" + nomBatiment + '\'' +
-                ", typeBatiment='" + typeBatiment + '\'' +
-                ", tempsBatiment=" + tempsConstruction +
-                ", niveauBatiment=" + niveauBatiment +
-                ", pressionGenere=" + pressionGenere +
-                ", biomasseGenere=" + biomasseGenere +
-                ", eauGenere=" + eauGenere +
-                ", temperatureGenere=" + temperatureGenere +
-                ", oxygeneGenere=" + oxygeneGenere +
-                ", populationGenere=" + populationGenere +
-                ", argentGenere=" + argentGenere +
-                "}\n";
+        String string = nomBatiment;
+        if (pressionGenere != 0){
+            string += " - Pression " + pressionGenere;
+        }
+        if (eauGenere != 0){
+            string += " - Eau " + eauGenere;
+        }
+        if (temperatureGenere != 0){
+            string += " - Température " + temperatureGenere;
+        }
+        if (biomasseGenere != 0){
+            string += " - Biomasse " + biomasseGenere;
+        }
+        if (populationGenere != 0){
+            string += " - Population " + populationGenere;
+        }
+        if (oxygeneGenere != 0){
+            string += " - Oxygène " + oxygeneGenere;
+        }
+        if (argentGenere != 0){
+            string += " - Argent " + argentGenere;
+        }
+        return  string;
     }
 
 
@@ -119,14 +123,6 @@ public class Batiment {
 
     public void setTempsConstruction(int tempsConstruction) {
         this.tempsConstruction = tempsConstruction;
-    }
-
-    public int getNiveauBatiment() {
-        return niveauBatiment;
-    }
-
-    public void setNiveauBatiment(int niveauBatiment) {
-        this.niveauBatiment = niveauBatiment;
     }
 
     public int getPressionGenere() {

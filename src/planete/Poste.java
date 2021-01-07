@@ -18,7 +18,7 @@ public class Poste{
         this.mines = new ArrayList<>();
         this.nbMines = this.mines.size();
         this.argentGenere = 0;
-        this.tempsConstruction = 8000;
+        this.tempsConstruction = 1000;
 
         nbDePoste++;
         prixConstruction *= nbDePoste;
@@ -55,13 +55,7 @@ public class Poste{
 
     @Override
     public String toString() {
-        return "Poste{" +
-                "nomPoste='" + nomPoste + '\'' +
-                ", mines=" + mines +
-                ", nbMines=" + nbMines +
-                ", argentGenere=" + argentGenere +
-                ", tempsConstruction=" + tempsConstruction +
-                '}';
+        return this.nomPoste;
     }
 
     public void actuStatPoste(Mine mine, boolean add){
