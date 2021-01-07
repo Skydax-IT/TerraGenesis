@@ -284,6 +284,7 @@ public class Joueur{
     }
 
     public void supprimerBatiment(Ville ville, Batiment batiment){
+        System.out.println("Le bâtiment " + batiment.getNomBatiment() + " a été supprimé");
         ville.supprimerBatiment(batiment);
     }
 
@@ -306,6 +307,7 @@ public class Joueur{
     }
 
     public void supprimerMinePoste(Poste poste, Mine mine){
+        System.out.println("La mine " + mine.getNomBatiment() + " a été supprimée");
         this.planete.supprimerMinePoste(poste,mine);
     }
 

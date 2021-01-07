@@ -1,5 +1,6 @@
 package menu;
 import batiments.Batiment;
+import batiments.Mine;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -65,7 +66,11 @@ public class MenuFrame {
     ComboBox menuDeroulantPoste;
     ComboBox menuDeroulantBatimentVille = new ComboBox();
     ComboBox menuDeroulantBatiment = new ComboBox();
+    ComboBox menuDeroulantMinePoste = new ComboBox();
+    ComboBox menuDeroulantMine = new ComboBox();
     Ville memoireVille;
+    Poste memoirePoste;
+    ArrayList<Label> listLabelsStatistiques;
 
     public void start(Stage primaryStage) {
 
@@ -106,34 +111,13 @@ public class MenuFrame {
 
         ArrayList<Button> listButtonTech = new ArrayList<>();
         listButtonTech.add(ameliorerTechButton);
-        listButtonTech.add(backButton);
+        listButtonTech.add(backButton2);
 
         //SCENE MENU>STATISTIQUES
-        Label Oxygene = new Label();
-        Oxygene.setText("Oxygène : " + joueur.getPlanete().getOxygene() + " -- Objectif : " + joueur.getObjectifOxygene());
-        Label Temperature = new Label();
-        Temperature.setText("Température : " + joueur.getPlanete().getTemperature() + " -- Objectif : " + joueur.getObjectifTemperature());
-        Label Biomasse = new Label();
-        Biomasse.setText("Biomasse : " + joueur.getPlanete().getBiomasse() + " -- Objectif : " + joueur.getObjectifBiomasse());
-        Label Pression = new Label();
-        Pression.setText("Pression : " + joueur.getPlanete().getPression() + " -- Objectif : " + joueur.getObjectifPression());
-        Label Population  = new Label();
-        Population.setText("Population : " + joueur.getPlanete().getPopulation() + " -- Objectif : " + joueur.getObjectifPopulation());
-        Label Eau = new Label();
-        Eau.setText("Eau : " + joueur.getPlanete().getEau() + " -- Objectif : " + joueur.getObjectifEau());
-
         Button backButton3 = new Button("RETOUR");
 
         ArrayList<Button> listStatsButtons = new ArrayList<>();
-        listStatsButtons.add(backButton);
-
-        ArrayList<Label> listLabelsStats = new ArrayList<>();
-        listLabelsStats.add(Oxygene);
-        listLabelsStats.add(Temperature);
-        listLabelsStats.add(Pression);
-        listLabelsStats.add(Biomasse);
-        listLabelsStats.add(Eau);
-        listLabelsStats.add(Population);
+        listStatsButtons.add(backButton3);
 
         //SCENE MENU>POPULATION>GESTION VILLE
         Button creerVilleButton = new Button("CREER UNE VILLE");
@@ -162,14 +146,28 @@ public class MenuFrame {
             listModifierVilleButton.add(supprimerBatimentButton);
             listModifierVilleButton.add(backButtonGererVilleButton);
 
+            //SCENE MENU>POPULATION>GESTION VILLE
+            Button ajouterMineButton = new Button("AJOUTER UNE MINE");
+            Button supprimerMineButton = new Button("SUPPRIMER UNE MINE");
+            Button backButtonGererPosteButton = new Button("RETOUR");
+
+            ArrayList<Button> listModifierPosteButton = new ArrayList<>();
+            listModifierPosteButton.add(ajouterMineButton);
+            listModifierPosteButton.add(supprimerMineButton);
+            listModifierPosteButton.add(backButtonGererPosteButton);
+
         //SCENE MENU>POPULATION>GESTION POSTE
         Button creerPosteButton = new Button("CREER UN POSTE");
         Button supprimerPosteButton = new Button("SUPPRIMER UN POSTE");
+        Button modifierPosteButton = new Button("MODIFIER LE POSTE");
+
 
         ArrayList<Button> listGestionPosteButton = new ArrayList<>();
         listGestionPosteButton.add(creerPosteButton);
         listGestionPosteButton.add(supprimerPosteButton);
+        listGestionPosteButton.add(modifierPosteButton);
         listGestionPosteButton.add(backPopulationButton);
+
         
 
         // ACTION BUTTONS
@@ -187,7 +185,7 @@ public class MenuFrame {
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, listeIdentite, -1));
+                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, listeIdentite, -1, -1));
             }
         });
 
@@ -202,38 +200,46 @@ public class MenuFrame {
         populationButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU POPULATION", listButtonPopulation, null, false, false, listeIdentite, -1));
+                primaryStage.setScene(createScene("MENU POPULATION", listButtonPopulation, null, false, false, listeIdentite, -1, -1));
             }
         });
 
         techButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU TECHNOLOGIES", listButtonTech, null, false, false, listeIdentite,-1));
+                primaryStage.setScene(createScene("MENU TECHNOLOGIES", listButtonTech, null, false, false, listeIdentite,-1, -1));
             }
         });
 
         statsButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("STATISTIQUES", listStatsButtons, listLabelsStats, false, false, listeIdentite,-1));
+                getListStats();
+                primaryStage.setScene(createScene("STATISTIQUES", listStatsButtons, listLabelsStatistiques, false, false, listeIdentite,-1,-1));
             }
         });
 
         //MENU POPULATION
+        backButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, listeIdentite,-1, -1));
+            }
+        });
+
         gestionVilleButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("GERER LES VILLES", listGestionVilleButton, null, true, false, listeIdentite,-1));                }
+                primaryStage.setScene(createScene("GERER LES VILLES", listGestionVilleButton, null, true, false, listeIdentite,-1,-1));                }
         });
 
         gestionPosteButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("GERER LES POSTES", listGestionPosteButton, null, false, true, listeIdentite,-1));                }
+                primaryStage.setScene(createScene("GERER LES POSTES", listGestionPosteButton, null, false, true, listeIdentite,-1,1));                }
         });
 
-            //MENU POPULATION GERER VILLE
+            //MENU POPULATION GERER POSTE
 
             creerPosteButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -244,16 +250,54 @@ public class MenuFrame {
             supprimerPosteButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    joueur.supprimerPoste((Poste) menuDeroulantVille.getSelectionModel().getSelectedItem());
+                    joueur.supprimerPoste((Poste) menuDeroulantPoste.getSelectionModel().getSelectedItem());
                 }
             });
+
+            modifierPosteButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    memoirePoste = (Poste)menuDeroulantPoste.getSelectionModel().getSelectedItem();
+                    primaryStage.setScene(createScene("MENU MODIFICATION POSTE", listModifierPosteButton, null, false, false, listeIdentite, -1, menuDeroulantPoste.getItems().indexOf(menuDeroulantPoste.getSelectionModel().getSelectedItem())));
+                }
+            });
+
+                //Modifier le poste
+                ajouterMineButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+
+                    if(menuDeroulantMine.getSelectionModel().getSelectedItem() != null){
+                        joueur.construireMinePoste(memoirePoste, (Mine) menuDeroulantMine.getSelectionModel().getSelectedItem());
+                    }
+                }
+            });
+
+            supprimerMineButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+
+                    if(menuDeroulantMinePoste.getSelectionModel().getSelectedItem() != null){
+                        joueur.supprimerMinePoste(memoirePoste, (Mine) menuDeroulantMinePoste.getSelectionModel().getSelectedItem());
+                    }
+                }
+            });
+
+            backButtonGererPosteButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    primaryStage.setScene(createScene("GERER LES POSTES", listGestionPosteButton, null, false, true, listeIdentite,-1,1));
+                }
+            });
+
+
 
 
         //MENU POPULATION GESTION
         backPopulationButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU POPULATION", listButtonPopulation, null, false, false, listeIdentite,-1));                }
+                primaryStage.setScene(createScene("MENU POPULATION", listButtonPopulation, null, false, false, listeIdentite,-1,-1));                }
         });
 
             creerVilleButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -273,7 +317,7 @@ public class MenuFrame {
                 @Override
                 public void handle(ActionEvent e) {
                     memoireVille = (Ville)menuDeroulantVille.getSelectionModel().getSelectedItem();
-                    primaryStage.setScene(createScene("MENU MODIFICATION VILLE", listModifierVilleButton, null, false, false, listeIdentite, menuDeroulantVille.getItems().indexOf(menuDeroulantVille.getSelectionModel().getSelectedItem())));
+                    primaryStage.setScene(createScene("MENU MODIFICATION VILLE", listModifierVilleButton, null, false, false, listeIdentite, menuDeroulantVille.getItems().indexOf(menuDeroulantVille.getSelectionModel().getSelectedItem()), -1));
                 }
             });
                 
@@ -281,17 +325,27 @@ public class MenuFrame {
                 ajouterBatimentButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent e) {
-                        Technologie tech = (Technologie)menuDeroulantBatiment.getSelectionModel().getSelectedItem();
-                        if(tech != null){
-                            joueur.construireBatiment(memoireVille, tech.getBatiment());
+
+                        if(menuDeroulantBatiment.getSelectionModel().getSelectedItem() != null){
+                            joueur.construireBatiment(memoireVille, (Batiment) menuDeroulantBatiment.getSelectionModel().getSelectedItem());
                         }
                     }
                 });
 
+            supprimerBatimentButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+
+                    if(menuDeroulantBatimentVille.getSelectionModel().getSelectedItem() != null){
+                        joueur.supprimerBatiment(memoireVille, (Batiment) menuDeroulantBatimentVille.getSelectionModel().getSelectedItem());
+                    }
+                }
+            });
+
                 backButtonGererVilleButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("GERER LES VILLES", listGestionVilleButton, null, true, false, listeIdentite,-1));                }
+                primaryStage.setScene(createScene("GERER LES VILLES", listGestionVilleButton, null, true, false, listeIdentite,-1,-1));                }
         });
 
 
@@ -306,7 +360,7 @@ public class MenuFrame {
         backButton2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, listeIdentite,-1));
+                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, listeIdentite,-1, -1));
             }
         });
 
@@ -314,7 +368,7 @@ public class MenuFrame {
         backButton3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, listeIdentite,-1));
+                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, listeIdentite,-1, -1));
             }
         });
     }
@@ -449,7 +503,7 @@ public class MenuFrame {
     }
 
     //Générer une nouvelle scène
-    Scene createScene (String name, ArrayList<Button> listButtons,ArrayList<Label> listLabels, boolean bool, boolean bool2, ArrayList<Label> listeIdentite, int index){
+    Scene createScene (String name, ArrayList<Button> listButtons,ArrayList<Label> listLabels, boolean bool, boolean bool2, ArrayList<Label> listeIdentite, int indexVille, int indexPoste ){
         //Créer group root
         Group root = new Group();
 
@@ -506,7 +560,7 @@ public class MenuFrame {
             menuDeroulantVille.setLayoutY(250);
         }
 
-        if(index != -1) {
+        if(indexVille != -1) {
             if (menuDeroulantVille.getSelectionModel().getSelectedItem() != null) {
 
                 menuDeroulantBatiment = new ComboBox();
@@ -521,7 +575,7 @@ public class MenuFrame {
                 menuDeroulantBatimentVille.setLayoutX(900);
                 menuDeroulantBatimentVille.setLayoutY(250);
 
-                for (Batiment batiment : joueur.getPlanete().getVilles().get(index).getBatiments()) {
+                for (Batiment batiment : joueur.getPlanete().getVilles().get(indexVille).getBatiments()) {
                     menuDeroulantBatimentVille.getItems().add(batiment);
                 }
                 ArrayList<ArrayList<ArrayList<Technologie>>> listeTechnologies = new ArrayList<>() {
@@ -538,7 +592,7 @@ public class MenuFrame {
                     for (ArrayList<Technologie> listeTechnologie : liste){
                         for (Technologie technologie : listeTechnologie){
                             if (technologie.isDebloquer()){
-                                menuDeroulantBatiment.getItems().add(technologie);
+                                menuDeroulantBatiment.getItems().add(technologie.getBatiment());
                             }
                         }
                     }
@@ -557,6 +611,38 @@ public class MenuFrame {
             }
             root.getChildren().addAll(menuDeroulantPoste);
             menuDeroulantPoste = designCombox(menuDeroulantPoste);
+            menuDeroulantPoste.setLayoutX(300);
+            menuDeroulantPoste.setLayoutY(250);
+        }
+
+        if(indexPoste != -1) {
+            if (menuDeroulantPoste.getSelectionModel().getSelectedItem() != null) {
+
+                menuDeroulantMine = new ComboBox();
+                menuDeroulantMinePoste = new ComboBox();
+
+                menuDeroulantMine = designCombox(menuDeroulantMine);
+                menuDeroulantMinePoste = designCombox(menuDeroulantMinePoste);
+
+                menuDeroulantMine.setLayoutX(150);
+                menuDeroulantMine.setLayoutY(250);
+
+                menuDeroulantMinePoste.setLayoutX(900);
+                menuDeroulantMinePoste.setLayoutY(250);
+
+                for (Mine mine : joueur.getPlanete().getPostes().get(indexPoste).getMines()) {
+                    menuDeroulantMinePoste.getItems().add(mine);
+                }
+
+                for (Technologie technologie : joueur.getTechnologieMine()){
+                    if (technologie.isDebloquer()){
+                        menuDeroulantMine.getItems().add(technologie.getMine());
+                    }
+                }
+
+                root.getChildren().addAll(menuDeroulantMine);
+                root.getChildren().addAll(menuDeroulantMinePoste);
+            }
         }
 
         //Créer les labels identités
@@ -593,7 +679,30 @@ public class MenuFrame {
         designLabelArgent(labelArgent);
         return labelArgent;
     }
+    
+    public void getListStats(){
+        Label Oxygene = new Label();
+        Oxygene.setText("Oxygène : " + joueur.getPlanete().getOxygene() + " -- Objectif : " + joueur.getObjectifOxygene());
+        Label Temperature = new Label();
+        Temperature.setText("Température : " + joueur.getPlanete().getTemperature() + " -- Objectif : " + joueur.getObjectifTemperature());
+        Label Biomasse = new Label();
+        Biomasse.setText("Biomasse : " + joueur.getPlanete().getBiomasse() + " -- Objectif : " + joueur.getObjectifBiomasse());
+        Label Pression = new Label();
+        Pression.setText("Pression : " + joueur.getPlanete().getPression() + " -- Objectif : " + joueur.getObjectifPression());
+        Label Population  = new Label();
+        Population.setText("Population : " + joueur.getPlanete().getPopulation() + " -- Objectif : " + joueur.getObjectifPopulation());
+        Label Eau = new Label();
+        Eau.setText("Eau : " + joueur.getPlanete().getEau() + " -- Objectif : " + joueur.getObjectifEau());
 
+        this.listLabelsStatistiques = new ArrayList<>();
+        this.listLabelsStatistiques.add(Oxygene);
+        this.listLabelsStatistiques.add(Temperature);
+        this.listLabelsStatistiques.add(Pression);
+        this.listLabelsStatistiques.add(Biomasse);
+        this.listLabelsStatistiques.add(Eau);
+        this.listLabelsStatistiques.add(Population);
+    }
+    
     public ComboBox designCombox (ComboBox comboBox){
         comboBox.setStyle("-fx-text-fill: #ebba71;" +
                 "-fx-background-color: black;" +
