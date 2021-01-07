@@ -20,7 +20,6 @@ public class Main{ //extends Application {
         j1.construireMinePoste(j1.getPlanete().getPostes().get(0), j1.getTechnologieMine().get(0).getMine());
         Thread.sleep(4000);
         System.out.println(j1.getPlanete());
-
     }
 
    /* public void start(Stage primaryStage){
