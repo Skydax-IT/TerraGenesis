@@ -272,41 +272,12 @@ public class Joueur{
         this.planete.supprimerPoste(poste);
     }
 
-    public void testConstruBatiment(Ville ville, ArrayList<ArrayList<Technologie>> list, Batiment batiment,int index){
-        for(Technologie technologie: list.get(index)){
-            if(Objects.equals(technologie.getBatiment(), batiment)){
-                 if(technologie.isDebloquer()){
-                     this.achatJoueur(batiment.getPrixBatiment());
-                     new Construction(this.planete,ville,batiment);
-                 }else{
-                     System.out.println("Vous devez d'abord débloquer la technologie " + batiment.getNomBatiment());
-                 }
-            }
-        }
-    }
 
-    //Température, Pression, Oxygene, Eau, Biomasse
-    public void construireBatiment(Ville ville, Batiment batiment, int index){//verif niveau techno
+    public void construireBatiment(Ville ville, Batiment batiment){//verif niveau techno
 
         if(this.argent >= batiment.getPrixBatiment()) {
-            if(batiment.getTypeBatiment().equals("Population")){
-                this.testConstruBatiment(ville, this.technologiePopulation,batiment,index);
-            }
-            else if(batiment.getTypeBatiment().equals("Température")){
-                this.testConstruBatiment(ville, this.technologieTemperature,batiment,index);
-            }
-            else if(batiment.getTypeBatiment().equals("Pression")){
-                this.testConstruBatiment(ville, this.technologiePression,batiment,index);
-            }
-            else if(batiment.getTypeBatiment().equals("Oxygene")){
-                this.testConstruBatiment(ville, this.technologieOxygene,batiment,index);
-            }
-            else if(batiment.getTypeBatiment().equals("Eau")){
-                this.testConstruBatiment(ville, this.technologieEau,batiment,index);
-            }
-            else if(batiment.getTypeBatiment().equals("Biomasse")){
-                this.testConstruBatiment(ville, this.technologieBiomasse,batiment,index);
-            }
+            this.achatJoueur(batiment.getPrixBatiment());
+            new Construction(this.planete,ville,batiment);
         }else{
             System.out.println("Construction de "+ batiment.getNomBatiment() + " impossible!");
         }

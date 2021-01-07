@@ -282,7 +282,9 @@ public class MenuFrame {
                     @Override
                     public void handle(ActionEvent e) {
                         Technologie tech = (Technologie)menuDeroulantBatiment.getSelectionModel().getSelectedItem();
-                        joueur.construireBatiment(memoireVille, tech.getBatiment(), 0);
+                        if(tech != null){
+                            joueur.construireBatiment(memoireVille, tech.getBatiment());
+                        }
                     }
                 });
 
@@ -506,6 +508,9 @@ public class MenuFrame {
 
         if(index != -1) {
             if (menuDeroulantVille.getSelectionModel().getSelectedItem() != null) {
+
+                menuDeroulantBatiment = new ComboBox();
+                menuDeroulantBatimentVille = new ComboBox();
 
                 menuDeroulantBatiment = designCombox(menuDeroulantBatiment);
                 menuDeroulantBatimentVille = designCombox(menuDeroulantBatimentVille);
