@@ -1,6 +1,7 @@
 package technologies;
 
 import batiments.Batiment;
+import batiments.Mine;
 
 import java.util.*;
 
@@ -20,10 +21,20 @@ public class Technologie {
 
     }
 
+    public Technologie(Mine mine, int prixTechnologie, int tempsTechnologie, boolean debloquer) {
+        this.mine = mine;
+        this.prixTechnologie = prixTechnologie;
+        this.tempsTechnologie = tempsTechnologie;
+        this.debloquer = debloquer;
+
+    }
+
     /**
      * 
      */
     private Batiment batiment;
+
+    private Mine mine;
 
     /**
      * 
@@ -52,6 +63,10 @@ public class Technologie {
 
     public Batiment getBatiment() {
         return this.batiment;
+    }
+
+    public Mine getMine(){
+        return this.mine;
     }
 
     public void setNom(Batiment batiment) {

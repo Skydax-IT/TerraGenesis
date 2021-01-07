@@ -1,5 +1,6 @@
 package planete;
 
+import batiments.Batiment;
 import batiments.Mine;
 
 import java.util.*;
@@ -74,7 +75,8 @@ public class Poste{
     }
 
     /**
-     * 
+     *
+     * @param mine
      */
     public void ajouterMine(Mine mine) {
         this.mines.add(mine);

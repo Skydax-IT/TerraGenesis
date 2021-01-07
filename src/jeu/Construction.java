@@ -36,7 +36,8 @@ public class Construction extends Thread{
         this.start();
     }
 
-    public Construction(Poste p_poste, Mine p_mine){
+    public Construction(Planete p_planete, Poste p_poste, Mine p_mine){
+        this.planete = p_planete;
         this.poste = p_poste;
         this.mine = p_mine;
         this.typeConstruction = "Mine";
@@ -86,7 +87,7 @@ public class Construction extends Thread{
             }
             else if(this.typeConstruction.equals("Mine")){
                 System.out.println("Construction de " + this.mine.getNomBatiment() + " dans " + this.poste.getNomPoste() + " durant " + this.mine.getTempsConstruction()/1000 + " secondes");
-                Thread.sleep(this.batiment.getTempsConstruction());
+                Thread.sleep(this.mine.getTempsConstruction());
                 this.planete.ajoutMinePoste(this.poste,this.mine);
                 System.out.println("La mine " + this.mine.getNomBatiment()+ " vient d'être construite à " + this.poste.getNomPoste() +  '!');
             }
