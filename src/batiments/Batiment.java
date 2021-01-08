@@ -89,25 +89,25 @@ public class Batiment {
     public String toString() {
         String string = nomBatiment;
         if (pressionGenere != 0){
-            string += " - Pression " + pressionGenere;
+            string += " , Pression " + pressionGenere;
         }
         if (eauGenere != 0){
-            string += " - Eau " + eauGenere;
+            string += " , Eau " + eauGenere;
         }
         if (temperatureGenere != 0){
-            string += " - Température " + temperatureGenere;
+            string += " , Température " + temperatureGenere;
         }
         if (biomasseGenere != 0){
-            string += " - Biomasse " + biomasseGenere;
+            string += " , Biomasse " + biomasseGenere;
         }
         if (populationGenere != 0){
-            string += " - Population " + populationGenere;
+            string += " , Population " + populationGenere;
         }
         if (oxygeneGenere != 0){
-            string += " - Oxygène " + oxygeneGenere;
+            string += " , Oxygène " + oxygeneGenere;
         }
         if (argentGenere != 0){
-            string += " - Argent " + argentGenere;
+            string += " , Argent " + argentGenere;
         }
         return  string;
     }

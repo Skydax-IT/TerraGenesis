@@ -54,8 +54,8 @@ public class Technologie {
     @Override
     public String toString() {
         return  batiment +
-                " - Prix : " + prixTechnologie +
-                " - Temps de construction : " + tempsTechnologie
+                " , Prix : " + prixTechnologie +
+                " , Temps de construction : " + tempsTechnologie
                 ;
     }
 

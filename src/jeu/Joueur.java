@@ -17,14 +17,14 @@ public class Joueur {
      * Default constructor
      */
     public Joueur() {
-        this.argent = 250000000;
+        this.argent = 2500000;
 
-        this.objectifTemperature = 287000;
-        this.objectifPression = 100000;
-        this.objectifOxygene = 210000;
-        this.objectifEau = 600000;
-        this.objectifBiomasse = 600000;
-        this.objectifPopulation = 171;
+        this.objectifTemperature = 200000;
+        this.objectifPression = 600;
+        this.objectifOxygene = 1704;
+        this.objectifEau = 21;
+        this.objectifBiomasse = 0;
+        this.objectifPopulation = 0;
         this.planete = new Planete("AA");
 
         this.initialiseTechnologie();
@@ -91,9 +91,11 @@ public class Joueur {
     /**
      *
      */
-    public void initialiserJoueur(String nom) {
-        this.nom = nom;
-        this.planete = new Planete(nom);
+    public void initialiserJoueur(String nomJoueur, String nomPlanete) {
+        this.nom = nomJoueur;
+        this.planete = new Planete(nomPlanete);
+        System.out.println(this.nom);
+        System.out.println(this.planete.getNom());
     }
 
     public void initialiseTechnologie() {
@@ -178,7 +180,7 @@ public class Joueur {
 
         i.add(new Technologie(new Batiment("Colonie d'algues", 30, 0, 12, -4, 0, 0, 0, 0, "Biomasse", 1000), 1000000, 250, true));
         i.add(new Technologie(new Batiment("Forêt de kelps", 30, 0, 120, 0, 0, 30, 0, 0, "Biomasse", 1000), 2000000, 500, false));
-        i.add(new Technologie(new Batiment("Récif de corail", 30, 0, 0, 179, 0, 0, 21, 3800, "Biomasse", 1000), 6000000, 750, false));
+        i.add(new Technologie(new Batiment("Récif de corail", 30, 0, 179, 0, 0, 0, 21, 3800, "Biomasse", 1000), 6000000, 750, false));
 
         j.add(new Technologie(new Batiment("Ferme tellurique", 30, 0, 6, 0, 0, 0, 0, 0, "Biomasse", 1000), 1000000, 250, true));
         j.add(new Technologie(new Batiment("Ferme d'herbacés", 30, 0, 60, -10, 0, 0, 0, 0, "Biomasse", 1000), 2000000, 500, false));
@@ -238,9 +240,8 @@ public class Joueur {
         return -1;
     }
 
-    public void constuireVille() {
+    public void constuireVille(String nomVille) {
         if (this.argent >= Ville.prixConstruction) {
-            String nomVille = this.askForString("Quel nom voulez-vous donner à votre ville ? ");
             this.achatJoueur(Ville.prixConstruction); // A mettre avant sinon prix change quand classe ville est créée
             new Construction(this.planete, new Ville(nomVille));
         } else {
@@ -253,9 +254,8 @@ public class Joueur {
         this.planete.supprimerVille(ville);
     }
 
-    public void construirePoste() {
+    public void construirePoste(String nomPoste) {
         if (this.argent >= Poste.prixConstruction) {
-            String nomPoste = this.askForString("Quel nom voulez-vous donner à votre poste ? ");
             this.achatJoueur(Poste.prixConstruction);
             new Construction(this.planete, new Poste(nomPoste));
         } else {
@@ -322,7 +322,7 @@ public class Joueur {
             if (estRecherchable(listeTech) == listeTech.indexOf(technologie)) {
                 this.achatJoueur(technologie.getPrixTechnologie());
                 new Construction(listeTech, technologie);
-            } else System.out.println("Recherche impossible! ");
+            }
 
             /*
             int indexTech = this.rechercher(this.technologieTemperature,technologie);//TempTechno
