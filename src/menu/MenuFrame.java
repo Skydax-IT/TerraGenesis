@@ -61,6 +61,7 @@ public class MenuFrame {
     ComboBox menuDeroulantBatiment = new ComboBox();
     ComboBox menuDeroulantMinePoste = new ComboBox();
     ComboBox menuDeroulantMine = new ComboBox();
+    ComboBox menuDeroulantTechnologie = new ComboBox();
     Ville memoireVille;
     Poste memoirePoste;
     ArrayList<Label> listLabelsStatistiques;
@@ -178,7 +179,7 @@ public class MenuFrame {
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, listeIdentite, -1, -1));
+                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, false, listeIdentite, -1, -1));
             }
         });
 
@@ -193,14 +194,14 @@ public class MenuFrame {
         populationButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU POPULATION", listButtonPopulation, null, false, false, listeIdentite, -1, -1));
+                primaryStage.setScene(createScene("MENU POPULATION", listButtonPopulation, null, false, false,false, listeIdentite, -1, -1));
             }
         });
 
         techButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU TECHNOLOGIES", listButtonTech, null, false, false, listeIdentite,-1, -1));
+                primaryStage.setScene(createScene("MENU TECHNOLOGIES", listButtonTech, null, false, false, true, listeIdentite,-1, -1));
             }
         });
 
@@ -208,7 +209,7 @@ public class MenuFrame {
             @Override
             public void handle(ActionEvent e) {
                 getListStats();
-                primaryStage.setScene(createScene("STATISTIQUES", listStatsButtons, listLabelsStatistiques, false, false, listeIdentite,-1,-1));
+                primaryStage.setScene(createScene("STATISTIQUES", listStatsButtons, listLabelsStatistiques, false, false,false, listeIdentite,-1,-1));
             }
         });
 
@@ -216,20 +217,20 @@ public class MenuFrame {
         backButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, listeIdentite,-1, -1));
+                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, false, listeIdentite,-1, -1));
             }
         });
 
         gestionVilleButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("GERER LES VILLES", listGestionVilleButton, null, true, false, listeIdentite,-1,-1));                }
+                primaryStage.setScene(createScene("GERER LES VILLES", listGestionVilleButton, null, true, false, false, listeIdentite,-1,-1));                }
         });
 
         gestionPosteButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("GERER LES POSTES", listGestionPosteButton, null, false, true, listeIdentite,-1,1));                }
+                primaryStage.setScene(createScene("GERER LES POSTES", listGestionPosteButton, null, false, true, false, listeIdentite,-1,1));                }
         });
 
             //MENU POPULATION GERER POSTE
@@ -251,7 +252,7 @@ public class MenuFrame {
                 @Override
                 public void handle(ActionEvent e) {
                     memoirePoste = (Poste)menuDeroulantPoste.getSelectionModel().getSelectedItem();
-                    primaryStage.setScene(createScene("MENU MODIFICATION POSTE", listModifierPosteButton, null, false, false, listeIdentite, -1, menuDeroulantPoste.getItems().indexOf(menuDeroulantPoste.getSelectionModel().getSelectedItem())));
+                    primaryStage.setScene(createScene("MENU MODIFICATION POSTE", listModifierPosteButton, null, false, false,false, listeIdentite, -1, menuDeroulantPoste.getItems().indexOf(menuDeroulantPoste.getSelectionModel().getSelectedItem())));
                 }
             });
 
@@ -279,7 +280,7 @@ public class MenuFrame {
             backButtonGererPosteButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    primaryStage.setScene(createScene("GERER LES POSTES", listGestionPosteButton, null, false, true, listeIdentite,-1,1));
+                    primaryStage.setScene(createScene("GERER LES POSTES", listGestionPosteButton, null, false, true, false, listeIdentite,-1,1));
                 }
             });
 
@@ -290,7 +291,7 @@ public class MenuFrame {
         backPopulationButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU POPULATION", listButtonPopulation, null, false, false, listeIdentite,-1,-1));                }
+                primaryStage.setScene(createScene("MENU POPULATION", listButtonPopulation, null, false, false,false, listeIdentite,-1,-1));                }
         });
 
             creerVilleButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -310,7 +311,7 @@ public class MenuFrame {
                 @Override
                 public void handle(ActionEvent e) {
                     memoireVille = (Ville)menuDeroulantVille.getSelectionModel().getSelectedItem();
-                    primaryStage.setScene(createScene("MENU MODIFICATION VILLE", listModifierVilleButton, null, false, false, listeIdentite, menuDeroulantVille.getItems().indexOf(menuDeroulantVille.getSelectionModel().getSelectedItem()), -1));
+                    primaryStage.setScene(createScene("MENU MODIFICATION VILLE", listModifierVilleButton, null, false, false,false, listeIdentite, menuDeroulantVille.getItems().indexOf(menuDeroulantVille.getSelectionModel().getSelectedItem()), -1));
                 }
             });
                 
@@ -338,7 +339,7 @@ public class MenuFrame {
                 backButtonGererVilleButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("GERER LES VILLES", listGestionVilleButton, null, true, false, listeIdentite,-1,-1));                }
+                primaryStage.setScene(createScene("GERER LES VILLES", listGestionVilleButton, null, true, false,false, listeIdentite,-1,-1));                }
         });
 
 
@@ -346,14 +347,14 @@ public class MenuFrame {
         ameliorerTechButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                // entrer une action ici
+                joueur.ameliorerTechnologie((Technologie)menuDeroulantTechnologie.getSelectionModel().getSelectedItem());
             }
         });
 
         backButton2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, listeIdentite,-1, -1));
+                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, false,listeIdentite,-1, -1));
             }
         });
 
@@ -361,7 +362,7 @@ public class MenuFrame {
         backButton3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, listeIdentite,-1, -1));
+                primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false,false, listeIdentite,-1, -1));
             }
         });
     }
@@ -496,7 +497,7 @@ public class MenuFrame {
     }
 
     //Générer une nouvelle scène
-    Scene createScene (String name, ArrayList<Button> listButtons,ArrayList<Label> listLabels, boolean bool, boolean bool2, ArrayList<Label> listeIdentite, int indexVille, int indexPoste ){
+    Scene createScene (String name, ArrayList<Button> listButtons,ArrayList<Label> listLabels, boolean bool, boolean bool2, boolean boolTech, ArrayList<Label> listeIdentite, int indexVille, int indexPoste ){
         //Créer group root
         Group root = new Group();
 
@@ -636,6 +637,35 @@ public class MenuFrame {
                 root.getChildren().addAll(menuDeroulantMine);
                 root.getChildren().addAll(menuDeroulantMinePoste);
             }
+        }
+
+        //Création menuDeoulantTechnologie
+        if (boolTech){
+            this.menuDeroulantTechnologie = new ComboBox();
+            menuDeroulantTechnologie.setPromptText("Technologies");
+            ArrayList<ArrayList<ArrayList<Technologie>>> listeTechnologies = new ArrayList<>() {
+                {
+                    add(joueur.getTechnologieOxygene());
+                    add(joueur.getTechnologieBiomasse());
+                    add(joueur.getTechnologieEau());
+                    add(joueur.getTechnologieTemperature());
+                    add(joueur.getTechnologiePression());
+                    add(joueur.getTechnologiePopulation());
+                }
+            };
+            for (ArrayList<ArrayList<Technologie>> liste : listeTechnologies){
+                for (ArrayList<Technologie> listeTechnologie : liste){
+                    for (Technologie technologie : listeTechnologie){
+                        if (!technologie.isDebloquer()){
+                            menuDeroulantTechnologie.getItems().add(technologie);
+                        }
+                    }
+                }
+            }
+            root.getChildren().addAll(menuDeroulantTechnologie);
+            menuDeroulantTechnologie = designCombox(menuDeroulantTechnologie);
+            menuDeroulantTechnologie.setLayoutX(300);
+            menuDeroulantTechnologie.setLayoutY(250);
         }
 
         //Créer les labels identités
