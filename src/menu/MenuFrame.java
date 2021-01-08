@@ -92,7 +92,7 @@ public class MenuFrame {
         primaryStage.setTitle("TerraGenesis");
         primaryStage.show();
         prepareAnimation();
-        afficherPopUp("Bienvenue sur TerraGenesis !\nIl est maintenant temps de fonder\nvotre colonie afin de terraformer\nvotre planète...", 320, 270);
+        generateSimplePopUp("Bienvenue sur TerraGenesis !\nIl est maintenant temps de fonder\nvotre colonie afin de terraformer\nvotre planète...", 320, 270);
 
 
         //SCENE MENU : Eléments
@@ -188,7 +188,7 @@ public class MenuFrame {
         registerButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                generatePopUpWindow("Quel sera votre nom d'aventurier?", "Quel sera le nom de votre planète?");
+                generateTwoAskPopUp("Quel sera votre nom d'aventurier?", "Quel sera le nom de votre planète?");
                 startButton.setVisible(true);
                 registerButton.setVisible(false);
             }
@@ -199,7 +199,7 @@ public class MenuFrame {
             public void handle(ActionEvent e) {
                 joueur.initialiserJoueur(nomJoueur.getText(), nomPlanete.getText());
                 primaryStage.setScene(createScene("MENU PRINCIPAL", listButton, null, false, false, false, listeIdentite, -1, -1));
-                afficherPopUp("                             AIDE\nAfin d'appréhender les règles du jeu\net d'en comprendre le fonctionnement,\nveuillez cliquer sur le bouton Tutoriel", 390, 250);
+                generateSimplePopUp("                             AIDE\nAfin d'appréhender les règles du jeu\net d'en comprendre le fonctionnement,\nveuillez cliquer sur le bouton Tutoriel", 390, 250);
             }
         });
 
@@ -231,7 +231,7 @@ public class MenuFrame {
                     getListStats();
                     primaryStage.setScene(createScene("STATISTIQUES", listStatsButtons, listLabelsStatistiques, false, false,false, listeIdentite,-1,-1));
                     if (joueur.verifierVictoire() == true){
-                        afficherPopUp("BRAVO VOUS AVEZ GAGNE!", 200, 270);
+                        generateSimplePopUp("BRAVO VOUS AVEZ GAGNE!", 200, 270);
                     }
                 }
             });
@@ -243,7 +243,7 @@ public class MenuFrame {
                 }
             });
 
-                //MENU POPULATION
+                //MENU POPULATION : actions boutons
                 backButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent e) {
@@ -257,158 +257,154 @@ public class MenuFrame {
                         primaryStage.setScene(createScene("GERER LES VILLES", listGestionVilleButton, null, true, false, false, listeIdentite,-1,-1));                }
                 });
 
+                    //Gérer villes : actions boutons
+                    backPopulationButton.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent e) {
+                            primaryStage.setScene(createScene("MENU POPULATION", listButtonPopulation, null, false, false,false, listeIdentite,-1,-1));
+                        }
+                    });
+
+                    donnerUnNomVilleButton.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent e) {
+                            generateAskPopUp("Quel sera le nom de votre Ville?", 280, 260);
+                        }
+                    });
+
+                    creerVilleButton.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent e) {
+                            joueur.constuireVille(reponse);
+                            creerVilleButton.setVisible(false);
+                            creerPosteButton.setVisible(false);
+                            generateSimplePopUp("Félicitations!\nVotre ville est en construction\nFaites retour pour actualiser votre liste.", 370, 220);
+                        }
+                    });
+
+                    supprimerVilleButton.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent e) {
+                            joueur.supprimerVille((Ville) menuDeroulantVille.getSelectionModel().getSelectedItem());
+                            generateSimplePopUp("Félicitations!\nVotre ville a été supprimé.", 250, 200 );
+                        }
+                    });
+
+                    modifierVilleButton.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent e) {
+                            memoireVille = (Ville)menuDeroulantVille.getSelectionModel().getSelectedItem();
+                            primaryStage.setScene(createScene("MENU MODIFICATION VILLE", listModifierVilleButton, null, false, false,false, listeIdentite, menuDeroulantVille.getItems().indexOf(menuDeroulantVille.getSelectionModel().getSelectedItem()), -1));
+                        }
+                    });
+
+                        //Modifier ville boutons
+                        ajouterBatimentButton.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent e) {
+                
+                                if(menuDeroulantBatiment.getSelectionModel().getSelectedItem() != null){
+                                    joueur.construireBatiment(memoireVille, (Batiment) menuDeroulantBatiment.getSelectionModel().getSelectedItem());
+                                }
+                                generateSimplePopUp("Félicitations!\nVotre bâtiment a été ajouté.", 350, 200);
+                            }
+                        });
+                
+                        supprimerBatimentButton.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent e) {
+                
+                                if(menuDeroulantBatimentVille.getSelectionModel().getSelectedItem() != null){
+                                    joueur.supprimerBatiment(memoireVille, (Batiment) menuDeroulantBatimentVille.getSelectionModel().getSelectedItem());
+                                }
+                                generateSimplePopUp("Félicitations!\nVotre bâtiment a été supprimé.", 350, 200);
+                
+                            }
+                        });
+                
+                        backButtonGererVilleButton.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent e) {
+                                primaryStage.setScene(createScene("GERER LES VILLES", listGestionVilleButton, null, true, false,false, listeIdentite,-1,-1));                }
+                        });
+
                 gestionPosteButton.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent e) {
                         primaryStage.setScene(createScene("GERER LES POSTES", listGestionPosteButton, null, false, true, false, listeIdentite,-1,1));                }
                 });
 
-            //MENU POPULATION GERER POSTE
-            donnerNomPosteButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    generateAskPopUp("Quel sera le nom de votre nouveau poste?", 350, 300);
-                }
-            });
-
-            creerPosteButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    joueur.construirePoste(reponse);
-                    creerPosteButton.setVisible(false);
-                    creerVilleButton.setVisible(false);
-                    afficherPopUp("Félicitations!\nVotre poste est en construction\nFaites retour pour actualiser votre liste.", 370, 220);
-                }
-            });
-
-            supprimerPosteButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    joueur.supprimerPoste((Poste) menuDeroulantPoste.getSelectionModel().getSelectedItem());
-                    afficherPopUp("Félicitations!\nVotre poste a été supprimé.", 250, 200 );
-                }
-            });
-
-            modifierPosteButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    memoirePoste = (Poste)menuDeroulantPoste.getSelectionModel().getSelectedItem();
-                    primaryStage.setScene(createScene("MENU MODIFICATION POSTE", listModifierPosteButton, null, false, false,false, listeIdentite, -1, menuDeroulantPoste.getItems().indexOf(menuDeroulantPoste.getSelectionModel().getSelectedItem())));
-                }
-            });
-
-                //Modifier le poste
-                ajouterMineButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-
-                    if(menuDeroulantMine.getSelectionModel().getSelectedItem() != null){
-                        joueur.construireMinePoste(memoirePoste, (Mine) menuDeroulantMine.getSelectionModel().getSelectedItem());
-                        afficherPopUp("Félicitations!\nVotre mine a été ajoutée.", 350, 200);
-                    }
-                }
-            });
-
-            supprimerMineButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-
-                    if(menuDeroulantMinePoste.getSelectionModel().getSelectedItem() != null){
-                        joueur.supprimerMinePoste(memoirePoste, (Mine) menuDeroulantMinePoste.getSelectionModel().getSelectedItem());
-                        afficherPopUp("Félicitations!\nVotre mine a été supprimée.", 350, 200);
-                    }
-                }
-            });
-
-            backButtonGererPosteButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    primaryStage.setScene(createScene("GERER LES POSTES", listGestionPosteButton, null, false, true, false, listeIdentite,-1,1));
-                }
-            });
-
-
-
-
-        //MENU POPULATION GESTION
-        backPopulationButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("MENU POPULATION", listButtonPopulation, null, false, false,false, listeIdentite,-1,-1));
-            }
-        });
-
-            donnerUnNomVilleButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    generateAskPopUp("Quel sera le nom de votre Ville?", 280, 260);
-                }
-            });
-
-            creerVilleButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    joueur.constuireVille(reponse);
-                    creerVilleButton.setVisible(false);
-                    creerPosteButton.setVisible(false);
-                    afficherPopUp("Félicitations!\nVotre ville est en construction\nFaites retour pour actualiser votre liste.", 370, 220);
-                }
-            });
-
-            supprimerVilleButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    joueur.supprimerVille((Ville) menuDeroulantVille.getSelectionModel().getSelectedItem());
-                    afficherPopUp("Félicitations!\nVotre ville a été supprimé.", 250, 200 );
-                }
-            });
-
-            modifierVilleButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    memoireVille = (Ville)menuDeroulantVille.getSelectionModel().getSelectedItem();
-                    primaryStage.setScene(createScene("MENU MODIFICATION VILLE", listModifierVilleButton, null, false, false,false, listeIdentite, menuDeroulantVille.getItems().indexOf(menuDeroulantVille.getSelectionModel().getSelectedItem()), -1));
-                }
-            });
-                
-                //Modifier ville boutons
-                ajouterBatimentButton.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent e) {
-
-                        if(menuDeroulantBatiment.getSelectionModel().getSelectedItem() != null){
-                            joueur.construireBatiment(memoireVille, (Batiment) menuDeroulantBatiment.getSelectionModel().getSelectedItem());
+                    //GERER LES POSTES : actions boutons
+                    donnerNomPosteButton.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent e) {
+                            generateAskPopUp("Quel sera le nom de votre nouveau poste?", 350, 300);
                         }
-                        afficherPopUp("Félicitations!\nVotre bâtiment a été ajouté.", 350, 200);
-                    }
-                });
-
-            supprimerBatimentButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-
-                    if(menuDeroulantBatimentVille.getSelectionModel().getSelectedItem() != null){
-                        joueur.supprimerBatiment(memoireVille, (Batiment) menuDeroulantBatimentVille.getSelectionModel().getSelectedItem());
-                    }
-                    afficherPopUp("Félicitations!\nVotre bâtiment a été supprimé.", 350, 200);
-
-                }
-            });
-
-                backButtonGererVilleButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                primaryStage.setScene(createScene("GERER LES VILLES", listGestionVilleButton, null, true, false,false, listeIdentite,-1,-1));                }
-        });
-
-
-        //MENU TECHNOLOGIES
+                    });
+            
+                    creerPosteButton.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent e) {
+                            joueur.construirePoste(reponse);
+                            creerPosteButton.setVisible(false);
+                            creerVilleButton.setVisible(false);
+                            generateSimplePopUp("Félicitations!\nVotre poste est en construction\nFaites retour pour actualiser votre liste.", 370, 220);
+                        }
+                    });
+            
+                    supprimerPosteButton.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent e) {
+                            joueur.supprimerPoste((Poste) menuDeroulantPoste.getSelectionModel().getSelectedItem());
+                            generateSimplePopUp("Félicitations!\nVotre poste a été supprimé.", 250, 200 );
+                        }
+                    });
+            
+                    modifierPosteButton.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent e) {
+                            memoirePoste = (Poste)menuDeroulantPoste.getSelectionModel().getSelectedItem();
+                            primaryStage.setScene(createScene("MENU MODIFICATION POSTE", listModifierPosteButton, null, false, false,false, listeIdentite, -1, menuDeroulantPoste.getItems().indexOf(menuDeroulantPoste.getSelectionModel().getSelectedItem())));
+                        }
+                    });
+                    
+                        //MODIFIER POSTE : actions boutons
+                        ajouterMineButton.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent e) {
+        
+                            if(menuDeroulantMine.getSelectionModel().getSelectedItem() != null){
+                                joueur.construireMinePoste(memoirePoste, (Mine) menuDeroulantMine.getSelectionModel().getSelectedItem());
+                                generateSimplePopUp("Félicitations!\nVotre mine a été ajoutée.", 350, 200);
+                            }
+                            }
+                        });
+        
+                        supprimerMineButton.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent e) {
+            
+                                if(menuDeroulantMinePoste.getSelectionModel().getSelectedItem() != null){
+                                    joueur.supprimerMinePoste(memoirePoste, (Mine) menuDeroulantMinePoste.getSelectionModel().getSelectedItem());
+                                    generateSimplePopUp("Félicitations!\nVotre mine a été supprimée.", 350, 200);
+                                }
+                            }
+                        });
+        
+                        backButtonGererPosteButton.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent e) {
+                                primaryStage.setScene(createScene("GERER LES POSTES", listGestionPosteButton, null, false, true, false, listeIdentite,-1,1));
+                            }
+                        });
+                        
+        //MENU TECHNOLOGIES : actions boutons
         rechercherTechButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
                 Technologie techno = (Technologie)menuDeroulantTechnologie.getSelectionModel().getSelectedItem();
                 joueur.ameliorerTechnologie(getMemoireListeTechnologie(techno), techno);
-                afficherPopUp("Félicitations!\nVotre recherche est en cours.", 350, 200);
+                generateSimplePopUp("Félicitations!\nVotre recherche est en cours.", 350, 200);
 
             }
         });
@@ -420,7 +416,7 @@ public class MenuFrame {
             }
         });
 
-        //MENU STATISTIQUES
+        //MENU STATISTIQUES : actions boutons
         backButton3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -430,9 +426,9 @@ public class MenuFrame {
     }
 
 
-    //NOS FONCTIONS
-
-    //Créer la scène d'acceuil (planète qui tourne)
+    //LES FONCTIONS
+    
+    //FONCTION : Créer la scène d'acceuil (planète qui tourne)
     private Scene createMainScene() {
         Camera camera = new PerspectiveCamera(true);
         camera.setNearClip(1);
@@ -479,43 +475,53 @@ public class MenuFrame {
     }
 
 
-    //Générer une nouvelle scène
-    Scene createScene (String name, ArrayList<Button> listButtons,ArrayList<Label> listLabels, boolean bool, boolean bool2, boolean boolTech, ArrayList<Label> listeIdentite, int indexVille, int indexPoste ){
+    //FONCTION : Générer une nouvelle scène
+    Scene createScene (String name, ArrayList<Button> listButtons,ArrayList<Label> listLabels, boolean boolVille, boolean boolPoste, boolean boolTech, ArrayList<Label> listeIdentite, int indexVille, int indexPoste ){
         //Créer group root
         Group root = new Group();
 
         //root récupère le fond écran
         root.getChildren().add(setBackground());
 
-        //Créer vbox des labels principaux
+        //Créer vbox principal et labels principaux
         VBox vbox = new VBox(50);
-        Label labelMenu = new Label(name);
-        labelMenu = designLabel(labelMenu); //Designer le label principal
-        vbox.getChildren().add(labelMenu);//Ajouter le label principal
-        Label labelArgent = new Label(name);
-        labelArgent = designLabel(labelArgent); //Designer le label principal
-
-
-        // configurer l'alignment
+        Label labelMenu = new Label(name);//Label titre des menus
+        labelMenu = designLabel(labelMenu); //Designer le label titre
+        vbox.getChildren().add(labelMenu);//Ajouter le label titre à vbox
+        //Configurer position et alignment de vbox
         vbox.setAlignment(Pos.CENTER);
         vbox.setLayoutX(WIDTH/2-100);
         vbox.setLayoutY(50);
 
-        //Créer les labels
+        //Créer un label argent/solde disponible
+        Label labelArgent = new Label(name);
+        labelArgent = designLabel(labelArgent); //Designer le label
+
+        //Créer les labels identités (nomJoueur + nomPlanete)
+        VBox vboxIdentite = new VBox();
+        if (listeIdentite != null) {
+            for (Label label : listeIdentite) {
+                designLabelArgent(label);
+                vboxIdentite.getChildren().add(label);//Ajouter à vboxIdentite
+            }
+            vboxIdentite.setLayoutX(30);
+            vboxIdentite.setLayoutY(75);
+        }
+
+        //Créer les labels de vbox3
         VBox vbox3 = new VBox(10);
         if (listLabels != null) {
             for (Label label : listLabels) {
                 designLabel(label);//Designer le boutton
-                vbox3.getChildren().add(label);//Ajouter à vbox
+                vbox3.getChildren().add(label);//Ajouter à vbox3
             }
         }
-
-        // configurer l'alignment
+        //Configurer position et alignment de vbox3
         vbox3.setAlignment(Pos.CENTER);
         vbox3.setLayoutX(350);
         vbox3.setLayoutY(250);
 
-        //Créer les bouttons
+        //Créer les bouttons de la vbox
         if (listButtons != null) {
             for (Button button : listButtons) {
                 designButton(button);//Designer le boutton
@@ -524,8 +530,8 @@ public class MenuFrame {
             }
         }
 
-        //Créer la combo box menu déroulant Ville et Batiment
-        if (bool) {
+        //Créer la liste déroulante menuDeroulantVille
+        if (boolVille) {
             this.menuDeroulantVille = new ComboBox();
             menuDeroulantVille.setPromptText("Villes");
             for (Ville ville : joueur.getPlanete().getVilles()) {
@@ -537,24 +543,30 @@ public class MenuFrame {
             menuDeroulantVille.setLayoutY(250);
         }
 
+        //Créer les listes déroulantes menuDeroulantBatiment et menuDeroulantBatimentVilles si nécessaires
         if(indexVille != -1) {
+            //S'il y'a une ville de séléctionnée
             if (menuDeroulantVille.getSelectionModel().getSelectedItem() != null) {
 
-                menuDeroulantBatiment = new ComboBox();
-                menuDeroulantBatimentVille = new ComboBox();
+                menuDeroulantBatiment = new ComboBox(); // comboBox des bâtiments construisables
+                menuDeroulantBatimentVille = new ComboBox(); //comboBox des bâtiments actuels de notre ville
 
-                menuDeroulantBatiment = designCombox(menuDeroulantBatiment);
-                menuDeroulantBatimentVille = designCombox(menuDeroulantBatimentVille);
+                menuDeroulantBatiment = designCombox(menuDeroulantBatiment); //Designer la comboBox
+                menuDeroulantBatimentVille = designCombox(menuDeroulantBatimentVille); //Designer la comboBox
 
+                //Position des comboBox
                 menuDeroulantBatiment.setLayoutX(150);
                 menuDeroulantBatiment.setLayoutY(250);
 
                 menuDeroulantBatimentVille.setLayoutX(900);
                 menuDeroulantBatimentVille.setLayoutY(250);
 
+                //Ajout des batiments construits à notre liste des bâtiments de notre ville
                 for (Batiment batiment : joueur.getPlanete().getVilles().get(indexVille).getBatiments()) {
                     menuDeroulantBatimentVille.getItems().add(batiment);
                 }
+
+                //Créer une liste de liste de liste des Technologies
                 ArrayList<ArrayList<ArrayList<Technologie>>> listeTechnologies = new ArrayList<>() {
                     {
                         add(joueur.getTechnologieOxygene());
@@ -565,6 +577,8 @@ public class MenuFrame {
                         add(joueur.getTechnologiePopulation());
                     }
                 };
+
+                //Ajout des bâtiments construisables dans notre liste déroulante
                 for (ArrayList<ArrayList<Technologie>> liste : listeTechnologies){
                     for (ArrayList<Technologie> listeTechnologie : liste){
                         for (Technologie technologie : listeTechnologie){
@@ -574,13 +588,14 @@ public class MenuFrame {
                         }
                     }
                 }
-                root.getChildren().addAll(menuDeroulantBatiment);
+
+                root.getChildren().addAll(menuDeroulantBatiment);//
                 root.getChildren().addAll(menuDeroulantBatimentVille);
             }
         }
 
 
-        if(bool2){
+        if(boolPoste){
             this.menuDeroulantPoste = new ComboBox();
             menuDeroulantPoste.setPromptText("Postes");
             for (Poste poste : joueur.getPlanete().getPostes()) {
@@ -646,29 +661,24 @@ public class MenuFrame {
                     }
                 }
             }
-            root.getChildren().addAll(menuDeroulantTechnologie);
-            menuDeroulantTechnologie = designCombox(menuDeroulantTechnologie);
-            menuDeroulantTechnologie.setLayoutX(300);
+
+            //Ajout des technologies mines construisables à notre liste déroulante
+            for(Technologie technologie : joueur.getTechnologieMine()){
+                if (!technologie.isDebloquer() && joueur.estRecherchable(joueur.getTechnologieMine()) == joueur.getTechnologieMine().indexOf(technologie)){
+                    menuDeroulantTechnologie.getItems().add(technologie.getMine());
+                }
+            }
+            root.getChildren().addAll(menuDeroulantTechnologie); //Ajout du menu des technologies recherchables à root
+            menuDeroulantTechnologie = designCombox(menuDeroulantTechnologie); //Designer la comboBox
+            //Position de la comboBox
+            menuDeroulantTechnologie.setLayoutX(300); 
             menuDeroulantTechnologie.setLayoutY(250);
         }
 
-        //Créer les labels identités
-        VBox vbox2 = new VBox();
-        if (listeIdentite != null) {
-            for (Label label : listeIdentite) {
-                designLabelArgent(label);
-                vbox2.getChildren().add(label);//Ajouter à vbox2
-            }
-            vbox2.setLayoutX(30);
-            vbox2.setLayoutY(75);
-        }
-
-        //Ajouter vbox à root
+        //Ajouter les vboxs à root
         root.getChildren().addAll(vbox);
-        root.getChildren().addAll(vbox2);
+        root.getChildren().addAll(vboxIdentite);
         root.getChildren().addAll(vbox3);
-
-
 
         //Ajouter labelArgent
         root.getChildren().add(getLabelArgent(this.joueur.getArgent()));
@@ -718,7 +728,7 @@ public class MenuFrame {
                 "-fx-background-radius: 80;" +
                 "-fx-border-color: #ebba71;"
         );
-        setShadow(button);
+        setShadow(button);//Appel de la fonction d'ombre
         return button;
     }
 
@@ -779,6 +789,7 @@ public class MenuFrame {
         return imageView;
     }
 
+    //Créer le label argent
     private Label getLabelArgent(int argent) {
         Label labelArgent = new Label();
         labelArgent.setText("SOLDE : " + String.valueOf(argent) + "c");
@@ -788,6 +799,7 @@ public class MenuFrame {
         return labelArgent;
     }
 
+    //Créer la liste des statistiques de notre planète et des objectifs
     public void getListStats(){
         Label Oxygene = new Label();
         Oxygene.setText("Oxygène : " + joueur.getPlanete().getOxygene() + " -- Objectif : " + joueur.getObjectifOxygene());
@@ -811,6 +823,7 @@ public class MenuFrame {
         this.listLabelsStatistiques.add(Population);
     }
 
+    //Designer les comboBox
     public ComboBox designCombox (ComboBox comboBox){
         comboBox.setStyle("-fx-text-fill: #ebba71;" +
                 "-fx-background-color: black;" +
@@ -825,8 +838,8 @@ public class MenuFrame {
         return comboBox;
     }
 
-    //Afficher une fenêtre PopUp
-    public void afficherPopUp(String phrase, int width, int height){
+    //Afficher une fenêtre PopUp simple
+    public void generateSimplePopUp(String phrase, int width, int height){
         Stage newStage = new Stage();
         VBox comp = new VBox(30);
         Group root = new Group();
@@ -862,7 +875,7 @@ public class MenuFrame {
     }
 
 
-   //Générer une PopUp de réponse
+   //Afficher fenêtre PopUp demandant un retour utilisateur
     public void generateAskPopUp(String question, int width, int height){
         Stage newStage = new Stage();
         VBox comp = new VBox(30);
@@ -904,8 +917,8 @@ public class MenuFrame {
         });
     }
 
-    //Générer la PopUp de début
-    public void generatePopUpWindow(String questionPlanete, String questionJoueur ){
+    //Générer une fenêtre PopUp à double entrées
+    public void generateTwoAskPopUp(String questionPlanete, String questionJoueur ){
         Stage newStage = new Stage();
         VBox comp = new VBox(30);
         Group root = new Group();
@@ -957,7 +970,7 @@ public class MenuFrame {
         });
     }
 
-    //Renvoie la liste dans laquellese trouve la technologie séléctionnée par l'utilisateur
+    //Renvoie la liste dans laquelle se trouve la technologie séléctionnée par l'utilisateur
     public ArrayList<Technologie> getMemoireListeTechnologie(Technologie tech){
         ArrayList<ArrayList<ArrayList<Technologie>>> listeTechnologies = new ArrayList<>() {
             {
