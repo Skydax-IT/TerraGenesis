@@ -27,7 +27,7 @@ public class Ville{
         this.oxygeneGenere = 0;
         this.populationGenere = 0;
         this.argentGenere = 0;
-        this.tempsConstruction = 1000;
+        this.tempsConstruction = 15000;
 
         nbDeVille++;
         prixConstruction *= nbDeVille;

@@ -108,25 +108,6 @@ public class MenuFrame {
         listButton.add(tutorielButton);
         listButton.add(exitButton);
 
-            //SCENE MENU>TUTORIEL : Eléments
-            Label reglesDuJeu = new Label();
-            reglesDuJeu.setText("Votre objectif dans terra Genesis est de terraformater votre planète pour la rendre habitable et viable pour l'espèce humain.\n" +
-                    "Il s'agira dans cette simulation d'effectuer des constructions et des améliorations afin de vous rapprocher le plus possible \n" +
-                    "des constantes de la terre.\n" +
-                    "\n" +
-                    "Plusieurs constantes rentrent en jeu:\n" +
-                    "-Température : Il est important pour les humains d'obtenir une température stable et viable. Elle est mesurée en millikelvins.\n" +
-                    "-Pression : Il est important pour une planète d'avoir une atmosphère. \n" +
-                    "\tIl faut essayer de se rapprocher de la pression atmosphérique de la terre.\n" +
-                    "-Oxygène : Pour permettre à un humain de survivre, il faut entre 18 à 24% d'oxygène respirable dans l'air.\n" +
-                    "-Eau: Principal ingrédient de la vie. Elle garantit la prospérité des écosystèmes sous-marins.\n" +
-                    "-Biomasse: Pour accueillir une population humaine, il est important de faire pousser une flore et de développer un écosystème planétaire.\n" +
-                    "-Population: La population provient principalement de l'immigration, cependant les naissances se multiplieront avec le temps.\n" +
-                    "\tL'apparition d'une faune permettra à votre peuple de vivre à la surface.\n" +
-                    "-Finance: Permet d'effectuer des constructions et des améliorations.");
-            ArrayList<Label> listLabelsTutoriel = new ArrayList<>();
-            listLabelsTutoriel.add(reglesDuJeu);
-
             //SCENE MENU>POPULATION : Eléments
             Button gestionVilleButton = new Button("GÉRER VILLES");
             Button gestionPosteButton = new Button("GÉRER POSTES");
@@ -244,7 +225,7 @@ public class MenuFrame {
                     getListStats();
                     primaryStage.setScene(createScene("STATISTIQUES", listStatsButtons, listLabelsStatistiques, false, false,false, listeIdentite,-1,-1));
                     if (joueur.verifierVictoire() == true){
-                        generateSimplePopUp("BRAVO VOUS AVEZ GAGNE!", 200, 270);
+                        generateSimplePopUp("BRAVO VOUS AVEZ GAGNE!", 300, 270);
                     }
                 }
             });
@@ -252,7 +233,20 @@ public class MenuFrame {
             tutorielButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
-                    primaryStage.setScene(createScene("TUTORIEL", listStatsButtons, listLabelsTutoriel, false, false,false, listeIdentite,-1,-1));
+                    generateSimplePopUp("Votre objectif dans terra Genesis est de terraformater votre planète pour la rendre habitable et viable pour l'espèce humain.\n" +
+                            "Il s'agira dans cette simulation d'effectuer des constructions et des améliorations afin de vous rapprocher le plus possible \n" +
+                            "des constantes de la terre.\n" +
+                            "\n" +
+                            "Plusieurs constantes rentrent en jeu:\n" +
+                            "-Température : Il est important pour les humains d'obtenir une température stable et viable. Elle est mesurée en millikelvins.\n" +
+                            "-Pression : Il est important pour une planète d'avoir une atmosphère. \n" +
+                            "\tIl faut essayer de se rapprocher de la pression atmosphérique de la terre.\n" +
+                            "-Oxygène : Pour permettre à un humain de survivre, il faut entre 18 à 24% d'oxygène respirable dans l'air.\n" +
+                            "-Eau: Principal ingrédient de la vie. Elle garantit la prospérité des écosystèmes sous-marins.\n" +
+                            "-Biomasse: Pour accueillir une population humaine, il est important de faire pousser une flore et de développer un écosystème planétaire.\n" +
+                            "-Population: La population provient principalement de l'immigration, cependant les naissances se multiplieront avec le temps.\n" +
+                            "\tL'apparition d'une faune permettra à votre peuple de vivre à la surface.\n" +
+                            "-Finance: Permet d'effectuer des constructions et des améliorations.",1200,550);
                 }
             });
 

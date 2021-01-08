@@ -17,14 +17,14 @@ public class Joueur {
      * Default constructor
      */
     public Joueur() {
-        this.argent = 2500000;
+        this.argent = 30000000;
 
-        this.objectifTemperature = 200000;
-        this.objectifPression = 600;
-        this.objectifOxygene = 1704;
-        this.objectifEau = 21;
-        this.objectifBiomasse = 0;
-        this.objectifPopulation = 0;
+        this.objectifTemperature = 200400;
+        this.objectifPression = 1000;
+        this.objectifOxygene = 2100;
+        this.objectifEau = 64;
+        this.objectifBiomasse = 400;
+        this.objectifPopulation = 400;
         this.planete = new Planete("AA");
 
         this.initialiseTechnologie();
@@ -108,13 +108,13 @@ public class Joueur {
         ArrayList<Technologie> a = new ArrayList<>();
         ArrayList<Technologie> b = new ArrayList<>();
 
-        a.add(new Technologie(new Batiment("Usine de refroidissement", 30, 0, 0, 0, -4, 0, 0, 0, "Température", 1000), 1000000, 250, true));
-        a.add(new Technologie(new Batiment("Plateforme aérostat", 30, 0, 0, 0, -40, 0, 0, 2850, "Température", 1000), 2000000, 500, false));
-        a.add(new Technologie(new Batiment("Toile solaire", 30, 0, -30, 0, -100, 0, 0, -4750, "Température", 1000), 6000000, 750, false));
+        a.add(new Technologie(new Batiment("Usine de refroidissement", 30000, 0, 0, 0, -4, 0, 0, 0, "Température", 1000), 1000000, 25000, true));
+        a.add(new Technologie(new Batiment("Plateforme aérostat", 30000, 0, 0, 0, -40, 0, 0, 2850, "Température", 1000), 2000000, 50000, false));
+        a.add(new Technologie(new Batiment("Toile solaire", 30000, 0, -30, 0, -100, 0, 0, -4750, "Température", 1000), 6000000, 75000, false));
 
-        b.add(new Technologie(new Batiment("Pôle de réchauffement", 30, 0, 0, 0, 4, 0, 0, 0, "Température", 1000), 1000000, 250, true));
-        b.add(new Technologie(new Batiment("Puits de forage", 30, 10, 0, 0, 60, 0, 0, 0, "Température", 1000), 2000000, 500, false));
-        b.add(new Technologie(new Batiment("Miroir Orbital", 30, 0, -30, -10, 120, 0, 0, 0, "Température", 1000), 6000000, 750, false));
+        b.add(new Technologie(new Batiment("Pôle de réchauffement", 30000, 0, 0, 0, 4, 0, 0, 0, "Température", 1000), 1000000, 25000, true));
+        b.add(new Technologie(new Batiment("Puits de forage", 30000, 10, 0, 0, 60, 0, 0, 0, "Température", 1000), 2000000, 50000, false));
+        b.add(new Technologie(new Batiment("Miroir Orbital", 30000, 0, -30, -10, 120, 0, 0, 0, "Température", 1000), 6000000, 75000, false));
 
 
         this.technologieTemperature = new ArrayList<ArrayList<Technologie>>() {
@@ -128,13 +128,13 @@ public class Joueur {
         ArrayList<Technologie> c = new ArrayList<>();
         ArrayList<Technologie> d = new ArrayList<>();
 
-        c.add(new Technologie(new Batiment("Usine de séquestration", 30, -4, 0, 0, 0, 0, 0, 0, "Pression", 1000), 1000000, 250, true));
-        c.add(new Technologie(new Batiment("Laboratoire de biodivision", 30, -40, 15, 0, 0, 0, 0, 0, "Pression", 1000), 2000000, 500, false));
-        c.add(new Technologie(new Batiment("Transformateur d'hydrogène", 30, -100, 0, 20, 10, 0, 0, 10, "Pression", 1000), 6000000, 750, false));
+        c.add(new Technologie(new Batiment("Usine de séquestration", 30000, -4, 0, 0, 0, 0, 0, 0, "Pression", 1000), 1000000, 25000, true));
+        c.add(new Technologie(new Batiment("Laboratoire de biodivision", 30000, -40, 15, 0, 0, 0, 0, 0, "Pression", 1000), 2000000, 50000, false));
+        c.add(new Technologie(new Batiment("Transformateur d'hydrogène", 30000, -100, 0, 20, 10, 0, 0, 10, "Pression", 1000), 6000000, 75000, false));
 
-        d.add(new Technologie(new Batiment("Poussière thermique", 30, 4, 0, 0, 0, 0, 0, 0, "Pression", 1000), 1000000, 250, true));
-        d.add(new Technologie(new Batiment("Ensemble atmogen", 30, 60, 0, 0, 0, 10, 0, 0, "Pression", 1000), 2000000, 500, false));
-        d.add(new Technologie(new Batiment("Exploitation de poches", 30, 100, 0, 0, 0, 20, 0, 1900, "Pression", 1000), 6000000, 750, false));
+        d.add(new Technologie(new Batiment("Poussière thermique", 30000, 4, 0, 0, 0, 0, 0, 0, "Pression", 1000), 1000000, 25000, true));
+        d.add(new Technologie(new Batiment("Ensemble atmogen", 30000, 60, 0, 0, 0, 10, 0, 0, "Pression", 1000), 2000000, 50000, false));
+        d.add(new Technologie(new Batiment("Exploitation de poches", 30000, 100, 0, 0, 0, 20, 0, 1900, "Pression", 1000), 6000000, 75000, false));
 
         this.technologiePression = new ArrayList<ArrayList<Technologie>>() {
             {
@@ -146,13 +146,13 @@ public class Joueur {
         ArrayList<Technologie> e = new ArrayList<>();
         ArrayList<Technologie> f = new ArrayList<>();
 
-        e.add(new Technologie(new Batiment("Filtre O2", 30, 0, 0, 0, 0, -4, 0, 0, "Oxygene", 1000), 1000000, 250, true));
-        e.add(new Technologie(new Batiment("Fixateur de carbone", 30, 10, 0, 0, 0, -40, 0, 0, "Oxygene", 1000), 2000000, 500, false));
-        e.add(new Technologie(new Batiment("Générateur hydro", 30, 0, 0, 20, 0, -80, 0, 0, "Oxygene", 1000), 6000000, 750, false));
+        e.add(new Technologie(new Batiment("Filtre O2", 30000, 0, 0, 0, 0, -4, 0, 0, "Oxygene", 1000), 1000000, 25000, true));
+        e.add(new Technologie(new Batiment("Fixateur de carbone", 30000, 10, 0, 0, 0, -40, 0, 0, "Oxygene", 1000), 2000000, 50000, false));
+        e.add(new Technologie(new Batiment("Générateur hydro", 30000, 0, 0, 20, 0, -80, 0, 0, "Oxygene", 1000), 6000000, 75000, false));
 
-        f.add(new Technologie(new Batiment("Usine d'oxygène", 30, 0, 0, 0, 0, 4, 0, 0, "Oxygene", 1000), 1000000, 250, true));
-        f.add(new Technologie(new Batiment("Cyanocuves", 30, -10, 0, 0, 0, 60, 0, 0, "Oxygene", 1000), 2000000, 500, false));
-        f.add(new Technologie(new Batiment("Ferme de kelps", 30, -10, 30, 0, 0, 120, 0, 0, "Oxygene", 1000), 6000000, 750, false));
+        f.add(new Technologie(new Batiment("Usine d'oxygène", 30000, 0, 0, 0, 0, 4, 0, 0, "Oxygene", 1000), 1000000, 25000, true));
+        f.add(new Technologie(new Batiment("Cyanocuves", 30000, -10, 0, 0, 0, 60, 0, 0, "Oxygene", 1000), 2000000, 50000, false));
+        f.add(new Technologie(new Batiment("Ferme de kelps", 30000, -10, 30, 0, 0, 120, 0, 0, "Oxygene", 1000), 6000000, 75000, false));
 
         this.technologieOxygene = new ArrayList<ArrayList<Technologie>>() {
             {
@@ -164,13 +164,13 @@ public class Joueur {
         ArrayList<Technologie> g = new ArrayList<>();
         ArrayList<Technologie> h = new ArrayList<>();
 
-        g.add(new Technologie(new Batiment("Géociterne", 30, 0, 0, -4, 0, 0, 0, 0, "Eau", 1000), 1000000, 250, true));
-        g.add(new Technologie(new Batiment("Usine d'électrolyse", 30, 0, 0, -40, 0, 10, 0, 0, "Eau", 1000), 2000000, 500, false));
-        g.add(new Technologie(new Batiment("Lance-glace", 30, -10, 0, -120, 0, 0, 0, 2850, "Eau", 1000), 6000000, 750, false));
+        g.add(new Technologie(new Batiment("Géociterne", 30000, 0, 0, -4, 0, 0, 0, 0, "Eau", 1000), 1000000, 25000, true));
+        g.add(new Technologie(new Batiment("Usine d'électrolyse", 30000, 0, 0, -40, 0, 10, 0, 0, "Eau", 1000), 2000000, 50000, false));
+        g.add(new Technologie(new Batiment("Lance-glace", 30000, -10, 0, -120, 0, 0, 0, 2850, "Eau", 1000), 6000000, 75000, false));
 
-        h.add(new Technologie(new Batiment("Semeur de nuages", 30, 0, 0, 4, 0, 0, 0, 0, "Eau", 1000), 1000000, 250, true));
-        h.add(new Technologie(new Batiment("Réseau aquifère", 30, 10, 0, 40, 0, 0, 0, 0, "Eau", 1000), 2000000, 500, false));
-        h.add(new Technologie(new Batiment("Redirection de comètes", 30, 0, -15, 120, 0, 0, 0, 7600, "Eau", 1000), 6000000, 750, false));
+        h.add(new Technologie(new Batiment("Semeur de nuages", 30000, 0, 0, 4, 0, 0, 0, 0, "Eau", 1000), 1000000, 25000, true));
+        h.add(new Technologie(new Batiment("Réseau aquifère", 30000, 10, 0, 40, 0, 0, 0, 0, "Eau", 1000), 2000000, 50000, false));
+        h.add(new Technologie(new Batiment("Redirection de comètes", 30000, 0, -15, 120, 0, 0, 0, 7600, "Eau", 1000), 6000000, 75000, false));
 
 
         this.technologieEau = new ArrayList<ArrayList<Technologie>>() {
@@ -183,13 +183,13 @@ public class Joueur {
         ArrayList<Technologie> i = new ArrayList<>();
         ArrayList<Technologie> j = new ArrayList<>();
 
-        i.add(new Technologie(new Batiment("Colonie d'algues", 30, 0, 12, -4, 0, 0, 0, 0, "Biomasse", 1000), 1000000, 250, true));
-        i.add(new Technologie(new Batiment("Forêt de kelps", 30, 0, 120, 0, 0, 30, 0, 0, "Biomasse", 1000), 2000000, 500, false));
-        i.add(new Technologie(new Batiment("Récif de corail", 30, 0, 179, 0, 0, 0, 21, 3800, "Biomasse", 1000), 6000000, 750, false));
+        i.add(new Technologie(new Batiment("Colonie d'algues", 30000, 0, 12, -4, 0, 0, 0, 0, "Biomasse", 1000), 1000000, 25000, true));
+        i.add(new Technologie(new Batiment("Forêt de kelps", 30000, 0, 120, 0, 0, 30, 0, 0, "Biomasse", 1000), 2000000, 50000, false));
+        i.add(new Technologie(new Batiment("Récif de corail", 30000, 0, 179, 0, 0, 0, 21, 3800, "Biomasse", 1000), 6000000, 75000, false));
 
-        j.add(new Technologie(new Batiment("Ferme tellurique", 30, 0, 6, 0, 0, 0, 0, 0, "Biomasse", 1000), 1000000, 250, true));
-        j.add(new Technologie(new Batiment("Ferme d'herbacés", 30, 0, 60, -10, 0, 0, 0, 0, "Biomasse", 1000), 2000000, 500, false));
-        j.add(new Technologie(new Batiment("Peuplement forestier", 30, 0, 150, -20, 0, 20, 0, 0, "Biomasse", 1000), 6000000, 750, false));
+        j.add(new Technologie(new Batiment("Ferme tellurique", 30000, 0, 6, 0, 0, 0, 0, 0, "Biomasse", 1000), 1000000, 25000, true));
+        j.add(new Technologie(new Batiment("Ferme d'herbacés", 30000, 0, 60, -10, 0, 0, 0, 0, "Biomasse", 1000), 2000000, 50000, false));
+        j.add(new Technologie(new Batiment("Peuplement forestier", 30000, 0, 150, -20, 0, 20, 0, 0, "Biomasse", 1000), 6000000, 75000, false));
 
 
         this.technologieBiomasse = new ArrayList<ArrayList<Technologie>>() {
@@ -202,13 +202,13 @@ public class Joueur {
         ArrayList<Technologie> k = new ArrayList<>();
         ArrayList<Technologie> l = new ArrayList<>();
 
-        k.add(new Technologie(new Batiment("Unité d'habitation", 30, 0, 0, 0, 0, 0, 85, 0, "Population", 1000), 1000000, 250, true));
-        k.add(new Technologie(new Batiment("Complexe d'habitation", 30, 0, 0, 0, 0, 10, 2125, 0, "Population", 1000), 2000000, 500, false));
-        k.add(new Technologie(new Batiment("Dome d'habitation", 30, 0, 15, 20, 0, 0, 42500, 0, "Population", 1000), 6000000, 750, false));
+        k.add(new Technologie(new Batiment("Unité d'habitation", 30000, 0, 0, 0, 0, 0, 85, 0, "Population", 1000), 1000000, 25000, true));
+        k.add(new Technologie(new Batiment("Complexe d'habitation", 30000, 0, 0, 0, 0, 10, 2125, 0, "Population", 1000), 2000000, 50000, false));
+        k.add(new Technologie(new Batiment("Dome d'habitation", 30000, 0, 15, 20, 0, 0, 42500, 0, "Population", 1000), 6000000, 75000, false));
 
-        l.add(new Technologie(new Batiment("Crèche pour enfants", 30, 0, 0, 0, 0, 0, 11, 0, "Population", 1000), 1000000, 250, true));
-        l.add(new Technologie(new Batiment("Réseau de transport", 30, 0, -15, 0, 0, 0, 84, 0, "Population", 1000), 2000000, 500, false));
-        l.add(new Technologie(new Batiment("Port spatial", 30, 0, 0, 0, 0, 10, 126, 9500, "Population", 1000), 6000000, 750, false));
+        l.add(new Technologie(new Batiment("Crèche pour enfants", 30000, 0, 0, 0, 0, 0, 11, 0, "Population", 1000), 1000000, 25000, true));
+        l.add(new Technologie(new Batiment("Réseau de transport", 30000, 0, -15, 0, 0, 0, 84, 0, "Population", 1000), 2000000, 50000, false));
+        l.add(new Technologie(new Batiment("Port spatial", 30000, 0, 0, 0, 0, 10, 126, 9500, "Population", 1000), 6000000, 75000, false));
 
 
         this.technologiePopulation = new ArrayList<ArrayList<Technologie>>() {
@@ -220,11 +220,11 @@ public class Joueur {
 
         this.technologieMine = new ArrayList<Technologie>() {
             {
-                add(new Technologie(new Mine("Carbone", 30, 0, 0, 0, 0, 0, 0, 100000, "Ressources minières", 1000), 1000000, 250, true));
-                add(new Technologie(new Mine("Fer", 30, 0, 0, 0, 0, 0, 0, 250000, "Ressources minières", 1000), 2000000, 500, false));
-                add(new Technologie(new Mine("Argent", 30, 0, 0, 0, 0, 0, 0, 1000000, "Ressources minières", 1000), 6000000, 750, false));
-                add(new Technologie(new Mine("Palladium", 30, 0, 0, 0, 0, 0, 0, 2500000, "Ressources minières", 1000), 10000000, 1000, false));
-                add(new Technologie(new Mine("Rhodium", 30, 0, 0, 0, 0, 0, 0, 7500000, "Ressources minières", 1000), 12500000, 1250, false));
+                add(new Technologie(new Mine("Carbone", 30000, 0, 0, 0, 0, 0, 0, 100000, "Ressources minières", 1000), 1000000, 25000, true));
+                add(new Technologie(new Mine("Fer", 30000, 0, 0, 0, 0, 0, 0, 250000, "Ressources minières", 1000), 2000000, 50000, false));
+                add(new Technologie(new Mine("Argent", 30000, 0, 0, 0, 0, 0, 0, 1000000, "Ressources minières", 1000), 6000000, 75000, false));
+                add(new Technologie(new Mine("Palladium", 30000, 0, 0, 0, 0, 0, 0, 2500000, "Ressources minières", 1000), 10000000, 100000, false));
+                add(new Technologie(new Mine("Rhodium", 30000, 0, 0, 0, 0, 0, 0, 7500000, "Ressources minières", 1000), 12500000, 125000, false));
             }
         };
     }

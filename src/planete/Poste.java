@@ -17,7 +17,7 @@ public class Poste{
         this.mines = new ArrayList<>();
         this.nbMines = this.mines.size();
         this.argentGenere = 0;
-        this.tempsConstruction = 1000;
+        this.tempsConstruction = 15000;
 
         nbDePoste++;
         prixConstruction *= nbDePoste;
