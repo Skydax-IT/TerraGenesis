@@ -3,14 +3,14 @@ package technologies;
 import batiments.Batiment;
 import batiments.Mine;
 
-import java.util.*;
 
-/**
+
+/**Permet de créer une technologie
  * 
  */
 public class Technologie {
 
-    /**
+    /**Créer une technologie pour tous les batiments
      * Default constructor
      */
     public Technologie(Batiment batiment, int prixTechnologie, int tempsTechnologie, boolean debloquer) {
@@ -21,6 +21,9 @@ public class Technologie {
 
     }
 
+    /**Constructeur d'une technologie de type mine
+     *
+     */
     public Technologie(Mine mine, int prixTechnologie, int tempsTechnologie, boolean debloquer) {
         this.mine = mine;
         this.prixTechnologie = prixTechnologie;
@@ -29,28 +32,35 @@ public class Technologie {
 
     }
 
-    /**
+    /**Le batiment présent dans le technologie
      * 
      */
     private Batiment batiment;
 
+    /**
+     *La mine présente dans la technologie
+     */
     private Mine mine;
 
     /**
-     * 
+     * Le coût de la technologie
      */
     private int prixTechnologie;
 
     /**
-     * 
+     * Le temps de construction de la techno
      */
     private int tempsTechnologie;
 
     /**
-     *
+     *Si la technologie a été recherchée
      */
     private boolean debloquer;
 
+    /**L'affichage de la classe technologie
+     *String
+     * void
+     */
     @Override
     public String toString() {
         return  batiment +
@@ -58,6 +68,10 @@ public class Technologie {
                 " , Temps de construction : " + tempsTechnologie
                 ;
     }
+
+    /**Getter and setter
+     *
+     */
 
     public Batiment getBatiment() {
         return this.batiment;

@@ -9,8 +9,15 @@ import technologies.Technologie;
 
 import java.util.ArrayList;
 
+
+/**Permet la construction de thread et de gérer le temps de construction
+ *
+ */
 public class Construction extends Thread{
 
+    /**Constructeur pour thread de construction de ville
+     *
+     */
     public Construction(Planete p_planete,Ville p_ville){
         this.planete = p_planete;
         this.ville = p_ville;
@@ -19,6 +26,9 @@ public class Construction extends Thread{
         this.start();
     }
 
+    /**Constructeur pour thread de construction de poste
+     *
+     */
     public Construction(Planete p_planete,Poste p_poste){
         this.planete = p_planete;
         this.poste = p_poste;
@@ -27,6 +37,9 @@ public class Construction extends Thread{
         this.start();
     }
 
+    /**Constructeur pour thread de construction de batiment
+     *
+     */
     public Construction(Planete p_planete,Ville p_ville,Batiment p_batiment){
         this.planete = p_planete;
         this.ville = p_ville;
@@ -36,6 +49,9 @@ public class Construction extends Thread{
         this.start();
     }
 
+    /**Constructeur pour thread de construction de mine
+     *
+     */
     public Construction(Planete p_planete, Poste p_poste, Mine p_mine){
         this.planete = p_planete;
         this.poste = p_poste;
@@ -45,6 +61,9 @@ public class Construction extends Thread{
         this.start();
     }
 
+    /**Constructeur pour thread de recherche de technologie
+     *
+     */
     public Construction(ArrayList<Technologie> p_technologies, Technologie p_technologie){
         this.technologies = p_technologies;
         this.technologie = p_technologie;
@@ -53,15 +72,44 @@ public class Construction extends Thread{
         this.start();
     }
 
-
+    /**
+     *La ville à construire ou dans laquelle construire
+     */
     private Ville ville;
+
+    /**
+     *La planète sur laquelle on construit
+     */
     private Planete planete;
+
+    /**
+     *Le poste à constuire ou lequel agir
+     */
     private Poste poste;
+
+    /**
+     *Batiment à construire
+     */
     private Batiment batiment;
+
+    /**
+     *Mine à construire
+     */
     private Mine mine;
+
+    /**
+     *Liste des technolgies à laquelle appartient la technologie
+     */
     private ArrayList<Technologie> technologies;
+
+    /**
+     *la technologie à rechercher
+     */
     private Technologie technologie;
 
+    /**
+     *Permet de savoir le constructeur qui a été utilisé.
+     */
     private String typeConstruction;
 
     @Override

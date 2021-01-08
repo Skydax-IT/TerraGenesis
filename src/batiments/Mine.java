@@ -1,7 +1,7 @@
 package batiments;
 
 
-/**
+/**Hérite de bâtiment et permet de créer des mines.
  * 
  */
 public class Mine extends Batiment {

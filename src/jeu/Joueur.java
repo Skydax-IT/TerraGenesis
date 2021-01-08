@@ -8,8 +8,8 @@ import technologies.Technologie;
 
 import java.util.*;
 
-/**
- * 
+/**class Joueur
+ * Permet de créer un joueur et ses actions
  */
 public class Joueur {
 
@@ -35,23 +35,23 @@ public class Joueur {
 
 
     /**
-     *
+     *solde du joueur
      */
     private int argent;
 
     /**
-     *
+     *nom joueur
      */
     private String nom;
 
 
     /**
-     *
+     *La planète du joueur
      */
     private Planete planete;
 
     /**
-     *
+     *L'objectif de température à atteindre
      */
     private final int objectifTemperature;
 
@@ -88,8 +88,9 @@ public class Joueur {
     private ArrayList<ArrayList<Technologie>> technologiePression;
     private ArrayList<Technologie> technologieMine;
 
-    /**
-     *
+    /**Permet d'initialiser le nom du joueur et de la planete
+     *void
+     * nom du joeur, nom de la planete
      */
     public void initialiserJoueur(String nomJoueur, String nomPlanete) {
         this.nom = nomJoueur;
@@ -98,7 +99,11 @@ public class Joueur {
         System.out.println(this.planete.getNom());
     }
 
-    public void initialiseTechnologie() {
+    /**Inialise les technologies présentent dans le jeu
+     *void
+     * void
+     */
+    public void initialiseTechnologie() { //Initialisation des technologies disponibles
 
         ArrayList<Technologie> a = new ArrayList<>();
         ArrayList<Technologie> b = new ArrayList<>();
@@ -224,22 +229,18 @@ public class Joueur {
         };
     }
 
-    /**
-     *
+    /**Permet de changer le solde quand des achats sont effectués
+     *void
+     * le prix de l'achat
      */
     public void achatJoueur(int prix) {
         this.argent -= prix;
     }
 
-    public int rechercher(ArrayList<ArrayList<Technologie>> technologies, Technologie technologie) {
-        for (ArrayList<Technologie> listTech : technologies) {
-            if (listTech.contains(technologie)) {
-                return technologies.indexOf(listTech);
-            }
-        }
-        return -1;
-    }
-
+    /**Permet de construire une ville sur la planete
+     *void
+     * le nom de la ville
+     */
     public void constuireVille(String nomVille) {
         if (this.argent >= Ville.prixConstruction) {
             this.achatJoueur(Ville.prixConstruction); // A mettre avant sinon prix change quand classe ville est créée
@@ -249,11 +250,19 @@ public class Joueur {
         }
     }
 
+    /**Permet de supprimer une ville
+     *void
+     * La ville a supprimée
+     */
     public void supprimerVille(Ville ville) {
         System.out.println("Ville " + ville.getNomVille() + " Supprimée");
         this.planete.supprimerVille(ville);
     }
 
+    /**Construit un poste sur la planète
+     *void
+     * Nom du poste
+     */
     public void construirePoste(String nomPoste) {
         if (this.argent >= Poste.prixConstruction) {
             this.achatJoueur(Poste.prixConstruction);
@@ -263,12 +272,19 @@ public class Joueur {
         }
     }
 
+    /**Supprime un poste
+     *void
+     * Le poste a supprimé
+     */
     public void supprimerPoste(Poste poste) {
         System.out.println("Poste " + poste.getNomPoste() + " Supprimé");
         this.planete.supprimerPoste(poste);
     }
 
-
+    /**Construit un batiment dans une ville
+     *void
+     * La ville dans laquelle construire et le batiment à bâtir
+     */
     public void construireBatiment(Ville ville, Batiment batiment) {//verif niveau techno
 
         if (this.argent >= batiment.getPrixBatiment()) {
@@ -279,11 +295,19 @@ public class Joueur {
         }
     }
 
+    /**Supprime le bâtiment dans la ville choisit
+     *void
+     * La ville dans laquelle détruire et le bâtiment a supprimé
+     */
     public void supprimerBatiment(Ville ville, Batiment batiment) {
         System.out.println("Le bâtiment " + batiment.getNomBatiment() + " a été supprimé");
         this.planete.supprimerBatimentVille(ville, batiment);
     }
 
+    /**Construit une mine dans le poste choisit
+     *void
+     * Le poste et la mine à construire
+     */
     public void construireMinePoste(Poste poste, Mine mine) {
         int index = -1;
 
@@ -301,22 +325,33 @@ public class Joueur {
         }
     }
 
+    /**Supprime une mine dans un poste
+     *void
+     * Le poste et la mine a supprimée
+     */
     public void supprimerMinePoste(Poste poste, Mine mine) {
         System.out.println("La mine " + mine.getNomBatiment() + " a été supprimée");
         this.planete.supprimerMinePoste(poste, mine);
     }
 
-    public int estRecherchable(ArrayList<Technologie> technologies) { // Pb avec les technologies négative et positive
+    /**Permet de savoir la premiere technologie pouvant être améliorée
+     *l'index de la première technologie pouvant être améliorée
+     * Une liste de technologies
+     */
+    public int estRecherchable(ArrayList<Technologie> technologies) {
         int indexRecherche = -2;
         for (Technologie technologie : technologies) {
-            if (technologie.isDebloquer() == true) { // Marche pour le mines! //Prend en compte que le dernier true -> checker les true et false de temp
+            if (technologie.isDebloquer() == true) {
                 indexRecherche = technologies.indexOf(technologie);
             }
         }
         return indexRecherche + 1;
     }
 
-
+    /**Permet d'améliorer une technologie
+     *void
+     * Une liste de technologie contenant la technologie, la technologie à améliorer
+     */
     public void ameliorerTechnologie(ArrayList<Technologie> listeTech, Technologie technologie) {
         if (technologie.isDebloquer() == false && this.argent >= technologie.getPrixTechnologie() && !listeTech.isEmpty()) {
             if (estRecherchable(listeTech) == listeTech.indexOf(technologie)) {
@@ -324,57 +359,6 @@ public class Joueur {
                 new Construction(listeTech, technologie);
             }
 
-            /*
-            int indexTech = this.rechercher(this.technologieTemperature,technologie);//TempTechno
-            if(indexTech >= 0){
-                if(estRecherchable(this.technologieTemperature.get(indexTech)) == this.technologieTemperature.get(indexTech).indexOf(technologie)){
-                    this.achatJoueur(technologie.getPrixTechnologie());
-                    new Construction(this.technologieTemperature.get(indexTech), technologie);
-                }else System.out.println("Recherche impossible! ");
-            }
-
-            indexTech = this.rechercher(this.technologieBiomasse,technologie);//BiomasseTechno
-            if(indexTech >= 0){
-                if(estRecherchable(this.technologieBiomasse.get(indexTech)) == this.technologieBiomasse.get(indexTech).indexOf(technologie)){
-                    this.achatJoueur(technologie.getPrixTechnologie());
-                    new Construction(this.technologieBiomasse.get(indexTech), technologie);
-                }else System.out.println("Recherche impossible! ");
-            }
-
-            indexTech = this.rechercher(this.technologieEau,technologie);//EauTechno
-            if(indexTech >= 0){
-                if(estRecherchable(this.technologieEau.get(indexTech)) == this.technologieEau.get(indexTech).indexOf(technologie)){
-                    this.achatJoueur(technologie.getPrixTechnologie());
-                    new Construction(this.technologieEau.get(indexTech), technologie);
-                }else System.out.println("Recherche impossible! ");
-            }
-
-
-            indexTech = this.rechercher(this.technologieOxygene,technologie);//OxygeneTechno
-            if(indexTech >= 0){
-                if(estRecherchable(this.technologieOxygene.get(indexTech)) == this.technologieOxygene.get(indexTech).indexOf(technologie)){
-                    this.achatJoueur(technologie.getPrixTechnologie());
-                    new Construction(this.technologieOxygene.get(indexTech), technologie);
-                }else System.out.println("Recherche impossible! ");
-            }
-
-            indexTech = this.rechercher(this.technologiePopulation,technologie);//PopuTechno
-            if(indexTech >= 0){
-                if(estRecherchable(this.technologiePopulation.get(indexTech)) == this.technologiePopulation.get(indexTech).indexOf(technologie)){
-                    this.achatJoueur(technologie.getPrixTechnologie());
-                    new Construction(this.technologiePopulation.get(indexTech), technologie);
-                }else System.out.println("Recherche impossible! ");
-            }
-
-
-            indexTech = this.rechercher(this.technologiePression,technologie);//PressionTechno
-            if(indexTech >= 0){
-                if(estRecherchable(this.technologiePression.get(indexTech)) == this.technologiePression.get(indexTech).indexOf(technologie)){
-                    this.achatJoueur(technologie.getPrixTechnologie());
-                    new Construction(this.technologiePression.get(indexTech), technologie);
-                }else System.out.println("Recherche impossible! ");
-            }
-            */
             if (this.technologieMine.contains(technologie) && estRecherchable(this.technologieMine) == this.technologieMine.indexOf(technologie)) {
                 this.achatJoueur(technologie.getPrixTechnologie());
                 new Construction(this.technologieMine, technologie);
@@ -383,14 +367,9 @@ public class Joueur {
         }else System.out.println("Cette Technologie ne peut être améliorée! ");
     }
 
-    public String askForString(String phrase){
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println(phrase); //fenetre pop-up
-        return myObj.nextLine();
-    }
-
-    /**
-     *
+    /**Verifie si les Objectifs sont atteints
+     *void
+     * void
      */
     public boolean verifierVictoire() {
         if((this.planete.getTemperature() >= this.objectifTemperature) && (this.planete.getPression() >= this.objectifPression)
@@ -402,20 +381,9 @@ public class Joueur {
         }
     }
 
-    public void afficherResumePlanete(){
-        String resume = "Résumé: " + this.planete.getNom() +
-                "\nTempérature: " + this.planete.getTemperature() + '/' + this.objectifTemperature + "\n" +
-                "Pression: " + this.planete.getPression() + '/' + this.objectifPression + "\n" +
-                "Oxygène: " + this.planete.getOxygene() + '/' + this.objectifOxygene + "\n" +
-                "Eau: " + this.planete.getEau() + '/' + this.objectifEau + "\n" +
-                "Biomasse: " + this.planete.getBiomasse() + '/' + this.objectifBiomasse + "\n" +
-                "Population: " + this.planete.getPopulation() + '/' + this.objectifPopulation + "\n"
-                ;
-        System.out.println(resume);
-    }
-
-
-
+    /**Getter and setter
+     *
+     */
     public int getArgent() {
         return argent;
     }

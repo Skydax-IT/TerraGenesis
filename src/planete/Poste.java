@@ -1,11 +1,10 @@
 package planete;
 
-import batiments.Batiment;
 import batiments.Mine;
 
 import java.util.*;
 
-/**
+/**Permet la création de poste contenant des mines
  * 
  */
 public class Poste{
@@ -24,40 +23,53 @@ public class Poste{
         prixConstruction *= nbDePoste;
 
     }
-
+    /**
+     *Prix de construction
+     */
     public static int prixConstruction = 100000;
+
+    /**
+     *le nombre de postes qui ont été construit
+     */
     public static int nbDePoste = 0;
 
     /**
-     * 
+     * le nom du poste
      */
     private final String nomPoste;
 
     /**
-     * 
+     * Liste de mines
      */
     private ArrayList<Mine> mines;
 
     /**
-     * 
+     * Le nombre de mines présentes
      */
     private int nbMines;
 
     /**
-     *
+     *L'argent généré par le poste
      */
     private int argentGenere;
 
     /**
-     *
+     *Le temps de construction du poste
      */
     private int tempsConstruction;
 
+    /**Affichage du poste
+     *Le nom du poste
+     */
     @Override
     public String toString() {
         return this.nomPoste;
     }
 
+    /**Actualise les stats du poste
+     *void
+     * La mine qui influe sur les stats, le boolean qui permet de savoir si on ajoute ou prélève
+     */
     public void actuStatPoste(Mine mine, boolean add){
         if(add){
             this.argentGenere += mine.getArgentGenere();
@@ -68,17 +80,18 @@ public class Poste{
         }
     }
 
-    /**
-     *
-     * @param mine
+    /**Permet d'ajouter une mine au poste
+     *void
+     * @param mine à ajouter
      */
     public void ajouterMine(Mine mine) {
         this.mines.add(mine);
         this.actuStatPoste(mine,true);
     }
 
-    /**
-     * 
+    /**Supprime une mine du poste
+     * void
+     * Mine à supprimer
      */
     public void supprimerMine(Mine mineSuppr){//String nomMine) {
         try {
@@ -90,6 +103,9 @@ public class Poste{
         }
     }
 
+    /**Getter and setter
+     *
+     */
     public String getNomPoste() {
         return nomPoste;
     }

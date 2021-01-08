@@ -1,8 +1,8 @@
 package batiments;
 
-import java.util.*;
 
-/**
+
+/**Permet de créer un batiment et de gérer leurs constantes
  * 
  */
 public class Batiment {
@@ -30,61 +30,64 @@ public class Batiment {
     }
 
     /**
-     * 
+     * nom du batiment
      */
     protected String nomBatiment;
 
 
     /**
-     * 
+     * temps de construction du batiment
      */
     protected int tempsConstruction;
 
     /**
-     * 
+     * La pression qu'il génére
      */
     protected int pressionGenere;
 
     /**
-     * 
+     * la biomasse générée
      */
     protected int biomasseGenere;
 
     /**
-     * 
+     * l'eau généré
      */
     protected int eauGenere;
 
     /**
-     * 
+     * la température générée
      */
     protected int temperatureGenere;
 
     /**
-     * 
+     * l'oxygène générée
      */
     protected int oxygeneGenere;
 
     /**
-     * 
+     * la population générée
      */
     protected int populationGenere;
 
     /**
-     * 
+     * l'argent généré
      */
     protected int argentGenere;
 
     /**
-     *
+     *le type de bâtiment
      */
     protected String typeBatiment;
 
     /**
-     *
+     *le coût de construction du batiment
      */
     private int prixBatiment;
 
+    /**Affichage du bâtiment
+     *String
+     */
     @Override
     public String toString() {
         String string = nomBatiment;
@@ -112,7 +115,9 @@ public class Batiment {
         return  string;
     }
 
-
+    /**
+     *Getter and setter
+     */
     public String getNomBatiment() {
         return nomBatiment;
     }

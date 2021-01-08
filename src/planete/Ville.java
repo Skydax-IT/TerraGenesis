@@ -5,7 +5,7 @@ import batiments.*;
 import java.util.*;
 
 
-/**
+/**Permet la création d'une ville sur la planète
  * 
  */
 public class Ville{
@@ -19,7 +19,6 @@ public class Ville{
         this.nbHabitants = 10;
         this.batiments = new ArrayList<Batiment>();
         this.nbBatiments = this.batiments.size();
-        //Ajouter des batiments de base ?
 
         this.pressionGenere = 0;
         this.biomasseGenere = 0;
@@ -35,101 +34,99 @@ public class Ville{
 
     }
 
+    /**Le prix de construction de la ville
+     *
+     */
     public static int prixConstruction = 500000;
-    public static int nbDeVille = 0;
+
     /**
+     *Le nombre de ville construite
+     */
+    public static int nbDeVille = 0;
+
+    /**Le nombre de batiment dans la ville
      * 
      */
     private int nbBatiments;
 
-    /**
+    /**Liste des batiments
      * 
      */
     private ArrayList<Batiment> batiments;
 
-    /**
+    /**Nombre d'habitants de la ville
      * 
      */
     private int nbHabitants;
 
-    /**
+    /**Le nom de la ville
      * 
      */
     private String nomVille;
 
-    /**
+    /**La biomasse générée par la ville
      *
      */
     protected int biomasseGenere;
 
-    /**
+    /**La pression générée
      *
      */
     protected int pressionGenere;
 
-    /**
+    /**L'eau générée par la ville
      *
      */
     protected int eauGenere;
 
-    /**
+    /**La température générée
      *
      */
     protected int temperatureGenere;
 
-    /**
+    /**l'oxygene générée
      *
      */
     protected int oxygeneGenere;
 
-    /**
+    /**La population générée
      *
      */
     protected int populationGenere;
 
-    /**
+    /**L'argent générée
      *
      */
     protected int argentGenere;
 
-    /**
+    /**Le temps de construction de la ville
      *
      */
     private int tempsConstruction;
 
-    public int getTempsConstruction() {
-        return tempsConstruction;
-    }
 
-    public void setTempsConstruction(int tempsConstruction) {
-        this.tempsConstruction = tempsConstruction;
-    }
-
-    public ArrayList<Batiment> getBatiments() {
-        return batiments;
-    }
-
-    public void setBatiments(ArrayList<Batiment> batiments) {
-        this.batiments = batiments;
-    }
-
-    public void afficherBatiments(){
-        for (Batiment batiment : this.batiments){
-            System.out.println(batiment);
-        }
-    }
-
+    /**Affichage de la ville
+     *le nom de la ville
+     */
     @Override
     public String toString() {
         return this.nomVille;
     }
 
+    /**Ajoute un batiment à la ville
+     *void
+     * le batiment à ajouter
+     */
     public void ajoutBatiment(Batiment batiment){
 
         this.batiments.add(batiment);
         this.actuStatVilleBatiment(batiment,true);
     }
 
+    /**Actualise les stats de la ville
+     *void
+     * Le batiment qui influe sur les stats et le boolean qui permet de savoir si on soustrait ou ajoute
+     */
     public void actuStatVilleBatiment(Batiment batiment, boolean add){
         if(add){
             this.nbHabitants += batiment.getPopulationGenere();
@@ -155,25 +152,10 @@ public class Ville{
 
     }
 
-    public void actuStatVille(){
 
-        this.nbHabitants = 0;
-        this.pressionGenere = 0;
-        this.biomasseGenere = 0;
-        this.eauGenere = 0;
-        this.temperatureGenere = 0;
-        this.oxygeneGenere = 0;
-        this.populationGenere = 0;
-        this.argentGenere = 0;
-        this.nbBatiments = 0;
-
-        for(Batiment batiment: this.batiments){
-            actuStatVilleBatiment(batiment,true);
-        }
-    }
-
-    /**
-     * 
+    /**Supprime un batiment de la ville
+     * void
+     * Batiment à supprimer
      */
     public void supprimerBatiment(Batiment batSuppr) {
         try {
@@ -185,6 +167,9 @@ public class Ville{
         }
     }
 
+    /**Getter and setter
+     *
+     */
     public int getNbBatiments() {
         return nbBatiments;
     }
@@ -264,4 +249,20 @@ public class Ville{
     public void setArgentGenere(int argentGenere) {
         this.argentGenere = argentGenere;
     }
+    public int getTempsConstruction() {
+        return tempsConstruction;
+    }
+
+    public void setTempsConstruction(int tempsConstruction) {
+        this.tempsConstruction = tempsConstruction;
+    }
+
+    public ArrayList<Batiment> getBatiments() {
+        return batiments;
+    }
+
+    public void setBatiments(ArrayList<Batiment> batiments) {
+        this.batiments = batiments;
+    }
+
 }
