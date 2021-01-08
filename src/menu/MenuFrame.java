@@ -48,16 +48,9 @@ public class MenuFrame {
     private int WIDTH;
     private int HEIGHT;
     DropShadow shadow = new DropShadow();
-    private MenuController menuController;
     private Button startButton = new Button("START");
     private Button registerButton = new Button("REGISTER");
     private final Sphere sphere = new Sphere(170);
-    int temperature = 0;
-    int pression = 20;
-    int oxygene = 40;
-    int eau = 5;
-    int biomasse = 45;
-    int population = 100;
     String reponse = new String();
     Label nomJoueur = new Label();
     Label nomPlanete = new Label();
@@ -727,6 +720,64 @@ public class MenuFrame {
             }
         });*/
         return comboBox;
+    }
+    
+
+    public void afficherPopUp(String phrase){
+        Stage newStage = new Stage();
+        VBox comp = new VBox(30);
+
+        Label label = new Label();
+        label.setText(phrase);
+        comp.getChildren().add(label);
+
+        TextField input = new TextField();
+        comp.getChildren().add(input);
+
+        Button validerButton = new Button("VALIDER");
+        comp.getChildren().add(validerButton);
+
+        comp.setAlignment(Pos.CENTER);
+
+        Scene stageScene = new Scene(comp, 200, 300);
+        newStage.setScene(stageScene);
+        newStage.show();
+
+        validerButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                newStage.close();
+            }
+        });
+    }
+
+    public void generateAnswerPopUpWindow(String question){
+        Stage newStage = new Stage();
+        VBox comp = new VBox(30);
+
+        Label label = new Label();
+        label.setText(question);
+        comp.getChildren().add(label);
+
+        TextField input = new TextField();
+        comp.getChildren().add(input);
+
+        Button validerButton = new Button("VALIDER");
+        comp.getChildren().add(validerButton);
+
+        comp.setAlignment(Pos.CENTER);
+
+        Scene stageScene = new Scene(comp, 200, 300);
+        newStage.setScene(stageScene);
+        newStage.show();
+
+        validerButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                reponse = input.getText();
+                newStage.close();
+            }
+        });
     }
 
     public void generatePopUpWindow(String questionPlanete, String questionJoueur ){

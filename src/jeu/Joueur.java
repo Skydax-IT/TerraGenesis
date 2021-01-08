@@ -1,7 +1,6 @@
 package jeu;
 
 import batiments.*;
-import javafx.geometry.Pos;
 import planete.Planete;
 import planete.Poste;
 import planete.Ville;
@@ -92,12 +91,9 @@ public class Joueur{
     /**
      * 
      */
-    public void initialiserJoueur() {
-        this.nom = askForString("Veuillez choisir votre nom d'aventurier ? ");
-        System.out.println("Bien le bonjour " + this.nom + "!\nVous êtes fin prêt à commencer votre aventure.\n" +
-                "Il est maintenant temps d'établir votre première colonie\n");
-        String nomPlanete = askForString("Quel nom voulez-vous donner à votre planète ?");
-        this.planete = new Planete(nomPlanete);
+    public void initialiserJoueur(String nom) {
+        this.nom = nom;
+        this.planete = new Planete(nom);
     }
 
     public void initialiseTechnologie(){
@@ -285,7 +281,7 @@ public class Joueur{
 
     public void supprimerBatiment(Ville ville, Batiment batiment){
         System.out.println("Le bâtiment " + batiment.getNomBatiment() + " a été supprimé");
-        ville.supprimerBatiment(batiment);
+        this.planete.supprimerBatimentVille(ville,batiment);
     }
 
     public void construireMinePoste(Poste poste, Mine mine){

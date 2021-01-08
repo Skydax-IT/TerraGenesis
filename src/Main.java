@@ -29,6 +29,8 @@ public class Main extends Application {
    public void start(Stage primaryStage){
        Joueur j1 = new Joueur();
        MenuFrame mF = new MenuFrame(j1);
+       mF.demandeInfo();
+       mF.initialiseJoueur();
        mF.start(primaryStage);
     }
 }

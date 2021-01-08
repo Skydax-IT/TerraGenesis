@@ -28,8 +28,8 @@ public class Planete {
         this.postes = new ArrayList<Poste>();
         this.technologies = new ArrayList<Technologie>();
 
-        this.nbVilles = this.villes.size();
-        this.nbPostes = this.postes.size();
+        this.nbVilles = 0;
+        this.nbPostes = 0;
 
         this.date = new Date();
 
@@ -226,13 +226,6 @@ public class Planete {
         ville.supprimerBatiment(batiment);
         this.actuStatPlaneteNouvelleVille(ville,true);
     }
-
-    public void afficherVilles(){
-        for(Ville ville:this.villes){
-            System.out.println(ville);
-        }
-    }
-
 
     public int getTemperature() {
         return temperature;
