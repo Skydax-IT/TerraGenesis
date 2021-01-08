@@ -110,7 +110,20 @@ public class MenuFrame {
 
             //SCENE MENU>TUTORIEL : Eléments
             Label reglesDuJeu = new Label();
-            reglesDuJeu.setText("A REMPLIR");
+            reglesDuJeu.setText("Votre objectif dans terra Genesis est de terraformater votre planète pour la rendre habitable et viable pour l'espèce humain.\n" +
+                    "Il s'agira dans cette simulation d'effectuer des constructions et des améliorations afin de vous rapprocher le plus possible \n" +
+                    "des constantes de la terre.\n" +
+                    "\n" +
+                    "Plusieurs constantes rentrent en jeu:\n" +
+                    "-Température : Il est important pour les humains d'obtenir une température stable et viable. Elle est mesurée en millikelvins.\n" +
+                    "-Pression : Il est important pour une planète d'avoir une atmosphère. \n" +
+                    "\tIl faut essayer de se rapprocher de la pression atmosphérique de la terre.\n" +
+                    "-Oxygène : Pour permettre à un humain de survivre, il faut entre 18 à 24% d'oxygène respirable dans l'air.\n" +
+                    "-Eau: Principal ingrédient de la vie. Elle garantit la prospérité des écosystèmes sous-marins.\n" +
+                    "-Biomasse: Pour accueillir une population humaine, il est important de faire pousser une flore et de développer un écosystème planétaire.\n" +
+                    "-Population: La population provient principalement de l'immigration, cependant les naissances se multiplieront avec le temps.\n" +
+                    "\tL'apparition d'une faune permettra à votre peuple de vivre à la surface.\n" +
+                    "-Finance: Permet d'effectuer des constructions et des améliorations.");
             ArrayList<Label> listLabelsTutoriel = new ArrayList<>();
             listLabelsTutoriel.add(reglesDuJeu);
 
