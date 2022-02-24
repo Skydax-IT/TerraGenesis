@@ -12,5 +12,5 @@ The purpose of this project is to design a complete TerraGenesis-like game.
 ## Authors
 - Enzo "Skydax-IT" Licata
 - Aurélien "aurEtesse" Etesse
-- Louis "lschdt" Chardonet
+- Louis "louischdt" Chardonet
 
