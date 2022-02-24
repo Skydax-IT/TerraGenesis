@@ -6,8 +6,9 @@ This project was developed in the context of a course at UTBM.
 The purpose of this project is to design a complete TerraGenesis-like game. 
 
 ## How to run this project?
-- Run the application 
-
+- Make sure to have a JDK or JRE installed on your machine
+- Make sure to have JavaFX and that it is correctly setup with your JDK
+- Run src > 'Main.java' 
 
 ## Authors
 - Enzo "Skydax-IT" Licata
